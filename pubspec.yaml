@@ -1,0 +1,89 @@
+name: abudiyab
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 4.0.9+59
+environment:
+  sdk: '>=2.17.0 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.3
+  flutter_bloc: ^8.1.5
+  bloc: ^8.0.2
+  google_maps_flutter: ^2.0.6
+  flutter_polyline_points: ^1.0.0
+  conditional_builder_null_safety: ^0.0.6
+  equatable: ^2.0.3
+  dio: ^4.0.4
+  shared_preferences: ^2.0.11
+  google_fonts: ^4.0.0
+  image_picker: ^0.8.4+4
+  http: ^0.13.4
+  font_awesome_flutter: ^9.2.0
+  syncfusion_flutter_datepicker: ^20.2.43
+  flash: ^3.0.0
+  lottie: ^1.2.1
+  carousel_slider: ^4.0.0
+  get_it: ^7.2.0
+  device_preview: ^1.0.0
+  flutter_svg: ^2.0.1
+  flutter_device_type: ^0.4.0
+  auto_size_text: ^3.0.0
+  webview_flutter: ^3.0.0
+  url_launcher: ^6.0.20
+  smooth_page_indicator: ^1.0.1
+  flutter_multi_formatter: ^2.5.1
+  modal_bottom_sheet: 3.0.0-pre
+  persistent_bottom_nav_bar: ^4.0.2
+  dotted_border: ^2.0.0+3
+  location: ^4.3.0
+  signature: ^5.0.0
+  screenshot: ^1.2.3
+  new_version: ^0.3.1
+  store_redirect: ^2.0.1
+  flutter_screenutil: ^5.5.3+2
+  top_modal_sheet: ^2.0.1
+  intl: ^0.19.0  # Required version
+  firebase_core: ^2.16.0
+  firebase_messaging: ^14.7.18
+  firebase_auth: ^4.10.0
+  flutter_local_notifications: ^15.1.1
+  cloud_firestore: ^4.9.2
+  video_player: ^2.8.3
+  pay: ^1.1.2
+  package_info_plus: ^1.4.3
+  upgrader: any
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: "^0.13.1"
+
+flutter_icons:
+  image_path: "assets/images/adlogo.png"
+  android: true
+  ios: true
+  remove_alpha_ios: true
+
+dependency_overrides:
+  intl: ^0.19.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+    - assets/images/log.mp4
+    - shorebird.yaml
+
+  fonts:
+    - family: Cairo
+      fonts:
+        - asset: fonts/Cairo-Regular.ttf
