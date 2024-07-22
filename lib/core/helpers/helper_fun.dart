@@ -1,5 +1,4 @@
 import 'package:abudiyab/modules/widgets/components/ad_dialog.dart';
-import 'package:abudiyab/modules/widgets/components/constants.dart';
 import 'package:flash/flash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

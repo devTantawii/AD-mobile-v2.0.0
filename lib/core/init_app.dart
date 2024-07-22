@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 

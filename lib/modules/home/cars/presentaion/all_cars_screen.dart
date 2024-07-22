@@ -11,7 +11,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lottie/lottie.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import '../../additions/presentaion/blocs/addition_cubit/additions_cubit.dart';
 import '../../profile/blocs/profile_cubit/profile_cubit.dart';
 import '../../profile/data/models/profile_model.dart';
 import 'bloc/all_cars_cubit/all_cars_cubit.dart';

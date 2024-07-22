@@ -52,9 +52,9 @@ class Reviews extends StatelessWidget {
                     itemCount: 3,
                     itemBuilder: (BuildContext context, int index) {
                       List profile = [
-                        Assets.layer_10,
-                        Assets.layer_12,
-                        Assets.layer_13
+                        // Assets.layer_10,
+                        // Assets.layer_12,
+                        // Assets.layer_13
                       ];
                       return Container(
                         padding: EdgeInsets.symmetric(vertical: 15),

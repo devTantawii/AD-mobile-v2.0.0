@@ -18,7 +18,6 @@ Map<String, String> arabic() {
     "bodyOnboarding2":"التعقيم الداخلي والخارجي الشامل قبل وبعد كل حجز",
     "welcomeAgain":"مرحبآ بك مجددا,",
     "welcomeAgainSubtitel":"قم بتسجيل الدخول الآن, وآحجز سيارتك\n بأسهل طريقة ممكنه.",
-    "welcomeAtAbudiyab":"مرحبا بك مجددا في أبو ذياب ",
     "welcomeAtAbudiyab":"مرحبا بك في أبو ذياب ",
     "welcomeAtAbudiyabsubTitle":"قم بفتح حسابك الآن وآحجز سياتك \nبأسهل طريقة ممكنه.",
     "titleOnboarding3":"أسعار منافسة",

@@ -4,9 +4,9 @@ import 'package:abudiyab/core/helpers/validation/form_validator.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/auth/forgotPassword/presentaion/widgets/forgotPassword.dart';
 import 'package:abudiyab/modules/auth/old_customer/presentaion/page/enter_info_oldcustomer_screan.dart';
-import 'package:abudiyab/modules/auth/onboarding/bloc/onboarding_cubt_cubit.dart';
+import 'package:abudiyab/modules/auth/blocs/auth_bloc/onboarding_cubt_cubit.dart';
 import 'package:abudiyab/modules/auth/signin/presentation/bloc/signin_bloc.dart';
-import 'package:abudiyab/modules/home/layout_screan/layout_screan.dart';
+import 'package:abudiyab/modules/home/home_screen/home_screen.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
 import 'package:abudiyab/service_locator.dart';
 import 'package:abudiyab/shared/commponents.dart';
@@ -75,7 +75,7 @@ class _SignInScreenState extends State<SignInScreen> {
               widget.pushAddition
                   ? Navigator.of(context).pop(true)
                   : Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (_) => LayoutScreen()),
+                  MaterialPageRoute(builder: (_) => HomeScreen()),
                       (route) => false);
             }
             ///
@@ -188,7 +188,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                 onTap: () {
                                   Navigator.of(context).pushAndRemoveUntil(
                                       MaterialPageRoute(
-                                          builder: (_) => LayoutScreen()),
+                                          builder: (_) => HomeScreen()),
                                           (_) => false);
                                 },
                                 child: Card(

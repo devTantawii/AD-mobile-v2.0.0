@@ -353,7 +353,6 @@ Map<String, String> english() {
     'convertible': 'Convertible',
     'addReview': 'Add Review',
     'comfirmBooking': 'Confirm Booking',
-    'comfirmBooking': 'Confirm Booking',
     'homeb': '(Home)',
     'dummyDate1': '21st February, 2021',
     'dummyTime1': '09:00 AM',

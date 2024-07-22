@@ -2,21 +2,17 @@ import 'dart:ui';
 import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/core/helpers/validation/form_validator.dart';
 import 'package:abudiyab/language/locale.dart';
-import 'package:abudiyab/modules/auth/onboarding/bloc/onboarding_cubt_cubit.dart';
+import 'package:abudiyab/modules/auth/blocs/auth_bloc/onboarding_cubt_cubit.dart';
 import 'package:abudiyab/modules/auth/register/presentaion/bloc/register_cubit.dart';
-import 'package:abudiyab/modules/home/layout_screan/layout_screan.dart';
 import 'package:abudiyab/modules/home/profile/page/privacy_policy/privacy_policy.dart';
 import 'package:abudiyab/modules/widgets/components/ad_curve.dart';
-import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:abudiyab/shared/style/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../../../../../core/fade_route.dart';
 import '../../../../../service_locator.dart';
@@ -107,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
               body: Stack(
                 children: [
                   SingleChildScrollView(
-                    //physics: const BouncingScrollPhysics(),
+                   // physics: const BouncingScrollPhysics(),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,

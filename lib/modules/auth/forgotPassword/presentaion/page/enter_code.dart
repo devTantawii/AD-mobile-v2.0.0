@@ -3,10 +3,8 @@ import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/auth/forgotPassword/presentaion/bloc/forget_password.state.dart';
 import 'package:abudiyab/modules/auth/forgotPassword/presentaion/bloc/forget_password_cubit.dart';
 import 'package:abudiyab/modules/auth/forgotPassword/presentaion/page/change_password.dart';
-import 'package:abudiyab/modules/home/profile/page/widget/container_tile.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
-import 'package:abudiyab/modules/widgets/components/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

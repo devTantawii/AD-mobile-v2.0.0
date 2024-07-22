@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import '../../../cars/data/models/cars_model.dart';
 
 CheckOrderStepModel bookingFromMap(String str) =>
     CheckOrderStepModel.fromMap(json.decode(str) as Map<String, dynamic>);

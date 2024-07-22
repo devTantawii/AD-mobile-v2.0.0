@@ -19,12 +19,12 @@ class BranchesService {
       var data = json.decode(response.body) as Map<String, dynamic>;
       List list = data['data'] as List;
       List<BranchModel> list2 = [];
-      print(list);
+      //print(list);
       for (var item in list) {
         list2.add(BranchModel.fromMap(item));
       }
 
-      print(list2);
+     // print(list2);
       return list2;
     } else {
       print(response.statusCode);

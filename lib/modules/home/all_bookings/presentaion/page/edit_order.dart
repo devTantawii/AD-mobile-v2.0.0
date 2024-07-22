@@ -1,4 +1,3 @@
-import 'package:abudiyab/core/helpers/date_helper.dart';
 import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/all_bookings/data/model/booking_model.dart';
@@ -18,6 +17,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/helpers/helper/date_helper.dart';
 import '../../../../../service_locator.dart';
 
 class EditOrder extends StatefulWidget {
@@ -400,30 +400,6 @@ class _EditOrderState extends State<EditOrder> {
         deliveryDate: DateHandler.mixDateWithHours(
             BlocProvider.of<SearchCubit>(context).driveDateValue,
             deliveryHour));
-//////////////////////////////////////////////
-//     if (BlocProvider.of<EditOrderCubit>(context)
-//         .state
-//         .toString()
-//         .contains("EditOrderFailed")) {
-//       HelperFunctions.dialog(
-//           context: context,
-//           title: "Wrong",
-//           body: BlocProvider.of<EditOrderCubit>(context)
-//               .state
-//               .props
-//               .first
-//               .toString());
-//     } else if (BlocProvider.of<EditOrderCubit>(context)
-//         .state
-//         .toString()
-//         .contains("EditOrderSuccess")) {
-//       Navigator.of(context).pop();
-//     } else {
-//       HelperFunctions.showFlashBar(
-//           context: context,
-//           title: "...Oops",
-//           message: "some thing happened",
-//           icon: Icons.info);
-//     }
+
   }
 }
