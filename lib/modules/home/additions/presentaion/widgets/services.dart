@@ -1,19 +1,12 @@
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/additions/data/models/step_one_order_model.dart';
 import 'package:abudiyab/modules/home/additions/presentaion/blocs/addition_cubit/additions_cubit.dart';
-import 'package:abudiyab/modules/home/blocs/booking_cubit/booking_cubit.dart';
 import 'package:abudiyab/modules/home/cars/data/models/cars_model.dart';
-import 'package:abudiyab/modules/home/payment/invoice.dart';
-import 'package:abudiyab/modules/home/payment/paymentMethods.dart';
-import 'package:abudiyab/modules/widgets/components/constants.dart';
-import 'package:abudiyab/modules/widgets/components/simple_home_page_icon.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-import '../../../all_bookings/data/model/check_order_step_model.dart';
-import '../../../all_bookings/data/model/featuresModel.dart';
 
 class Services extends StatefulWidget {
   // final List<FeatureNotCompletedModel?>? featuresNotCompleted;

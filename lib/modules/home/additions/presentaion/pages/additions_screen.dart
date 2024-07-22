@@ -16,6 +16,7 @@ import '../../../../auth/signin/presentation/pages/signin_screen.dart';
 import '../../../all_bookings/data/model/check_order_step_model.dart';
 import '../../../payment/paymentMethods.dart';
 
+// ignore: must_be_immutable
 class AdditionsScreen extends StatefulWidget {
   final DataCars? datum;
   final CheckOrderStepModel? checkOrderStepModel;
@@ -37,12 +38,12 @@ class AdditionsScreen extends StatefulWidget {
 class _AdditionsScreenState extends State<AdditionsScreen>
     with SingleTickerProviderStateMixin {
   int currentIndex = 0;
-  var _scrollController, _tabController;
+  //var _scrollController, _tabController;
   @override
   void initState() {
 
-    _scrollController = ScrollController();
-    _tabController = TabController(length: 2, vsync: this);
+    // _scrollController = ScrollController();
+    // _tabController = TabController(length: 2, vsync: this);
     // BlocProvider.of<AdditionsCubit>(context).getCarFeatures(context, widget.datum!.id.toString());
   if(widget.fromNotCompleted==true){
      widget.fromAddAdditions==true?checkOrderStep():false;

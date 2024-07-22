@@ -1,5 +1,4 @@
 import 'package:abudiyab/core/helpers/map_utils.dart';
-import 'package:abudiyab/core/helpers/theme_handler.dart';
 import 'package:abudiyab/modules/home/all_branching/data/models/branch_model.dart';
 import 'package:abudiyab/modules/home/search_screen/blocs/search_bloc/search_cubit.dart';
 import 'package:abudiyab/modules/home/search_screen/data/models/areas_model.dart';
@@ -10,7 +9,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../all_branching/bloc/all_branching_cubit.dart';
+import '../../../../../core/helpers/helper/theme_handler.dart';
+
 
 class LocationMap extends StatefulWidget {
   final List<BranchModel>? branches;

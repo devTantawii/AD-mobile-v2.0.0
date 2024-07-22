@@ -45,17 +45,16 @@ class _SearchState extends State<SearchScreen> {
     isAlertboxOpened = true;
     BlocProvider.of<AllBranchCubit>(context).getAllBranch();
     BlocProvider.of<ProfileCubit>(context).getProfile();
-    // getOffers();
+    getOffers();
     getRegions();
-    // getOffers();
     super.initState();
 
   }
 
-  getBranches() async => await BlocProvider.of<SearchCubit>(context).getBranches();
-  getRegions() async => await BlocProvider.of<SearchCubit>(context).getRegions();
+  //getBranches() async => await BlocProvider.of<SearchCubit>(context).getBranches();
+ getRegions() async => await BlocProvider.of<SearchCubit>(context).getRegions();
 
-  // getOffers() async => await BlocProvider.of<SearchCubit>(context).getOffers();
+  getOffers() async => await BlocProvider.of<SearchCubit>(context).getOffers();
 
   // getAllBooking() async =>  BlocProvider.of<AllBookingCubit>(context).getAllBooking(state: 'running');
 
@@ -172,54 +171,49 @@ class _SearchState extends State<SearchScreen> {
                 BlocProvider.of<HeadlinesCubit>(context).getDataSlider();
                 getRegions();
               },
-              child:  Stack(
-                fit: StackFit.loose,
-                children: [
-                  SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                            height: 180.h,
-                            child: CardTopHeadlines()),
-                        Container(
-                          height: size.height * 0.6,
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
-                                  decoration: BoxDecoration(
-                                    color: Theme.of(context)
-                                        .scaffoldBackgroundColor,
-                                    borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(20),
-                                        topRight: Radius.circular(20)
-                                    ),
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary
-                                            .withOpacity(0.5),
-                                        blurRadius: 1,
-                                        offset: const Offset(0, -2),
-                                      ),
-                                    ],
-                                  ),
-                                  child: context.read<SearchCubit>().rentType ==
-                                      RentType.classic
-                                      ? ClassicRentBody()
-                                      : Container(),
+              child:  SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    SizedBox(
+                        height: 180.h,
+                        child: CardTopHeadlines()),
+                    Container(
+                      height: size.height * 0.6,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 20.h),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context)
+                                    .scaffoldBackgroundColor,
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(8),
+                                    topRight: Radius.circular(8)
                                 ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .primary
+                                        .withOpacity(0.5),
+                                    blurRadius: 1,
+                                    offset: const Offset(0, -2),
+                                  ),
+                                ],
                               ),
-                            ],
+                              child: context.read<SearchCubit>().rentType ==
+                                  RentType.classic
+                                  ? ClassicRentBody()
+                                  : Container(),
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           }

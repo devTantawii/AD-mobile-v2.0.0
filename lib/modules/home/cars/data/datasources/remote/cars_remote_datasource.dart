@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:abudiyab/core/constants/api_path.dart';
 import 'package:abudiyab/core/constants/langCode.dart';
@@ -22,10 +21,10 @@ class CarsRemoteDataSource {
     int? model,
   }) async {
     try {
-      final String? catIds =
-      _generateCategorySearchParameters(categoryIds ?? []);
-      final String? brandIds =
-      _generateBrandSearchParameters(manufactoryIds ?? []);
+      // final String? catIds =
+      // _generateCategorySearchParameters(categoryIds ?? []);
+      // final String? brandIds =
+      // _generateBrandSearchParameters(manufactoryIds ?? []);
       final token = await sharedPreferencesHelper.getToken();
       final Response response = await _dio.get(
         branchId == null

@@ -32,155 +32,139 @@ class ClassicRentBody extends StatefulWidget {
 }
 
 class _ClassicRentBodyState extends State<ClassicRentBody> {
-
   late bool searchError = false;
   bool _switchValue = false;
-  int  listIndex = 0;
+  int listIndex = 0;
   String? token = SharedPreferencesHelper().get("token").toString();
   late final List<BranchModel>? branches;
+
   @override
   void initState() {
-
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final locale = AppLocalizations.of(context);
-    var bookingData = BlocProvider.of<AllBookingCubit>(context).booking;
     return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
-        return Column(
+        return ListView(
           children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Container(
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Text(locale!.choseBranch.toString(),
-                                style: Theme.of(context)
-                             .textTheme
-                            .titleLarge!.copyWith(
-                            fontSize: 18.sp,
-                          color: Theme.of(context).brightness==Brightness.light?Colors.black:Colors.white,),)
-                              ],
-                            ),
-                            SizedBox(height: 10.h,),
-                            GestureDetector(
-                              onTap: (){},
-                              child: RegionTile(regions: BlocProvider.of<SearchCubit>(context)
-                                      .regionsData),
-                            ),
-                            BlocProvider.of<SearchCubit>(context).branchesData.isNotEmpty
-                                ? MapListSelectionViewTile(
-                                    branches: context.read<SearchCubit>().branchesData,
-                                    areas: context.read<SearchCubit>().areasData,
-                                    isAutomated: false,
-                                    isReceive: true)
-                                : SizedBox.shrink(),
-                            SizedBox(height: 5.0),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  child: BlocProvider.of<SearchCubit>(context)
-                                      .branchesData
-                                      .isNotEmpty
-                                      ? AutoSizeText(
-                                    locale.deliverAnotherBranch.toString(),
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelLarge
-                                  )
-                                      : Container(),
-                                ),
-                                BlocProvider.of<SearchCubit>(context)
-                                    .branchesData
-                                    .isNotEmpty
-                                    ? SizedBox(
-                                  child: FittedBox(
-                                    child: Switch.adaptive(
-                                      activeColor: kPickColor,
-                                      value: _switchValue,
-                                      onChanged: (value) => setState(() {
-                                        _switchValue = value;
-                                      }),
-                                    ),
-                                  ),
-                                )
-                                    : SizedBox.shrink(),
-                              ],
-                            ),
-                            _switchValue
-                                ? MapListSelectionViewTile(
-                                    isAutomated: false,
-                                    branches: context.read<AllBranchCubit>().branchesData,
-                                    areas: context.read<SearchCubit>().areasData,
-                                    isReceive: false)
-                                : SizedBox(),
-                            _switchValue ? SizedBox(height: 5) : SizedBox(),
-
-                            SizedBox(height: size.height * 0.015),
-                            Row(
-                              children: [
-                                Text(locale.selectDateAndTime.toString(),
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleLarge!.copyWith(
-                                    fontSize: 18.sp,
-                                      color: Theme.of(context).brightness==Brightness.light?Colors.black:Colors.white,),),
-                              ],
-                            ),
-                            SizedBox(height: 15.h,),
-                            Row(
-                         children: [
-                           Container(
-                             height:Device.get().isTablet?220.h:170.h,
-                             width: 147.w,
-                             child: Stack(
-                               children: [
-                                 SelectDayAndTimeWidget(isReceive: true),
-                               ],
-                             ),
-                           ),
-                           Spacer(),
-                           Container(
-                             height:Device.get().isTablet?220.h:170.h,
-                             width: 147.w,
-                             child: Stack(
-                               children: [
-                                 SelectDayAndTimeWidget(isReceive: false),
-                               ],
-                             ),
-                           ),
-                         ],
-                       ),
-                            SizedBox(
-                              height:Device.get().isTablet?100:0 ,
-                            ),
-                            GestureDetector(
-                              onTap: () => onTap(context),
-                              child: ADGradientButton(locale.search),
-                            ),
-                            Text(
-                              searchError ? locale.selectRegionAndBranch : "",
-                              style: TextStyle(
-                                  color: Colors.red[300],
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ],
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: size.width * 0.01),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    locale!.choseBranch.toString(),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 18.sp,
+                          color: Theme.of(context).brightness ==
+                                  Brightness.light
+                              ? Colors.black
+                              : Colors.white,
                         ),
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  GestureDetector(
+                    onTap: () {},
+                    child: RegionTile(
+                        regions:
+                            BlocProvider.of<SearchCubit>(context).regionsData),
+                  ),
+                  BlocProvider.of<SearchCubit>(context).branchesData.isNotEmpty
+                      ? MapListSelectionViewTile(
+                          branches: context.read<SearchCubit>().branchesData,
+                          areas: context.read<SearchCubit>().areasData,
+                          isAutomated: false,
+                          isReceive: true)
+                      : SizedBox.shrink(),
+                  SizedBox(height: 5.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: BlocProvider.of<SearchCubit>(context)
+                                .branchesData
+                                .isNotEmpty
+                            ? AutoSizeText(
+                                locale.deliverAnotherBranch.toString(),
+                                style: Theme.of(context).textTheme.labelLarge)
+                            : Container(),
+                      ),
+                      BlocProvider.of<SearchCubit>(context)
+                              .branchesData
+                              .isNotEmpty
+                          ? SizedBox(
+                              child: FittedBox(
+                                child: Switch.adaptive(
+                                  activeColor: kPickColor,
+                                  value: _switchValue,
+                                  onChanged: (value) => setState(() {
+                                    _switchValue = value;
+                                  }),
+                                ),
+                              ),
+                            )
+                          : SizedBox.shrink(),
+                    ],
+                  ),
+                  _switchValue
+                      ? MapListSelectionViewTile(
+                          isAutomated: false,
+                          branches: context.read<AllBranchCubit>().branchesData,
+                          areas: context.read<SearchCubit>().areasData,
+                          isReceive: false)
+                      : SizedBox(),
+                  _switchValue ? SizedBox(height: 5) : SizedBox(),
+                  SizedBox(height: 15.h),
+                  Text(
+                    locale.selectDateAndTime.toString(),
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontSize: 18.sp,
+                          color: Theme.of(context).brightness ==
+                                  Brightness.light
+                              ? Colors.black
+                              : Colors.white,
+
+                        ),
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  Row(
+                    children: [
+                      Container(
+                        height: Device.get().isTablet ? 220.h : 170.h,
+                        width: 147.w,
+                        child: SelectDayAndTimeWidget(isReceive: true),
+                      ),
+                      Spacer(),
+                      Container(
+                        height: Device.get().isTablet ? 220.h : 170.h,
+                        width: 147.w,
+                        child: SelectDayAndTimeWidget(isReceive: false),
                       ),
                     ],
                   ),
-                ),
+                  SizedBox(
+                    height: Device.get().isTablet ? 100 : 0,
+                  ),
+                  GestureDetector(
+                    onTap: () => onTap(context),
+                    child: ADGradientButton(locale.search),
+                  ),
+                  Text(
+                    searchError ? locale.selectRegionAndBranch : "",
+                    style: TextStyle(
+                        color: Colors.red[300],
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
               ),
             ),
           ],
@@ -191,9 +175,12 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
 
   onTap(BuildContext context) async {
     try {
-      print(BlocProvider.of<SearchCubit>(context).receiveTimeValue.toString()+"GGGF");
-      print(BlocProvider.of<SearchCubit>(context).receiveDateValue.toString()+"GGG");
-      print(BlocProvider.of<SearchCubit>(context).driveDateValue.toString()+"HHH");
+      print(BlocProvider.of<SearchCubit>(context).receiveTimeValue.toString() +
+          "GGGF");
+      print(BlocProvider.of<SearchCubit>(context).receiveDateValue.toString() +
+          "GGG");
+      print(BlocProvider.of<SearchCubit>(context).driveDateValue.toString() +
+          "HHH");
       // print(BlocProvider.of<SearchCubit>(context).selectedRegion.toString()+"GGG");
       // print(BlocProvider.of<SearchCubit>(context).selectedDriveBranch.toString()+"fff");
       if (BlocProvider.of<ProfileCubit>(context).custClass == '1'.toString()) {
@@ -211,7 +198,9 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
           searchError = false;
         });
       }
-      final triggeredBranchModel = context.read<SearchCubit>().branchesData
+      final triggeredBranchModel = context
+          .read<SearchCubit>()
+          .branchesData
           .where((element) =>
               element.name ==
               BlocProvider.of<SearchCubit>(context).selectedReceiveBranch)
@@ -220,8 +209,8 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
           triggeredBranchModel;
       // drive
       if (BlocProvider.of<SearchCubit>(context).selectedDriveBranch != null) {
-
-        final triggeredDriveBranchModel = context.read<AllBranchCubit>()
+        final triggeredDriveBranchModel = context
+            .read<AllBranchCubit>()
             .branchesData
             .where((element) =>
                 element.name ==
@@ -230,7 +219,8 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
         BlocProvider.of<SearchCubit>(context).selectedDriveModel =
             triggeredDriveBranchModel;
       } else {
-        BlocProvider.of<SearchCubit>(context).selectedDriveModel = triggeredBranchModel;
+        BlocProvider.of<SearchCubit>(context).selectedDriveModel =
+            triggeredBranchModel;
         print(BlocProvider.of<SearchCubit>(context).selectedDriveBranch);
       }
 
@@ -243,10 +233,19 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
     }
   }
 
-  SizedBox? listViewHorizantal(Size size, locale,String state,String stateText,String pickUpBranch,String pickUpDate,String droppOffDate,String droOffBranch,) {
-     return
-       //stateText=='اكتمل'||stateText =='done'||stateText=='في الانتظار'||stateText=='pending'||stateText=='في الانتظار'||stateText=='pending'?
-     SizedBox(
+  SizedBox? listViewHorizantal(
+    Size size,
+    locale,
+    String state,
+    String stateText,
+    String pickUpBranch,
+    String pickUpDate,
+    String droppOffDate,
+    String droOffBranch,
+  ) {
+    return
+        //stateText=='اكتمل'||stateText =='done'||stateText=='في الانتظار'||stateText=='pending'||stateText=='في الانتظار'||stateText=='pending'?
+        SizedBox(
       child: Card(
         color: Colors.transparent,
         elevation: 0.0,
@@ -254,107 +253,200 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: ClipPath(
           clipper: ShapeBorderClipper(
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(18.sp)))),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(18.sp)))),
           child: Container(
             decoration: BoxDecoration(
-            color: Colors.transparent,
-              border: Border(
-                right: BorderSide(color: Color(0xff5D6FD4),width: 6),
-                bottom: BorderSide(color: Color(0xff5D6FD4),width: 1.2),
-              )
-          ),
+                color: Colors.transparent,
+                border: Border(
+                  right: BorderSide(color: Color(0xff5D6FD4), width: 6),
+                  bottom: BorderSide(color: Color(0xff5D6FD4), width: 1.2),
+                )),
             child: Container(
               height: size.height * 0.18,
-              width: size.width/1.2,
+              width: size.width / 1.2,
               decoration: BoxDecoration(
-                  color: Theme.of(context).brightness == Brightness.dark?Color(0xff323376)
-                      :Color(0XFFCAD3F3),
-                border: Border(
-                  right: BorderSide(color:Theme.of(context).brightness == Brightness.light? kPrimaryColor.withOpacity(0.3):Color(0xff505AC9),width: 5),
-                )
-              ),
+                  color: Theme.of(context).brightness == Brightness.dark
+                      ? Color(0xff323376)
+                      : Color(0XFFCAD3F3),
+                  border: Border(
+                    right: BorderSide(
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? kPrimaryColor.withOpacity(0.3)
+                            : Color(0xff505AC9),
+                        width: 5),
+                  )),
               child: Row(
                 children: [
                   ///------First
-                 Expanded(
-                   child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                       Padding(
-                         padding:  EdgeInsets.symmetric(horizontal: 5.sp,vertical: MediaQuery.of(context).size.height*0.01),
-                         child: Stack(
-                           children: [
-                             Container(
-                               width: size.width*0.19,
-                               height: size.height*0.035,
-                               decoration: BoxDecoration(
-                                 color:stateText=='اكتمل'||stateText =='done'?
-                                 Colors.green.withOpacity(0.3):stateText=='في الانتظار'||stateText=='pending'?
-                                 Color(0xffE5BFF2):stateText=='مؤكد'||stateText=='confirmed'?
-                                 Color(0xffCBE5E1)
-                                     :Color(0xffDD5406),
-                                 borderRadius: BorderRadius.circular(6)
-                               ),
-                               child: Center(
-                                 child: Text(
-                                   stateText.toString(),
-                                 style: defaultTextStyle(14, FontWeight.w500,
-                                   stateText =='اكتمل'||stateText =='done'?
-                                   Colors.green:stateText=='في الانتظار'||stateText=='pending'?
-                                   Color(0xff8304B0):stateText=='مؤكد'||stateText=='confirmed'?
-                                   Color(0xff1FA88F):Colors.white,),
-                               ),),
-                             )
-                           ],
-                         ),
-                       ),
-                       Padding(
-                         padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.05,),
-                         child: Text(locale.pickUpBranch,style: defaultTextStyle(12, FontWeight.w400, Theme.of(context).brightness==Brightness.light?Color(0xff819D91)
-                             :Color(0xffF08A61)),),
-                       ),
-                       SizedBox(height: MediaQuery.of(context).size.height*0.002,),
-                       FittedBox(
-                         child: Row(
-                           children: [
-                             Icon(Icons.location_on_outlined,color: kPrimaryColor,size: 20),
-                             Text(pickUpBranch,overflow: TextOverflow.ellipsis,
-                               style: defaultTextStyle(13, FontWeight.w400, Theme.of(context).brightness==Brightness.light?Color(0xff5D5F5E):Colors.white),),
-                           ],
-                         ),
-                       ),
-                       Padding(
-                         padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.01,),
-                         child: Text(pickUpDate,overflow: TextOverflow.ellipsis,style: defaultTextStyle(12, FontWeight.w400, Theme.of(context).brightness==Brightness.light?Color(0xff5D5F5E):Colors.white),),
-                       ),
-                     ],
-                   ),
-                 ),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 5.sp,
+                              vertical:
+                                  MediaQuery.of(context).size.height * 0.01),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: size.width * 0.19,
+                                height: size.height * 0.035,
+                                decoration: BoxDecoration(
+                                    color: stateText == 'اكتمل' ||
+                                            stateText == 'done'
+                                        ? Colors.green.withOpacity(0.3)
+                                        : stateText == 'في الانتظار' ||
+                                                stateText == 'pending'
+                                            ? Color(0xffE5BFF2)
+                                            : stateText == 'مؤكد' ||
+                                                    stateText == 'confirmed'
+                                                ? Color(0xffCBE5E1)
+                                                : Color(0xffDD5406),
+                                    borderRadius: BorderRadius.circular(6)),
+                                child: Center(
+                                  child: Text(
+                                    stateText.toString(),
+                                    style: defaultTextStyle(
+                                      14,
+                                      FontWeight.w500,
+                                      stateText == 'اكتمل' ||
+                                              stateText == 'done'
+                                          ? Colors.green
+                                          : stateText == 'في الانتظار' ||
+                                                  stateText == 'pending'
+                                              ? Color(0xff8304B0)
+                                              : stateText == 'مؤكد' ||
+                                                      stateText == 'confirmed'
+                                                  ? Color(0xff1FA88F)
+                                                  : Colors.white,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.height * 0.05,
+                          ),
+                          child: Text(
+                            locale.pickUpBranch,
+                            style: defaultTextStyle(
+                                12,
+                                FontWeight.w400,
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Color(0xff819D91)
+                                    : Color(0xffF08A61)),
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.002,
+                        ),
+                        FittedBox(
+                          child: Row(
+                            children: [
+                              Icon(Icons.location_on_outlined,
+                                  color: kPrimaryColor, size: 20),
+                              Text(
+                                pickUpBranch,
+                                overflow: TextOverflow.ellipsis,
+                                style: defaultTextStyle(
+                                    13,
+                                    FontWeight.w400,
+                                    Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Color(0xff5D5F5E)
+                                        : Colors.white),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.height * 0.01,
+                          ),
+                          child: Text(
+                            pickUpDate,
+                            overflow: TextOverflow.ellipsis,
+                            style: defaultTextStyle(
+                                12,
+                                FontWeight.w400,
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Color(0xff5D5F5E)
+                                    : Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
                   ///--------second
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(height: MediaQuery.of(context).size.width*0.13,),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.width * 0.13,
+                        ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 15.0),
-                          child: Text(locale.dropOffBranch,overflow: TextOverflow.ellipsis,style: defaultTextStyle(12, FontWeight.w400, Theme.of(context).brightness==Brightness.light?Color(0xff819D91):Color(0xffF08A61)),),
+                          child: Text(
+                            locale.dropOffBranch,
+                            overflow: TextOverflow.ellipsis,
+                            style: defaultTextStyle(
+                                12,
+                                FontWeight.w400,
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Color(0xff819D91)
+                                    : Color(0xffF08A61)),
+                          ),
                         ),
                         // SizedBox(height: MediaQuery.of(context).size.height*0.008,),
                         FittedBox(
                           child: Row(
                             children: [
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 2.0),
-                                child: Icon(Icons.gps_fixed_outlined,color: KSecondColor,size: 20,),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 2.0),
+                                child: Icon(
+                                  Icons.gps_fixed_outlined,
+                                  color: KSecondColor,
+                                  size: 20,
+                                ),
                               ),
-                              Text(droOffBranch,overflow: TextOverflow.ellipsis,style: defaultTextStyle(13, FontWeight.w400, Theme.of(context).brightness==Brightness.light?Color(0xff5D5F5E):Colors.white,)),
+                              Text(droOffBranch,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: defaultTextStyle(
+                                    13,
+                                    FontWeight.w400,
+                                    Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Color(0xff5D5F5E)
+                                        : Colors.white,
+                                  )),
                             ],
                           ),
                         ),
                         Padding(
-                          padding:EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.height*0.03,),
-                          child: Text(droppOffDate,overflow: TextOverflow.ellipsis,style: defaultTextStyle(13, FontWeight.w400, Theme.of(context).brightness==Brightness.light?Color(0xff5D5F5E):Colors.white),),
+                          padding: EdgeInsets.symmetric(
+                            horizontal:
+                                MediaQuery.of(context).size.height * 0.03,
+                          ),
+                          child: Text(
+                            droppOffDate,
+                            overflow: TextOverflow.ellipsis,
+                            style: defaultTextStyle(
+                                13,
+                                FontWeight.w400,
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Color(0xff5D5F5E)
+                                    : Colors.white),
+                          ),
                         ),
                       ],
                     ),
@@ -367,17 +459,17 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
       ),
     );
   }
-  Widget whenCardsEmpty(size,locale){
+
+  Widget whenCardsEmpty(size, locale) {
     return Container(
       height: size.height * 0.15,
-      width: size.width*0.88,
+      width: size.width * 0.88,
       decoration: BoxDecoration(
-          color: Color(0XFFCAD3F3),
-          borderRadius: BorderRadius.circular(12)),
+          color: Color(0XFFCAD3F3), borderRadius: BorderRadius.circular(12)),
       child: Row(
         children: [
           Padding(
-            padding:  EdgeInsets.symmetric(horizontal: size.width*0.02),
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.02),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -386,9 +478,11 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
                 ),
                 Text(
                   locale.reserveYourCarNow.toString(),
-                  style: defaultTextStyle(22, FontWeight.w600, kPrimaryColor),),
+                  style: defaultTextStyle(22, FontWeight.w600, kPrimaryColor),
+                ),
                 Text(locale.knowAboutFleet.toString(),
-                    style: defaultTextStyle(14, FontWeight.w500, Colors.black54)),
+                    style:
+                        defaultTextStyle(14, FontWeight.w500, Colors.black54)),
               ],
             ),
           ),

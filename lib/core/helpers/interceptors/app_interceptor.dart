@@ -39,7 +39,6 @@ class AppInterceptors extends Interceptor {
 
     /// Redirects true
     options.followRedirects = true;
-
     /// Add Header Accepted
     options.headers.addAll({
       Headers.acceptHeader: applicationJson,

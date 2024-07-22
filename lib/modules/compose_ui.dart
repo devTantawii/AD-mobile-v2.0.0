@@ -1,7 +1,7 @@
+import 'package:abudiyab/modules/home/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'auth/blocs/auth_bloc/auth_bloc.dart';
-import 'home/layout_screan/layout_screan.dart';
 import 'home/selectLanguage/selectLanguage.dart';
 
 class ComposeUi extends StatelessWidget {
@@ -10,6 +10,6 @@ class ComposeUi extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocBuilder<AuthBloc, AuthState>(
       builder: (context, state) =>
-      state is Authenticated ? LayoutScreen() : SelectLanguage(true)
+      state is Authenticated ? HomeScreen() : SelectLanguage(true)
   );
 }

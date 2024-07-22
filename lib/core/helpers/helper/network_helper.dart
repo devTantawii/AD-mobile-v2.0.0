@@ -1,8 +1,8 @@
 import 'package:abudiyab/core/helpers/interceptors/pretty_dio_logger.dart';
 import 'package:dio/dio.dart';
 
-import '../../service_locator.dart';
-import 'interceptors/app_interceptor.dart';
+import '../../../service_locator.dart';
+import '../interceptors/app_interceptor.dart';
 
 /// Handle Http Request
 class NetworkHelper {

@@ -1,5 +1,4 @@
 import 'package:abudiyab/modules/home/cars/data/models/cars_model.dart';
-import 'package:abudiyab/modules/widgets/components/appbar.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../widgets/components/ad_back_button.dart';

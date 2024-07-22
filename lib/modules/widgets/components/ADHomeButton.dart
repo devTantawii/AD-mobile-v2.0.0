@@ -1,9 +1,8 @@
 import 'package:abudiyab/language/locale.dart';
-import 'package:abudiyab/modules/home/layout_screan/layout_screan.dart';
+import 'package:abudiyab/modules/home/home_screen/home_screen.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../shared/style/colors.dart';
+
 
 class ADHomeButton extends StatelessWidget {
   final bool isBackHandled;
@@ -15,7 +14,7 @@ class ADHomeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context);
     return InkWell(
-      onTap: isBackHandled ? onPressed : () => navigateAndFinish(context,LayoutScreen()),
+      onTap: isBackHandled ? onPressed : () => navigateAndFinish(context,HomeScreen()),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [

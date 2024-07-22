@@ -2,7 +2,6 @@ import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/auth/old_customer/presentaion/bloc/old_customer_cubit.dart';
 import 'package:abudiyab/modules/auth/old_customer/presentaion/bloc/old_customer_state.dart';
-import 'package:abudiyab/modules/home/payment/widget/screen_background.dart';
 import 'package:abudiyab/modules/home/profile/page/widget/container_tile.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';

@@ -1,7 +1,6 @@
 import 'package:abudiyab/language/languageCubit.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/search_screen/presentaion/search_Screen.dart';
-import 'package:abudiyab/modules/widgets/on_boarding/on_boarding.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import '../../../core/fade_route.dart';
 import '../../../core/helpers/SharedPreference/pereferences.dart';
+import '../../auth/on_boarding/on_boarding.dart';
 
 class SelectLanguage extends StatefulWidget {
   final bool isStart;
@@ -56,7 +56,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                 SizedBox(
                   height: size.height * 0.11,
                 ),
-                SvgPicture.asset('assets/images/ar-en.svg'),
+                SvgPicture.asset('assets/icons/ar-en.svg'),
                 Container(
                   child: Column(
                     children: [
@@ -138,7 +138,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              SvgPicture.asset('assets/images/england.svg'),
+                              SvgPicture.asset('assets/icons/england.svg'),
                               Text(
                                 'English',
                                 style: defaultTextStyle(
@@ -183,7 +183,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              SvgPicture.asset('assets/images/Flags.svg'),
+                              SvgPicture.asset('assets/icons/Flags.svg'),
                               Text(
                                 'العربية',
                                 style: defaultTextStyle(

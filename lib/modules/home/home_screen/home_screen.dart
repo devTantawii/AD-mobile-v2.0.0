@@ -1,11 +1,9 @@
 import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/language/locale.dart';
-import 'package:abudiyab/modules/home/all_bookings/presentaion/bloc/allbooking_cubit.dart';
-import 'package:abudiyab/modules/home/all_bookings/presentaion/page/mybookings.dart';
+
 import 'package:abudiyab/modules/home/all_branching/page/branches_screen.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/all_cars_screen.dart';
 import 'package:abudiyab/modules/home/profile/page/profile.dart';
-import 'package:abudiyab/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,20 +11,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:new_version/new_version.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-import '../../../core/constants/langCode.dart';
-import '../../../core/helpers/SharedPreference/pereferences.dart';
+
 import '../all_bookings/presentaion/page/all_booking_screen.dart';
 import '../profile/blocs/profile_cubit/profile_cubit.dart';
 import '../search_screen/presentaion/search_Screen.dart';
 
-class LayoutScreen extends StatefulWidget {
-  const LayoutScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  State<LayoutScreen> createState() => _LayoutScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _LayoutScreenState extends State<LayoutScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   int _page = 0;
   List<Widget> _buildScreens() =>[
         SearchScreen(),
@@ -41,14 +38,6 @@ class _LayoutScreenState extends State<LayoutScreen> {
     BlocProvider.of<ProfileCubit>(context).getProfile();
     super.initState();
 
-    // SharedPreferencesHelper().get("token").toString().isNotEmpty?
-    // BlocProvider.of<AllBookingCubit>(context).getAllBooking():false;
-    // SharedPreferencesHelper().get("token").toString().isNotEmpty?checkVersion():false;
-    ///-------version function--------
-    //   BlocProvider.of<ProfileCubit>(context).deleteStatus=="1"?false :checkVersion();
-    //    if(BlocProvider.of<ProfileCubit>(context).deleteStatus =="0"){
-    //       checkVersion();
-    //   }
     _controller = PersistentTabController(initialIndex: 0);
   }
 
