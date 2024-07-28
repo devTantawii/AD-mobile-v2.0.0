@@ -1,3 +1,4 @@
+import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/all_branching/bloc/all_branching_cubit.dart';
@@ -100,7 +101,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                                 width: MediaQuery.of(context).size.width * 0.65,
                                 child: Row(
                                   children: [
-                                    SvgPicture.asset("assets/images/roundLocation.svg",),
+                                    SvgPicture.asset(Assets.icon_roundLocation,),
                                     Expanded(
                                       child: AutoSizeText(
                                         " ${state.branchModel[index].name} ",
@@ -120,7 +121,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                                              Uri(scheme: 'tel', path: state.branchModel[index].phone));
                                       },
                                       icon: SvgPicture.asset(
-                                        'assets/images/call.svg',
+                                        Assets.icon_arabicCall,
                                       )),
                                 ),
                               ),

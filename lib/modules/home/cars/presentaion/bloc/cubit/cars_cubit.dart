@@ -27,6 +27,7 @@ class CarsCubit extends Cubit<CarsState> {
       if (pageNumber == 1) {
 
         cars = await carsRemoteDataSource.getAllCars(pageNumber,
+            //availableOnly: true,
             branchId: branchId, castClass: castClass.toString());
       } else {
         final data = await carsRemoteDataSource.getAllCars(pageNumber,

@@ -48,24 +48,21 @@ class _MyProfileState extends State<MyProfile> {
         backgroundColor: Colors.transparent,
         title: Text(
           locale.more,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(fontSize: 16.sp, color: Theme.of(context).colorScheme.onPrimary),
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+              fontSize: 16.sp, color: Theme.of(context).colorScheme.onPrimary),
         ),
       ),
       body: BlocConsumer<ProfileCubit, ProfileState>(
         listener: (context, state) {
           if (state is DeleteProfileSuccess) {
             HelperFunctions.showFlashBar(
-              context: context,
-              title: 'تم حذف حسابك بنجاح',
-              message: "Your Account Deleted Successfully",
-             icon: Icons.info_outline,
-              color: Color(0xffDCEFE3),
-              titlcolor: Colors.green,
-              iconColor: Colors.green
-            );
+                context: context,
+                title: 'تم حذف حسابك بنجاح',
+                message: "Your Account Deleted Successfully",
+                icon: Icons.info_outline,
+                color: Color(0xffDCEFE3),
+                titlcolor: Colors.green,
+                iconColor: Colors.green);
           }
           if (state is ProfileFailed) {
           } else if (state is ProfileLogout) {
@@ -76,15 +73,18 @@ class _MyProfileState extends State<MyProfile> {
         builder: (context, state) {
           final bool isShow = (state is ProfileSuccess);
           if (state is ProfileLoading) {
-            return  Center(
-              child: CircularProgressIndicator.adaptive(backgroundColor: Theme.of(context).colorScheme.onPrimary,),
+            return Center(
+              child: CircularProgressIndicator.adaptive(
+                backgroundColor: Theme.of(context).colorScheme.onPrimary,
+              ),
             );
           }
           if (state is ProfileSuccess) {
             return SingleChildScrollView(
               physics: BouncingScrollPhysics(),
               child: Container(
-                padding: EdgeInsets.only(top: 20, bottom: 30, right: 20, left: 20),
+                padding:
+                    EdgeInsets.only(top: 20, bottom: 30, right: 20, left: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -96,44 +96,45 @@ class _MyProfileState extends State<MyProfile> {
                           padding: EdgeInsets.all(5.sp),
                           color: Theme.of(context).colorScheme.primary,
                           strokeWidth: 1,
-                          child:
-                            Container(
-                              width: 103.sp,
-                              height: 103.sp,
-                              child: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.primary,
-                                child: ClipOval(
-                                  child: Image.network(
-                                    isShow
-                                        ? state.profileModel.avatar!
-                                        : Assets.profile,
-                                    fit: BoxFit.cover,
-                                    height: 100.sp,
-                                    width: 100.sp,
-                                    loadingBuilder: (BuildContext context,
-                                        Widget child,
-                                        ImageChunkEvent? loadingProgress) {
-                                      if (loadingProgress == null) return child;
-                                      return Center(
-                                        child: CircularProgressIndicator(
-                                          backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                                          value: loadingProgress
-                                                      .expectedTotalBytes !=
-                                                  null
-                                              ? loadingProgress
-                                                      .cumulativeBytesLoaded /
-                                                  loadingProgress
-                                                      .expectedTotalBytes!
-                                              : null,
-                                        ),
-                                      );
-                                    },
-                                  ),
+                          child: Container(
+                            width: 103.sp,
+                            height: 103.sp,
+                            child: CircleAvatar(
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
+                              child: ClipOval(
+                                child: Image.network(
+                                  isShow
+                                      ? state.profileModel.avatar!
+                                      : Assets.profile,
+                                  fit: BoxFit.cover,
+                                  height: 100.sp,
+                                  width: 100.sp,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        backgroundColor: Theme.of(context)
+                                            .colorScheme
+                                            .onPrimary,
+                                        value: loadingProgress
+                                                    .expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                loadingProgress
+                                                    .expectedTotalBytes!
+                                            : null,
+                                      ),
+                                    );
+                                  },
                                 ),
-                                radius: 60,
                               ),
+                              radius: 60,
                             ),
+                          ),
                         ),
                       ],
                     ),
@@ -152,18 +153,32 @@ class _MyProfileState extends State<MyProfile> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SvgPicture.asset('assets/images/edit.svg',
-                          color: Theme.of(context).brightness==Brightness.light?
-                          Theme.of(context).colorScheme.primary:Color(0xffF08A61),),
-                          SizedBox(width: size.width * 0.01,),
-                          Text(locale.editProfile.toString(),style: defaultTextStyle(14, FontWeight.w600, Theme.of(context).brightness==Brightness.light?
-                          Theme.of(context).colorScheme.primary:Color(0xffF08A61)),),
+                          SvgPicture.asset(
+                            Assets.icon_edits,
+                            color:
+                                Theme.of(context).brightness == Brightness.light
+                                    ? Theme.of(context).colorScheme.primary
+                                    : Color(0xffF08A61),
+                          ),
+                          SizedBox(
+                            width: size.width * 0.01,
+                          ),
+                          Text(
+                            locale.editProfile.toString(),
+                            style: defaultTextStyle(
+                              14,
+                              FontWeight.w600,
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Theme.of(context).colorScheme.primary
+                                  : Color(0xffF08A61),
+                            ),
+                          ),
                         ],
                       ),
                     ),
                     Column(
                       children: [
-                            BoxTileWidget(profileModel: state.profileModel),
+                        BoxTileWidget(profileModel: state.profileModel),
                         SizedBox(height: safeHeight * 0.02),
                         state.profileModel.deleteStatus == "1"
                             ? InkWell(
@@ -204,7 +219,10 @@ class _MyProfileState extends State<MyProfile> {
                                                         padding: EdgeInsets.symmetric(
                                                             horizontal:
                                                                 MediaQuery.of(
-                                                                            context).size.width * 0.08,
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.08,
                                                             vertical: 8),
                                                         child: Text(
                                                           locale.ok.toString(),
@@ -293,7 +311,7 @@ class _MyProfileState extends State<MyProfile> {
                                   }
                                 },
                                 child: SvgPicture.asset(
-                                    "assets/images/facebook-icon.svg",
+                                    Assets.icon_facebook,
                                     width: MediaQuery.of(context).size.width *
                                         0.1),
                               ),
@@ -313,7 +331,7 @@ class _MyProfileState extends State<MyProfile> {
                                     }
                                   },
                                   child: SvgPicture.asset(
-                                      "assets/images/linkedin-icon.svg",
+                                      Assets.icon_linkedIn,
                                       width: MediaQuery.of(context).size.width *
                                           0.1)),
                             ),
@@ -332,7 +350,7 @@ class _MyProfileState extends State<MyProfile> {
                                   }
                                 },
                                 child: SvgPicture.asset(
-                                    "assets/images/twitter-icon.svg",
+                                    Assets.icon_twitter,
                                     width: MediaQuery.of(context).size.width *
                                         0.1),
                               ),
@@ -348,7 +366,7 @@ class _MyProfileState extends State<MyProfile> {
                                   }
                                 },
                                 child: SvgPicture.asset(
-                                    "assets/images/whatsapp-icon.svg",
+                                    Assets.icon_whatsApp,
                                     width: MediaQuery.of(context).size.width *
                                         0.1)),
                           ],
@@ -370,16 +388,26 @@ class _MyProfileState extends State<MyProfile> {
                 });
           }
           return Padding(
-            padding:  EdgeInsets.symmetric(horizontal: size.width*0.05),
+            padding: EdgeInsets.symmetric(horizontal: size.width * 0.05),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: safeHeight * 0.08),
-                Text(locale.isDirectionRTL(context)?"هلا! سعداء بلقائك":"Hala! Nice to meet you",style: Theme.of(context).textTheme.titleMedium,),
-                Text(locale.isDirectionRTL(context)?"تطبيق تأجير السيارات الافضل في المنطقة":"The region’s favorite online car rental app.",style: TextStyle(
-                  fontSize: 14.sp,
-                ),),
+                Text(
+                  locale.isDirectionRTL(context)
+                      ? "هلا! سعداء بلقائك"
+                      : "Hala! Nice to meet you",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+                Text(
+                  locale.isDirectionRTL(context)
+                      ? "تطبيق تأجير السيارات الافضل في المنطقة"
+                      : "The region’s favorite online car rental app.",
+                  style: TextStyle(
+                    fontSize: 14.sp,
+                  ),
+                ),
                 SizedBox(height: safeHeight * 0.08),
                 Row(
                   children: [
@@ -394,23 +422,26 @@ class _MyProfileState extends State<MyProfile> {
                         child: Column(
                           children: [
                             Container(
-                              width: size.width*0.09,
-                              height: size.height*0.04,
+                              width: size.width * 0.09,
+                              height: size.height * 0.04,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                               child: Padding(
-                                padding:  EdgeInsets.symmetric(horizontal: 3),
-                                child: SvgPicture.asset('assets/images/login.svg'),
+                                padding: EdgeInsets.symmetric(horizontal: 3),
+                                child:
+                                    SvgPicture.asset(Assets.icon_login,),
                               ),
                             ),
-                            Text(locale.signIn.toString(),style: TextStyle(
-                              fontSize: 14.sp,
-                              fontWeight: FontWeight.w500
-                            ),)
+                            Text(
+                              locale.signIn.toString(),
+                              style: TextStyle(
+                                  fontSize: 14.sp, fontWeight: FontWeight.w500),
+                            )
                           ],
                         )),
+
                     ///second
                     Spacer(),
                     InkWell(
@@ -424,21 +455,25 @@ class _MyProfileState extends State<MyProfile> {
                         child: Column(
                           children: [
                             Container(
-                              width: size.width*0.09,
-                              height: size.height*0.04,
+                              width: size.width * 0.09,
+                              height: size.height * 0.04,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8),
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                               child: Padding(
-                                padding:  EdgeInsets.symmetric(horizontal: 3),
-                                child: SvgPicture.asset('assets/images/profilee.svg'),
+                                padding: EdgeInsets.symmetric(horizontal: 3),
+                                child: SvgPicture.asset(
+                                    Assets.icon_addAccount,),
                               ),
                             ),
-                            Text(locale.isDirectionRTL(context)?'فتح حساب':'Create Account',style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w500
-                            ),),
+                            Text(
+                              locale.isDirectionRTL(context)
+                                  ? 'فتح حساب'
+                                  : 'Create Account',
+                              style: TextStyle(
+                                  fontSize: 14.sp, fontWeight: FontWeight.w500),
+                            ),
                           ],
                         )),
                   ],
@@ -465,8 +500,6 @@ class _MyProfileState extends State<MyProfile> {
                 //       await openWhatsApp();
                 //     }),
                 // SizedBox(height: safeHeight * 0.02),
-
-
               ],
             ),
           );

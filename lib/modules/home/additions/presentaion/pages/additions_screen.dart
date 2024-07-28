@@ -1,3 +1,4 @@
+import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/additions/presentaion/blocs/addition_cubit/additions_cubit.dart';
 import 'package:abudiyab/modules/home/additions/presentaion/widgets/services.dart';
@@ -133,13 +134,14 @@ class _AdditionsScreenState extends State<AdditionsScreen>
                           children: [
                             SizedBox(height: size.height/7,),
                             Image.asset(
-                              "assets/images/empty3.png",
+                              Assets.img_empty,
                               // width: size.width * 0.9,
                               // height: size.height * 0.5,
                             ),
                             Text(
                               // state.error.replaceAll("message: Error During Communication. -> Details: Exception:", ""),
-                              state.error.contains("not Authanticated")?locale.loginToContinue.toString():extractDetails(state.error.toString()),
+                              state.error.contains("not Authanticated")?locale.loginToContinue.toString()
+                                  :extractDetails(state.error.toString()),
                               textAlign: TextAlign.center,
                               style: Theme.of(context).textTheme.bodyLarge,
                             ),

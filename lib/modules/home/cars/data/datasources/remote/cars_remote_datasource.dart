@@ -11,7 +11,8 @@ class CarsRemoteDataSource {
   final Dio _dio;
   final SharedPreferencesHelper sharedPreferencesHelper;
   CarsRemoteDataSource(this._dio, this.sharedPreferencesHelper);
-  Future<Cars> getAllCars(int pageNumber, {
+  Future<Cars> getAllCars(
+      int pageNumber, {
     int? branchId,
     String ? castClass,
     List<String>? categoryIds,
@@ -19,6 +20,7 @@ class CarsRemoteDataSource {
     int? minPrice,
     int? maxPrice,
     int? model,
+   // int? availableOnly,
   }) async {
     try {
       // final String? catIds =
@@ -30,6 +32,9 @@ class CarsRemoteDataSource {
         branchId == null
             ? mainApi +allCars+"?page=$pageNumber&cust_class=$castClass"
             : mainApi + carsByBranch + "$branchId" + carsByPages2 + "$pageNumber" + custClass + "$castClass" ,
+      //   queryParameters: {
+      //   if (availableOnly != "null" && availableOnly!) 'available': 1,
+      // },
         options: Options(
           responseType: ResponseType.plain,
           headers: {

@@ -26,12 +26,14 @@ class AllCarsCubit extends Cubit<AllCarsState> {
       if (pageNumber == 1) {
         cars = await carsRemoteDataSource.getAllCars(pageNumber,
             branchId: branchId,
-          castClass: castClass
+          castClass: castClass,
+        //  availableOnly: 1
         );
       } else {
         final data = await carsRemoteDataSource.getAllCars(pageNumber,
             branchId: branchId,
-          castClass: castClass
+          castClass: castClass,
+         // availableOnly: true,
         );
         cars?.data!.addAll(data.data!);
       }

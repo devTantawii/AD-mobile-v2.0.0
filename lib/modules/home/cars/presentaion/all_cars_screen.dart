@@ -1,3 +1,4 @@
+import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/page/filter_cars.dart';
@@ -129,7 +130,7 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                     pushNewScreen(context, screen: FiltersCars());
                   },
                   icon: SvgPicture.asset(
-                    'assets/images/bxs_filter-alt.svg',
+                   Assets.icon_filter,
                   ),
           ),
         ],
