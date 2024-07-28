@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/additions/data/models/step_one_order_model.dart';
@@ -71,21 +72,21 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                           PaymentMethodCard(
                             text: locale.visa.toString(),
                             color: Theme.of(context).colorScheme.background,
-                            svg: 'assets/images/cvv.svg',
+                            svg: Assets.icon_cvv,
                           ),
                         if (widget.stepOneOrderModel==null?
                         BlocProvider.of<AdditionsCubit>(context).stepModel!.order!.cashActive!: widget.stepOneOrderModel!.cashActive!)
                           PaymentMethodCard(
                             text: locale.cash.toString(),
                             color: Theme.of(context).colorScheme.background,
-                            svg: 'assets/images/mony.svg',
+                            svg: Assets.icon_money,
                           ),
                         if (widget.stepOneOrderModel==null?
                         BlocProvider.of<AdditionsCubit>(context).stepModel!.order!.apple_active!: widget.stepOneOrderModel!.apple_active!)
                           Platform.isIOS?PaymentMethodCard(
                             text: 'Apple Pay'.toString(),
                             color: Theme.of(context).colorScheme.background,
-                            svg: 'assets/images/apple pay2.svg',
+                            svg: Assets.icon_apple_pay,
                           ):Container(),
                         if (widget.stepOneOrderModel==null?
                         BlocProvider.of<AdditionsCubit>(context).stepModel!.order!.pointsActive!: widget.stepOneOrderModel!.pointsActive!)
@@ -94,7 +95,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                             child: PaymentMethodCard(
                               text: locale.points.toString(),
                               color: Theme.of(context).colorScheme.background,
-                              svg: 'assets/images/points.svg',
+                              svg: Assets.icon_points,
                             ),
                           ),
                         CouponTile(),

@@ -1,17 +1,13 @@
+import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/core/helpers/enums.dart';
 import 'package:abudiyab/language/locale.dart';
-import 'package:abudiyab/modules/home/all_bookings/data/model/booking_automation_model.dart';
 import 'package:abudiyab/modules/home/search_screen/blocs/search_bloc/search_cubit.dart';
 import 'package:abudiyab/modules/home/search_screen/data/models/regions_model.dart';
 import 'package:abudiyab/modules/widgets/components/custom_rect_tween.dart';
-import 'package:abudiyab/modules/widgets/components/hero_dialog_route.dart';
-import 'package:abudiyab/shared/style/colors.dart';
 import 'package:flutter/material.dart' hide ModalBottomSheetRoute;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class RegionTile extends StatefulWidget {
   final List<RegionModel>? regions;
@@ -27,12 +23,14 @@ class RegionTile extends StatefulWidget {
 
 class _RegionTileState extends State<RegionTile> {
   List<bool> _isTappedList = [];
+
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context);
     return GestureDetector(
       onTap: () {
-        customeDialog(context, regionModel: widget.regions!.toList(), receive: true);
+        customDialog(context,
+            regionModel: widget.regions!.toList(), receive: true);
       },
       child: Hero(
         tag: _heroTag,
@@ -40,7 +38,7 @@ class _RegionTileState extends State<RegionTile> {
           return CustomRectTween(begin: begin!, end: end!);
         },
         child: Container(
-          width: MediaQuery.of(context).size.width*0.9,
+          width: MediaQuery.of(context).size.width * 0.9,
           height: 54.h,
           //padding: const EdgeInsets.all(10),
           alignment: AlignmentDirectional.bottomStart,
@@ -49,28 +47,25 @@ class _RegionTileState extends State<RegionTile> {
             color: Colors.grey.withOpacity(0.15),
           ),
           child: Padding(
-            padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.03),
+            padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width * 0.03),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Center(child: SvgPicture.asset('assets/images/locatt.svg')),
+                Center(child: SvgPicture.asset(Assets.icon_picker)),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0.w),
                   child: Text(
                       BlocProvider.of<SearchCubit>(context).selectedRegion ??
                           locale!.selectRegion.toString(),
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           color: Theme.of(context).colorScheme.onPrimary,
-                          fontSize: 15.sp
-                      )
-
-                  ),
+                          fontSize: 15.sp)),
                 ),
                 Spacer(),
-                Icon(Icons.arrow_forward_ios_outlined,
-                color: Theme.of(context).colorScheme.onPrimary,
+                Icon(
+                  Icons.arrow_forward_ios_outlined,
+                  color: Theme.of(context).colorScheme.onPrimary,
                 )
               ],
             ),
@@ -80,7 +75,7 @@ class _RegionTileState extends State<RegionTile> {
     );
   }
 
-  Future<dynamic> customeDialog(BuildContext context,
+  Future<dynamic> customDialog(BuildContext context,
       {required List<RegionModel> regionModel, required bool receive}) {
     final local = AppLocalizations.of(context);
 
@@ -128,61 +123,74 @@ class _RegionTileState extends State<RegionTile> {
                   mainAxisSpacing: 7.0.sp,
                 ),
                 itemCount: widget.regions!.length.toInt(),
-                itemBuilder:
-                    (context, index) {
+                itemBuilder: (context, index) {
                   if (_isTappedList.length <= index) {
                     _isTappedList.add(false);
                   }
-                      return GestureDetector(
-                        onTap: () {
-                          // setState(() {
-                          //   _isTappedList[index] = !_isTappedList[index];
-                          // });
-                          BlocProvider.of<SearchCubit>(context).selectedRegion =
+                  return GestureDetector(
+                    onTap: () {
+                      // setState(() {
+                      //   _isTappedList[index] = !_isTappedList[index];
+                      // });
+                      BlocProvider.of<SearchCubit>(context).selectedRegion =
                           widget.regions![index].name;
-                          final selectedRegionModel =
-                              BlocProvider.of<SearchCubit>(context)
-                                  .regionsData
-                                  ?.where((element) =>
-                              element.name ==
+                      final selectedRegionModel =
+                          BlocProvider.of<SearchCubit>(context)
+                              .regionsData
+                              ?.where((element) =>
+                                  element.name ==
                                   BlocProvider.of<SearchCubit>(context)
                                       .selectedRegion)
-                                  .first;
-                          BlocProvider.of<SearchCubit>(context).selectedReceiveBranch =
-                          null;
-                          BlocProvider.of<SearchCubit>(context).selectedDriveBranch =
-                          null;
-                          BlocProvider.of<SearchCubit>(context).rentType ==
+                              .first;
+                      BlocProvider.of<SearchCubit>(context)
+                          .selectedReceiveBranch = null;
+                      BlocProvider.of<SearchCubit>(context)
+                          .selectedDriveBranch = null;
+                      BlocProvider.of<SearchCubit>(context).rentType ==
                               RentType.classic
-
-                              ? BlocProvider.of<SearchCubit>(context).getBranches(regionId: selectedRegionModel?.id)
-                              : BlocProvider.of<SearchCubit>(context).getAreas(regionId: selectedRegionModel?.id);
-                          Navigator.pop(context);
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            // color: _isTappedList[index] ? Colors.red : Colors.blue,
-                            color: Theme.of(context).brightness==Brightness.light?Theme.of(context).colorScheme.secondaryContainer.withOpacity(0.5):Color(0xffFDFDFD).withOpacity(0.1),
-                            borderRadius:BorderRadius.circular(8),
-                          ),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset('assets/images/areaLocations.svg',color: Theme.of(context).brightness ==Brightness.light?Color(0xFF505AC9):Colors.white,),
-                                // SvgPicture.asset('assets/images/dark-imagesareaLocations.svg'),
-                                Flexible(
-                                  child: Text(
-                                    widget.regions![index].name.toString(),
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w500,
-                                        color:Theme.of(context).brightness ==Brightness.light?Colors.black:Colors.white),
-                                  ),
-                                ),
-                              ]),
-                        ),
-                      );
+                          ? BlocProvider.of<SearchCubit>(context)
+                              .getBranches(regionId: selectedRegionModel?.id)
+                          : BlocProvider.of<SearchCubit>(context)
+                              .getAreas(regionId: selectedRegionModel?.id);
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        // color: _isTappedList[index] ? Colors.red : Colors.blue,
+                        color: Theme.of(context).brightness == Brightness.light
+                            ? Theme.of(context)
+                                .colorScheme
+                                .secondaryContainer
+                                .withOpacity(0.5)
+                            : Color(0xffFDFDFD).withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset(
+                              Assets.icon_areaLocation,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Color(0xFF505AC9)
+                                  : Colors.white,
+                            ),
+                            Flexible(
+                              child: Text(
+                                widget.regions![index].name.toString(),
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color: Theme.of(context).brightness ==
+                                            Brightness.light
+                                        ? Colors.black
+                                        : Colors.white),
+                              ),
+                            ),
+                          ]),
+                    ),
+                  );
                 },
               ),
               SizedBox(
@@ -221,7 +229,7 @@ class _PopupCardState extends State<_PopupCard> {
             color: Theme.of(context).scaffoldBackgroundColor,
             elevation: 2,
             shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
@@ -231,36 +239,36 @@ class _PopupCardState extends State<_PopupCard> {
                     ...widget.regions!
                         .map(
                           (region) => SelectionTile(
-                          text: region.name ?? "",
-                          onTap: () {
-                            setState(() =>
-                            BlocProvider.of<SearchCubit>(context)
-                                .selectedRegion = region.name);
-                            final selectedRegionModel =
+                              text: region.name ?? "",
+                              onTap: () {
+                                setState(() =>
+                                    BlocProvider.of<SearchCubit>(context)
+                                        .selectedRegion = region.name);
+                                final selectedRegionModel =
+                                    BlocProvider.of<SearchCubit>(context)
+                                        .regionsData
+                                        ?.where((element) =>
+                                            element.name ==
+                                            BlocProvider.of<SearchCubit>(
+                                                    context)
+                                                .selectedRegion)
+                                        .first;
                                 BlocProvider.of<SearchCubit>(context)
-                                    .regionsData
-                                    ?.where((element) =>
-                                element.name ==
-                                    BlocProvider.of<SearchCubit>(
-                                        context)
-                                        .selectedRegion)
-                                    .first;
-                            BlocProvider.of<SearchCubit>(context)
-                                .selectedReceiveBranch = null;
-                            BlocProvider.of<SearchCubit>(context)
-                                .selectedDriveBranch = null;
-                            BlocProvider.of<SearchCubit>(context)
-                                .rentType ==
-                                RentType.classic
-                                ? BlocProvider.of<SearchCubit>(context)
-                                .getBranches(
-                                regionId: selectedRegionModel?.id)
-                                : BlocProvider.of<SearchCubit>(context)
-                                .getAreas(
-                                regionId: selectedRegionModel?.id);
-                            Navigator.pop(context);
-                          }),
-                    )
+                                    .selectedReceiveBranch = null;
+                                BlocProvider.of<SearchCubit>(context)
+                                    .selectedDriveBranch = null;
+                                BlocProvider.of<SearchCubit>(context)
+                                            .rentType ==
+                                        RentType.classic
+                                    ? BlocProvider.of<SearchCubit>(context)
+                                        .getBranches(
+                                            regionId: selectedRegionModel?.id)
+                                    : BlocProvider.of<SearchCubit>(context)
+                                        .getAreas(
+                                            regionId: selectedRegionModel?.id);
+                                Navigator.pop(context);
+                              }),
+                        )
                         .toList(),
                   ],
                 ),
@@ -292,9 +300,9 @@ class SelectionTile extends StatelessWidget {
           child: Text(
             text,
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontSize: 15.sp,
-            ),
+                  color: Theme.of(context).colorScheme.primary,
+                  fontSize: 15.sp,
+                ),
           )),
     );
   }

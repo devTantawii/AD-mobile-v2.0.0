@@ -9,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+import '../../../../../core/constants/assets/assets.dart';
 import '../../../../../shared/commponents.dart';
 import '../../../all_branching/bloc/all_branching_cubit.dart';
 import '../../../all_branching/page/view_location.dart';
@@ -78,7 +79,7 @@ class _BranchesListViewState extends State<BranchesListView> {
                       children: [
                         Row(
                           children: [
-                            SvgPicture.asset('assets/images/roundLocation.svg'),
+                            SvgPicture.asset(Assets.icon_roundLocation,),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 3.0,vertical: 3),
                               child: Container(

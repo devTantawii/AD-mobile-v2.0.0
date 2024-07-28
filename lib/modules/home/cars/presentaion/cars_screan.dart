@@ -186,7 +186,7 @@ class _CarsScreenState extends State<CarsScreen> with TickerProviderStateMixin {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Lottie.asset("assets/images/empty.json",),
+                                      Lottie.asset("assets/anim/empty.json",),
                                       Text(
                                         locale.noCarsInBranch.toString(),
                                         style: TextStyle(

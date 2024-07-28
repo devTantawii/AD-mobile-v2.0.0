@@ -1,3 +1,4 @@
+import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/core/constants/langCode.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/all_branching/data/models/branch_model.dart';
@@ -65,7 +66,7 @@ class MapListSelectionViewTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                        isReceive?
-                       SvgPicture.asset('assets/images/locatt.svg'):SvgPicture.asset("assets/images/drop.svg"),
+                       SvgPicture.asset(Assets.icon_picker):SvgPicture.asset(Assets.icon_drop),
                       Padding(
                         padding:  EdgeInsets.symmetric(horizontal: 10.0.w),
                         child: Container(

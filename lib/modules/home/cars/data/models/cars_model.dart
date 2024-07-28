@@ -55,7 +55,7 @@ class DataCars {
     required this.description,
     required this.photo,
     required this.photos,
-    // required this.available,
+    //required this.available,
   });
 
   num id;
@@ -74,7 +74,7 @@ class DataCars {
   String description;
   String photo;
   List<Photo>? photos;
-  // bool available;
+  //int available;
 
   DataCars copyWith({
     required num id,
@@ -93,7 +93,7 @@ class DataCars {
     required String description,
     required String photo,
     required List<Photo> photos,
-    // required bool available,
+    //required int available,
   }) =>
       DataCars(
         id: id,
@@ -112,7 +112,7 @@ class DataCars {
         description: description,
         photo: photo,
         photos: photos,
-        // available: available,
+        //available: available,
       );
 
   factory DataCars.fromMap(Map<String, dynamic> json) => DataCars(
@@ -132,7 +132,7 @@ class DataCars {
         description: json["description"],
         photo: json["photo"],
         photos: List<Photo>.from(json["photos"].map((x) => Photo.fromMap(x))),
-        // available: json["available"],
+      // available: json["available"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -152,7 +152,7 @@ class DataCars {
         "description": description,
         "photo": photo,
         "photos": List<dynamic>.from(photos?.map((x) => x.toMap()) ?? []),
-        // "available": available,
+        //"available": available,
       };
 }
 
