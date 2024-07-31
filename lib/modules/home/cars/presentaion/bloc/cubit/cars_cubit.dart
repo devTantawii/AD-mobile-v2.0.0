@@ -40,7 +40,8 @@ class CarsCubit extends Cubit<CarsState> {
     }
   }
 
-  Future<void> getCarsByFilter(int pageNumber, {int? branchId}) async {
+  //Future<void> getCarsByFilter(int pageNumber, {int? branchId,int? available}) async {
+  Future<void> getCarsByFilter(int pageNumber, {int? branchId,}) async {
     emit(CarsLoding());
     try {
       final data = await carsRemoteDataSource.getCarsByFilter(
@@ -50,6 +51,8 @@ class CarsCubit extends Cubit<CarsState> {
         model: filterCubit.modelYear,
         minPrice: filterCubit.minPrice,
         maxPrice: filterCubit.maxPrice,
+       // available:  filterCubit.available,
+
       );
       cars?.data = data.data;
       emit(CarsLoded());

@@ -59,6 +59,10 @@ dependencies:
   package_info_plus: ^1.4.3
   upgrader: any
 
+  # ui
+  bounce: ^1.0.2
+  motion: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

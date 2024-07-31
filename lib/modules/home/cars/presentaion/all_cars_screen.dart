@@ -195,7 +195,7 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                               child: SizedBox(
                                   width:
                                       MediaQuery.of(context).size.width * 0.7,
-                                  child: Lottie.asset("assets/images/empty.json")),
+                                  child: Lottie.asset(Assets.img_empty_anim)),
                             ) : Column(
                               children: [
                                 Container(

@@ -74,10 +74,12 @@ class _CarsScreenState extends State<CarsScreen> with TickerProviderStateMixin {
   @override
   void didChangeDependencies() {
     final locale = AppLocalizations.of(context)!;
-
+    final carsCubit = BlocProvider.of<CarsCubit>(context);
     if (widget.fromFilter) {
       pageNumber = 1;
-      BlocProvider.of<CarsCubit>(context).getCarsByFilter(pageNumber);
+      carsCubit.getCarsByFilter(pageNumber,
+        //available: carsCubit.filterCubit.available,
+      );
     } else {
       BlocProvider.of<CarsCubit>(context).getAllCars(
         pageNumber,
