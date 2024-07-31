@@ -49,4 +49,7 @@ class Assets {
 
 
   static const String img_empty = 'assets/images/empty3.png';
+  static const String img_empty_anim = 'assets/anim/empty.json';
+  static const String anim_loading_car = 'assets/anim/Loading_car.json';
+
 }

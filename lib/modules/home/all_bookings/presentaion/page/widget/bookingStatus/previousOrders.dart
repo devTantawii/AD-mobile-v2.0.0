@@ -103,7 +103,9 @@ class _PreviousOrdersState extends State<PreviousOrders> {
             return Center(child: CircularProgressIndicator.adaptive(
               backgroundColor: Theme.of(context).colorScheme.onPrimary,
             ));
-          }else if(BlocProvider.of<AllBookingCubit>(context).booking!.data !=null&& state is AllBookingLoaded) {
+          }else if(BlocProvider.of<AllBookingCubit>(context).booking != null &&
+              BlocProvider.of<AllBookingCubit>(context).booking!.data != null &&
+              state is AllBookingLoaded) {
             return ListView.builder(
               physics: BouncingScrollPhysics(),
               itemBuilder: (BuildContext context, int index) {

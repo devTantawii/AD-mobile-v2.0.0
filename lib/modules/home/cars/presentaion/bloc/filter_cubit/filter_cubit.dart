@@ -4,6 +4,7 @@ import 'package:abudiyab/modules/home/category/data/datasources/remote/category_
 import 'package:abudiyab/modules/home/category/data/models/category_model.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+
 part 'filter_state.dart';
 
 class FilterCubit extends Cubit<FilterState> {
@@ -15,9 +16,12 @@ class FilterCubit extends Cubit<FilterState> {
   List<String> brands = [];
   List<String> categories = [];
   List<String> modelYear = [];
+
   // int? modelYear = 0;
   int? minPrice = 0;
   int? maxPrice = 3230;
+
+  //int? available = 1;
 
   getData() async {
     emit(FilterLoading());
@@ -57,7 +61,7 @@ class FilterCubit extends Cubit<FilterState> {
   void modelAddingHandler(String model, context) {
     if (modelYear.contains(model)) {
       modelYear.remove(model);
-    } else{
+    } else {
       modelYear.add(model);
     }
   }
