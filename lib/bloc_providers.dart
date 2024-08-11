@@ -26,37 +26,27 @@ import 'modules/home/search_screen/blocs/search_bloc/search_cubit.dart';
 MultiBlocProvider CreateBlocProviders(BuildContext context) {
   return MultiBlocProvider(
     providers: [
+
       BlocProvider<AuthBloc>(create: (context) => sl<AuthBloc>()),
       BlocProvider<CarsCubit>(create: (context) => sl<CarsCubit>()),
-      BlocProvider<BookingCubit>(
-          create: (context) => sl<BookingCubit>()),
-      BlocProvider<LanguageCubit>(
-          create: (context) => sl<LanguageCubit>()),
-      BlocProvider<ForgetPasswordCubit>(
-          create: (context) => sl<ForgetPasswordCubit>()),
-      BlocProvider<ProfileCubit>(
-          create: (context) => sl<ProfileCubit>()),
-      BlocProvider<AdditionsCubit>(
-          create: (context) => sl<AdditionsCubit>()),
-      BlocProvider<InvoiceCubit>(
-          create: (context) => sl<InvoiceCubit>()),
-      BlocProvider<FavouriteCubit>(
-          create: (context) => sl<FavouriteCubit>()),
+      BlocProvider<BookingCubit>(create: (context) => sl<BookingCubit>()),
+      BlocProvider<LanguageCubit>(create: (context) => sl<LanguageCubit>()),
+      BlocProvider<ForgetPasswordCubit>(create: (context) => sl<ForgetPasswordCubit>()),
+      BlocProvider<ProfileCubit>(create: (context) => sl<ProfileCubit>()),
+      BlocProvider<AdditionsCubit>(create: (context) => sl<AdditionsCubit>()),
+      BlocProvider<InvoiceCubit>(create: (context) => sl<InvoiceCubit>()),
+      BlocProvider<FavouriteCubit>(create: (context) => sl<FavouriteCubit>()),
       BlocProvider<SearchCubit>(create: (context) => sl<SearchCubit>()),
       BlocProvider<FilterCubit>(create: (context) => sl<FilterCubit>()),
-      BlocProvider<HeadlinesCubit>(
-          create: (context) => sl<HeadlinesCubit>()..getDataSlider()),
-      BlocProvider<OldCustomerCubit>(
-          create: (context) => sl<OldCustomerCubit>()),
-      BlocProvider<AllBookingCubit>(
-          create: (context) => sl<AllBookingCubit>()),
-      BlocProvider<AllBranchCubit>(
-          create: (context) => sl<AllBranchCubit>()),
-      BlocProvider<AllCarsCubit>(
-          create: (context) => sl<AllCarsCubit>()),
-      BlocProvider<AdditionsCubit>(
-          create: (context) => sl<AdditionsCubit>()),
+      BlocProvider<HeadlinesCubit>(create: (context) => sl<HeadlinesCubit>()..getDataSlider()),
+      BlocProvider<OldCustomerCubit>(create: (context) => sl<OldCustomerCubit>()),
+      BlocProvider<AllBookingCubit>(create: (context) => sl<AllBookingCubit>()),
+      BlocProvider<AllBranchCubit>(create: (context) => sl<AllBranchCubit>()),
+      BlocProvider<AllCarsCubit>(create: (context) => sl<AllCarsCubit>()),
+      BlocProvider<AdditionsCubit>(create: (context) => sl<AdditionsCubit>()),
       // BlocProvider(create: (context) => sl<BookingAutomationCubit>()),
+
+
     ],
     child: BlocBuilder<LanguageCubit, Locale>(
       builder: (_, locale) {
