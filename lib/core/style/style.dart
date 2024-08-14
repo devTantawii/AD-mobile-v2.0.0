@@ -45,7 +45,6 @@ ThemeData lightTheme() {
     dialogTheme: DialogTheme(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)))),
-
     textTheme: TextTheme(
         labelLarge: GoogleFonts.cairo(
           fontSize: 15.sp,
@@ -162,7 +161,6 @@ ThemeData darkTheme() {
       ),
       iconTheme: IconThemeData(color: Color(0xff6e9ed3)),
     ),
-    toggleableActiveColor: Color(0xff6e9ed3).withOpacity(0.8),
     // radioTheme: RadioThemeData(),
     bottomNavigationBarTheme:  BottomNavigationBarThemeData(
       elevation: 0.0,
@@ -237,6 +235,29 @@ ThemeData darkTheme() {
           Radius.circular(16),
         ),
       ),
-    ),
+    ), checkboxTheme: CheckboxThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ ), radioTheme: RadioThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ ), switchTheme: SwitchThemeData(
+ thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ ),
   );
 }

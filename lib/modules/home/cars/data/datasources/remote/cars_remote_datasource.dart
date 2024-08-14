@@ -10,17 +10,19 @@ import 'package:dio/dio.dart';
 class CarsRemoteDataSource {
   final Dio _dio;
   final SharedPreferencesHelper sharedPreferencesHelper;
+
   CarsRemoteDataSource(this._dio, this.sharedPreferencesHelper);
+
   Future<Cars> getAllCars(
-      int pageNumber, {
+    int pageNumber, {
     int? branchId,
-    String ? castClass,
+    String? castClass,
     List<String>? categoryIds,
     List<String>? manufactoryIds,
     int? minPrice,
     int? maxPrice,
     int? model,
-   // int? availableOnly,
+    // int? availableOnly,
   }) async {
     try {
       // final String? catIds =
@@ -30,11 +32,17 @@ class CarsRemoteDataSource {
       final token = await sharedPreferencesHelper.getToken();
       final Response response = await _dio.get(
         branchId == null
-            ? mainApi +allCars+"?page=$pageNumber&cust_class=$castClass"
-            : mainApi + carsByBranch + "$branchId" + carsByPages2 + "$pageNumber" + custClass + "$castClass" ,
-      //   queryParameters: {
-      //   if (availableOnly != "null" && availableOnly!) 'available': 1,
-      // },
+            ? mainApi + allCars + "?page=$pageNumber&cust_class=$castClass"
+            : mainApi +
+                carsByBranch +
+                "$branchId" +
+                carsByPages2 +
+                "$pageNumber" +
+                custClass +
+                "$castClass",
+        //   queryParameters: {
+        //   if (availableOnly != "null" && availableOnly!) 'available': 1,
+        // },
         options: Options(
           responseType: ResponseType.plain,
           headers: {
@@ -47,8 +55,7 @@ class CarsRemoteDataSource {
       final dataCars = json.decode(response.data) as Map<String, dynamic>;
       final Cars cars = Cars.fromMap(dataCars);
       if (response.statusCode == 200) {
-      }else{
-      }
+      } else {}
 
       return cars;
     } on DioError catch (dioError) {
@@ -58,14 +65,11 @@ class CarsRemoteDataSource {
     }
   }
 
-
-
-
   ///*******************************filters----------------------
   Future<Cars> getCarsByFilter({
     required int pageNumber,
     // int? branchId,
-    String ? customerClass,
+    String? customerClass,
     List<String>? categoryIds,
     List<String>? manufactoryIds,
     List<String>? model,
@@ -74,23 +78,23 @@ class CarsRemoteDataSource {
   }) async {
     try {
       // final token = await sharedPreferencesHelper.getToken();
-      final String? catIds =
-          _generateCategorySearchParameters(categoryIds ?? []);
-      final String? brandIds =
-          _generateBrandSearchParameters(manufactoryIds ?? []);
+      final String? catIds = _generateCategorySearchParameters(categoryIds ?? []);
+      final String? brandIds = _generateBrandSearchParameters(manufactoryIds ?? []);
+      final String? modelYears = _generateModelSearchParameters(model ?? []);
 
-      final String? modelYears =
-      _generateModelSearchParameters( model?? []);
       // print('Ashraf' + brandIds.toString());
       final Response response = await _dio.get(
         mainApi +
             allCars +
-        "?$catIds&$brandIds&$modelYears&minimum=$minPrice&maximum=$maxPrice&page=$pageNumber&cust_class=$customerClass",
-        options: Options(responseType: ResponseType.plain, headers: {
-          "Accept": "application/json",
-          //"Authorization": "Bearer $token",
-          "Accept-Language": langCode == "" ? "en" : langCode
-        }),
+            "?$catIds&$brandIds&$modelYears&minimum=$minPrice&maximum=$maxPrice&page=$pageNumber&cust_class=$customerClass",
+        options: Options(
+          responseType: ResponseType.plain,
+          headers: {
+            "Accept": "application/json",
+            //"Authorization": "Bearer $token",
+            "Accept-Language": langCode == "" ? "en" : langCode
+          },
+        ),
       );
       final dataCars = json.decode(response.data) as Map<String, dynamic>;
       final Cars cars = Cars.fromMap(dataCars);
@@ -132,7 +136,8 @@ class CarsRemoteDataSource {
     }
     return "";
   }
-///--------------------------------
+
+  ///--------------------------------
   String _generateModelSearchParameters(List<String> modelYears) {
     if (modelYears.isNotEmpty) {
       final cats = modelYears.map((e) => "model_years[]=$e&").toList();

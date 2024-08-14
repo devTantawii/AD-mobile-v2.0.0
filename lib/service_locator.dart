@@ -21,7 +21,7 @@ import 'package:get_it/get_it.dart';
 
 import 'core/helpers/SharedPreference/pereferences.dart';
 import 'core/helpers/helper/date_helper.dart';
-import 'language/languageCubit.dart';
+import 'modules/home/selectLanguage/languageCubit.dart';
 import 'modules/auth/blocs/auth_bloc/auth_bloc.dart';
 import 'modules/auth/register/data/datasources/local/register_local_datasources.dart';
 import 'modules/auth/register/data/datasources/remote/register_remote_datasource.dart';

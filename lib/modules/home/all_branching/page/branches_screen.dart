@@ -60,6 +60,9 @@ class _BranchesScreenState extends State<BranchesScreen> {
             }
           },
           builder: (context, state) {
+
+            // Here Circle Loading bar.
+            //TODO: all AllBranchLoading CIRCLE loading
             if (state is AllBranchLoading) {
               return Center(child: CircularProgressIndicator.adaptive(backgroundColor: Theme.of(context).colorScheme.onPrimary,));
             }
@@ -79,7 +82,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                     height: MediaQuery.of(context).size.height * 0.25,
                       decoration: BoxDecoration(
                           borderRadius: Theme.of(context).brightness==Brightness.light?BorderRadius.circular(8):BorderRadius.circular(8),
-                          color: Theme.of(context).brightness==Brightness.light?Color(0xffF4F4F6):null,
+                          color: Theme.of(context).brightness==Brightness.light? Color(0xffF4F4F6): null,
                           border: Border.all(
                               color: Theme.of(context).brightness==Brightness.dark?Color(0xff505AC9):Colors.transparent
                           )
