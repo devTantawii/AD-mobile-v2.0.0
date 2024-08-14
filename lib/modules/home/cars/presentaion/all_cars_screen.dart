@@ -2,6 +2,7 @@ import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/page/filter_cars.dart';
+import 'package:abudiyab/modules/home/cars/presentaion/widget/build_empty_car.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/widget/filter_widget.dart';
 import 'package:abudiyab/modules/home/search_screen/data/models/filter_model.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
@@ -47,14 +48,18 @@ class _AllCarsScreenState extends State<AllCarsScreen>
     ///Check Cast Class
     //  BlocProvider.of<ProfileCubit>(context).getProfile();
     dynamic customClass = BlocProvider.of<ProfileCubit>(context).custClass;
-    pageNumber=1;
+    pageNumber = 1;
+
     ///Start pagination
-    widget.fromFilter?null:_scrollController.addListener(() {
-      if (_scrollController.position.pixels == _scrollController.position.maxScrollExtent){
-        pageNumber += 1;
-         getMoreCars(context, customClass,pageNumber);
-      }
-    });
+    widget.fromFilter
+        ? null
+        : _scrollController.addListener(() {
+            if (_scrollController.position.pixels ==
+                _scrollController.position.maxScrollExtent) {
+              pageNumber += 1;
+              getMoreCars(context, customClass, pageNumber);
+            }
+          });
     // animation initialize
     ///End pagination
 
@@ -67,13 +72,15 @@ class _AllCarsScreenState extends State<AllCarsScreen>
       CurvedAnimation(
         parent: filterPanelAnimationController,
         curve: Interval(0, 0.5, curve: Curves.easeIn),
-      ),);
+      ),
+    );
     filterPanelInternalAnimation = Tween<double>(begin: 0, end: 1).animate(
       CurvedAnimation(
         parent: filterPanelAnimationController,
         curve: Interval(0.5, 1, curve: Curves.easeIn),
       ),
     );
+
     ///-----------END animation---------------
     super.initState();
   }
@@ -90,7 +97,8 @@ class _AllCarsScreenState extends State<AllCarsScreen>
       pageNumber = 1;
       BlocProvider.of<AllCarsCubit>(context).getCarsByFilter(
         pageNumber,
-        customerClass: BlocProvider.of<ProfileCubit>(context).custClass.toString(),
+        customerClass:
+            BlocProvider.of<ProfileCubit>(context).custClass.toString(),
       );
     } else {
       ///trace the code here *-----*
@@ -112,10 +120,9 @@ class _AllCarsScreenState extends State<AllCarsScreen>
         backgroundColor: Colors.transparent,
         title: Text(
           widget.filterModel?.selectedBranch?.name ?? locale.allCar.toString(),
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(fontSize: 16.sp,),
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontSize: 16.sp,
+              ),
         ),
         leading: widget.filterModel?.selectedBranch?.name != null ||
                 widget.fromFilter
@@ -130,9 +137,9 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                     pushNewScreen(context, screen: FiltersCars());
                   },
                   icon: SvgPicture.asset(
-                   Assets.icon_filter,
+                    Assets.icon_filter,
                   ),
-          ),
+                ),
         ],
       ),
       key: _scaffoldKey,
@@ -155,10 +162,9 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                       title: locale.error.toString(),
                       message: state.error,
                       icon: Icons.warning_amber,
-                    color: Color(0xffF6A9A9),
-                    titlcolor: Colors.red,
-                    iconColor: Colors.red
-                  );
+                      color: Color(0xffF6A9A9),
+                      titlcolor: Colors.red,
+                      iconColor: Colors.red);
                 }
               }, builder: (context, state) {
                 if (state is CarsInitial) {
@@ -166,8 +172,12 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                       context,
                       BlocProvider.of<ProfileCubit>(context)
                           .custClass
-                          .toString(),pageNumber);
-                  return Center(child: CircularProgressIndicator.adaptive(backgroundColor: Theme.of(context).colorScheme.onPrimary,));
+                          .toString(),
+                      pageNumber);
+                  return Center(
+                      child: CircularProgressIndicator.adaptive(
+                    backgroundColor: Theme.of(context).colorScheme.onPrimary,
+                  ));
                 } else {
                   var cubit = AllCarsCubit.get(context).cars;
                   return AllCarsCubit.get(context).cars == null
@@ -193,15 +203,19 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                               .isEmpty
                           ? Center(
                               child: SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.7,
-                                  child: Lottie.asset(Assets.img_empty_anim)),
-                            ) : Column(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: BuildEmptyCar(),
+                              ),
+                            )
+                          : Column(
                               children: [
                                 Container(
                                   // color: Theme.of(context).colorScheme.primaryContainer,
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            MediaQuery.of(context).size.width *
+                                                0.03),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
@@ -210,27 +224,42 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
                                             locale.chooseCar.toString(),
-                                            style: Theme.of(context).textTheme.labelLarge!.copyWith(fontSize: 16.sp,fontWeight: FontWeight.w600,
-                                             color: Theme.of(context).brightness==Brightness.light?Colors.black:Colors.black,
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelLarge!
+                                                .copyWith(
+                                                  fontSize: 16.sp,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Theme.of(context)
+                                                              .brightness ==
+                                                          Brightness.light
+                                                      ? Colors.black
+                                                      : Colors.black,
+                                                ),
                                           ),
                                         ),
                                         Row(
-
                                           children: [
                                             Text(
-                                               locale.avilable.toString() ,
-                                               style: Theme.of(context).textTheme.labelSmall,
+                                              locale.avilable.toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelSmall,
                                             ),
                                             Text(
-                                               " ${cubit!.meta!.total.toString()} " ,
-                                              style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                                                fontSize: 16.sp,
-                                              ),
+                                              " ${cubit!.meta!.total.toString()} ",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelLarge!
+                                                  .copyWith(
+                                                    fontSize: 16.sp,
+                                                  ),
                                             ),
                                             Text(
-                                               locale.car.toString(),
-                                              style: Theme.of(context).textTheme.labelSmall,
+                                              locale.car.toString(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelSmall,
                                             ),
                                           ],
                                         ),
@@ -239,26 +268,32 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                                   ),
                                 ),
                                 Expanded(
-                                  child:
-                                    ListView.builder(
-                                        controller: _scrollController,
-                                        physics: const BouncingScrollPhysics(),
-                                        itemCount: cubit.data!.length,
-                                        itemBuilder: (context, index) {
-                                          if (index == cubit.data!.length - 1)
-                                            return Center(child: CircularProgressIndicator.adaptive(
-                                              backgroundColor: Theme.of(context).colorScheme.onPrimary,
-                                            ));
-                                          else
-                                            return CarTile(
-                                              cubit: cubit,
-                                              index: index,
-                                              filterModel: widget.filterModel,
-                                              state: state,
-                                            );
-                                        }),
+                                  child: ListView.builder(
+                                      controller: _scrollController,
+                                      physics: const BouncingScrollPhysics(),
+                                      itemCount: cubit.data!.length,
+                                      itemBuilder: (context, index) {
+                                        if (index == cubit.data!.length - 1)
+                                          return Center(
+                                              child: CircularProgressIndicator
+                                                  .adaptive(
+                                            backgroundColor: Theme.of(context)
+                                                .colorScheme
+                                                .onPrimary,
+                                          ));
+                                        else
+                                          return CarTile(
+                                            cubit: cubit,
+                                            index: index,
+                                            filterModel: widget.filterModel,
+                                            state: state,
+                                          );
+                                      }),
                                 ),
-                                SizedBox(height: MediaQuery.of(context).size.height*0.02,),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.02,
+                                ),
                               ],
                             );
                 }
@@ -283,18 +318,19 @@ class _AllCarsScreenState extends State<AllCarsScreen>
       ),
     );
   }
+
   //
   // TickerFuture driveFilterPanelAnimation() =>
   //     filterPanelAnimationController.isCompleted
   //         ? filterPanelAnimationController.reverse()
   //         : filterPanelAnimationController.forward();
 
-  getMoreCars(BuildContext context, cast_class,int page_num) {
+  getMoreCars(BuildContext context, cast_class, int page_num) {
     if (widget.fromFilter) {
       BlocProvider.of<AllCarsCubit>(context).getCarsByFilter(
         pageNumber,
         customerClass:
-        BlocProvider.of<ProfileCubit>(context).custClass.toString(),
+            BlocProvider.of<ProfileCubit>(context).custClass.toString(),
       );
     }
     BlocProvider.of<AllCarsCubit>(context).getAllCars(

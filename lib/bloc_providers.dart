@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'core/app_life_cycle_manager.dart';
 import 'core/style/style.dart';
-import 'language/languageCubit.dart';
+import 'modules/home/selectLanguage/languageCubit.dart';
 import 'language/locale.dart';
 import 'modules/auth/old_customer/presentaion/bloc/old_customer_cubit.dart';
 import 'modules/auth/splash_screen.dart';
