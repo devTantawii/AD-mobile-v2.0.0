@@ -25,8 +25,8 @@ class CarsCubit extends Cubit<CarsState> {
     emit(CarsLoding());
     try {
       if (pageNumber == 1) {
-
         cars = await carsRemoteDataSource.getAllCars(pageNumber,
+            //availableOnly: true,
             branchId: branchId, castClass: castClass.toString());
       } else {
         final data = await carsRemoteDataSource.getAllCars(pageNumber,
@@ -50,6 +50,7 @@ class CarsCubit extends Cubit<CarsState> {
         model: filterCubit.modelYear,
         minPrice: filterCubit.minPrice,
         maxPrice: filterCubit.maxPrice,
+       // available:  filterCubit.available,
 
       );
       cars?.data = data.data;
