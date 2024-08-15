@@ -55,7 +55,7 @@ class DataCars {
     required this.description,
     required this.photo,
     required this.photos,
-    //required this.available,
+    required this.availableBranches,
   });
 
   num id;
@@ -74,7 +74,7 @@ class DataCars {
   String description;
   String photo;
   List<Photo>? photos;
-  //int available;
+  List<Branch>? availableBranches;
 
   DataCars copyWith({
     required num id,
@@ -93,7 +93,7 @@ class DataCars {
     required String description,
     required String photo,
     required List<Photo> photos,
-    //required int available,
+    required List<Branch> availableBranches,
   }) =>
       DataCars(
         id: id,
@@ -112,49 +112,50 @@ class DataCars {
         description: description,
         photo: photo,
         photos: photos,
-        //available: available,
+        availableBranches: availableBranches,
       );
 
   factory DataCars.fromMap(Map<String, dynamic> json) => DataCars(
-        id: json["id"],
-        name: json["name"],
-        model: json["model"],
-        categoryId: json["category_id"],
-        category: json["category"],
-        manufactory: json["manufactory"],
-        priceBefore: json["price_before"],
-        priceAfter: json["price_after"],
-        discount: json["discount"],
-        doors: json["doors"],
-        luggage: json["luggage"],
-        transmission: json["transmission"],
-        isFavorite: json["is_favorite"],
-        description: json["description"],
-        photo: json["photo"],
-        photos: List<Photo>.from(json["photos"].map((x) => Photo.fromMap(x))),
-      // available: json["available"],
-      );
+    id: json["id"],
+    name: json["name"],
+    model: json["model"],
+    categoryId: json["category_id"],
+    category: json["category"],
+    manufactory: json["manufactory"],
+    priceBefore: json["price_before"],
+    priceAfter: json["price_after"],
+    discount: json["discount"],
+    doors: json["doors"],
+    luggage: json["luggage"],
+    transmission: json["transmission"],
+    isFavorite: json["is_favorite"],
+    description: json["description"],
+    photo: json["photo"],
+    photos: List<Photo>.from(json["photos"].map((x) => Photo.fromMap(x))),
+    availableBranches: List<Branch>.from(json["available_branches"].map((x) => Branch.fromMap(x))),
+  );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "model": model,
-        "category_id": categoryId,
-        "category": category,
-        "manufactory": manufactory,
-        "price_before": priceBefore,
-        "price_after": priceAfter,
-        "discount": discount,
-        "doors": doors,
-        "luggage": luggage,
-        "transmission": transmission,
-        "is_favorite": isFavorite,
-        "description": description,
-        "photo": photo,
-        "photos": List<dynamic>.from(photos?.map((x) => x.toMap()) ?? []),
-        //"available": available,
-      };
+    "id": id,
+    "name": name,
+    "model": model,
+    "category_id": categoryId,
+    "category": category,
+    "manufactory": manufactory,
+    "price_before": priceBefore,
+    "price_after": priceAfter,
+    "discount": discount,
+    "doors": doors,
+    "luggage": luggage,
+    "transmission": transmission,
+    "is_favorite": isFavorite,
+    "description": description,
+    "photo": photo,
+    "photos": List<dynamic>.from(photos?.map((x) => x.toMap()) ?? []),
+    "available_branches": List<dynamic>.from(availableBranches?.map((x) => x.toMap()) ?? []),
+  };
 }
+
 
 class Photo {
   Photo({
@@ -355,4 +356,34 @@ class Meta {
     data['total'] = this.total;
     return data;
   }
+}
+
+class Branch {
+  Branch({
+    required this.id,
+    required this.text,
+  });
+
+  num id;
+  String text;
+
+
+  Branch copyWith({
+    required num id,
+    required String text,
+  }) =>
+      Branch(
+        id: id,
+        text: text,
+      );
+
+  factory Branch.fromMap(Map<String, dynamic> json) => Branch(
+    id: json["id"],
+    text: json["text"],
+  );
+
+  Map<String, dynamic> toMap() => {
+    "id": id,
+    "text": text,
+  };
 }

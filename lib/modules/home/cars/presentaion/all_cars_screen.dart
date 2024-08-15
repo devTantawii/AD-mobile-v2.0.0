@@ -3,6 +3,7 @@ import 'package:abudiyab/core/helpers/helper_fun.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/page/filter_cars.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/widget/build_empty_car.dart';
+import 'package:abudiyab/modules/home/cars/presentaion/widget/car_tile_empty_brances.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/widget/filter_widget.dart';
 import 'package:abudiyab/modules/home/search_screen/data/models/filter_model.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
@@ -267,6 +268,8 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                                     ),
                                   ),
                                 ),
+
+                                //Todo:: Here is the code for Circle process in available cars
                                 Expanded(
                                   child: ListView.builder(
                                       controller: _scrollController,
@@ -274,13 +277,12 @@ class _AllCarsScreenState extends State<AllCarsScreen>
                                       itemCount: cubit.data!.length,
                                       itemBuilder: (context, index) {
                                         if (index == cubit.data!.length - 1)
-                                          return Center(
-                                              child: CircularProgressIndicator
-                                                  .adaptive(
-                                            backgroundColor: Theme.of(context)
-                                                .colorScheme
-                                                .onPrimary,
-                                          ));
+                                          return CarTileEmptyInBranches(
+                                            cubit: cubit,
+                                            index: index,
+                                            filterModel: widget.filterModel,
+                                            state: state,
+                                          );
                                         else
                                           return CarTile(
                                             cubit: cubit,
