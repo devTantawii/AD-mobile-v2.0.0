@@ -14,6 +14,7 @@ import 'package:abudiyab/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
 
@@ -21,25 +22,29 @@ import '../../../../../core/helpers/helper_fun.dart';
 import 'image_car_page.dart';
 
 class CarsInformation extends StatefulWidget {
-  CarsInformation({Key? key, required this.datum, this.filterModel})
+  CarsInformation(
+      {Key? key, required this.datum, this.filterModel, this.stockStatus})
       : super(key: key);
 
   final DataCars? datum;
   final FilterModel? filterModel;
+  final String? stockStatus;
 
   @override
   State<CarsInformation> createState() => _CarsInformationState();
 }
 
 class _CarsInformationState extends State<CarsInformation> {
-  late bool isFavorite ;
+  late bool isFavorite;
+
   bool? lookLike = true;
+
   @override
   void initState() {
-
-    isFavorite =  widget.datum!.isFavorite;
+    isFavorite = widget.datum!.isFavorite;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context);
@@ -48,22 +53,34 @@ class _CarsInformationState extends State<CarsInformation> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: ADBackButton(),
-        title: Text(locale!.isDirectionRTL(context)?"تفاصيل السيارة":"Car Detailes",style: Theme.of(context).textTheme.titleLarge,),
+        title: Text(
+          locale!.isDirectionRTL(context) ? "تفاصيل السيارة" : "Car Details",
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
         actions: [
           IconButton(
             onPressed: () {
-              BlocProvider.of<FavouriteCubit>(context).addToFavourites(widget.datum!.id.toString());
+              BlocProvider.of<FavouriteCubit>(context)
+                  .addToFavourites(widget.datum!.id.toString());
               setState(() {
                 isFavorite = !isFavorite;
               });
             },
-            icon:isFavorite?Icon(Icons.favorite,color: Theme.of(context).colorScheme.secondary,) : Icon(Icons.favorite_border,color: Theme.of(context).colorScheme.secondary,),
+            icon: isFavorite
+                ? Icon(
+                    Icons.favorite,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )
+                : Icon(
+                    Icons.favorite_border,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
           ),
         ],
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height/1,
+          height: MediaQuery.of(context).size.height / 1,
           child: Column(
             children: [
               Expanded(
@@ -72,135 +89,210 @@ class _CarsInformationState extends State<CarsInformation> {
                     children: [
                       Expanded(
                         flex: 3,
-                        child: Column(
+                        child: Stack(
                           children: [
-                            Expanded(
-                              flex: 3,
-                              child: Center(
-                                child: Image.network(widget.datum!.photo),
-                              ),
-                            ),
-                            Expanded(
-                              flex:2,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0),
-                                child: SingleChildScrollView(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      FittedBox(
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                                widget.datum!.name+" ${locale.lookLike1.toString()}",
-                                                style: Theme.of(context).textTheme.bodyLarge!.copyWith(color:Theme.of(context).colorScheme.onPrimary,fontWeight: FontWeight.w600)),
-                                            SizedBox(width: 6.sp,),
-                                            Row(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap:()async{
-                                                    await showTopModalSheet(
-                                                        context,
-                                                        Container(
-                                                          color: Theme.of(context).colorScheme.secondaryContainer,
-                                                          width: MediaQuery.of(context).size.width*0.85,
-                                                          child: Padding(
-                                                            padding: EdgeInsets.symmetric(vertical:MediaQuery.of(context).size.height*0.06,horizontal:MediaQuery.of(context).size.width*0.05 ),
-                                                            child: Container(
-                                                              child: Column(
-                                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                                                children: <Widget>[
-                                                                  Text(
-                                                                        widget.datum!.name
-                                                                        .toString()
-                                                                        .toUpperCase() +
-                                                                        ' ' +
-                                                                        locale.lookLike1.toString(),
-                                                                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                                                                      color: kPrimaryColor
-                                                                    ),
-                                                                  ),
-                                                                  Text(
-                                                                    locale.lookLike.toString(),
-                                                                    style: TextStyle(
-                                                                        fontSize: 15.sp,
-                                                                        fontWeight: FontWeight.w500,
-                                                                        color: Theme.of(context).colorScheme.primary
-                                                                    ),
-                                                                  ),
-
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ));
-                                                  },
-                                                    child: Icon(Icons.info_outline,size: 16.sp)
-                                                ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Row(
+                            Column(
+                              children: [
+                                if (widget.stockStatus != null)
+                                  SizedBox(
+                                    height: 40,
+                                  ),
+                                Expanded(
+                                  flex: 3,
+                                  child: Center(
+                                    child: Image.network(widget.datum!.photo),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 2,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          Text.rich(
-                                            TextSpan(
-                                              text: "${widget.datum!.priceAfter} ",
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge!
-                                                  .copyWith(fontSize: 26.sp),
+                                          FittedBox(
+                                            child: Row(
                                               children: [
-                                                TextSpan(
-                                                  text: "${widget.datum!.priceBefore}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(
-                                                    fontSize: 26,
-                                                    decoration:
-                                                    TextDecoration.lineThrough,
-                                                    fontWeight: FontWeight.w100,
-                                                  ),
+                                                Text(
+                                                    widget.datum!.name +
+                                                        " ${locale.lookLike1.toString()}",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyLarge!
+                                                        .copyWith(
+                                                            color: Theme.of(
+                                                                    context)
+                                                                .colorScheme
+                                                                .onPrimary,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .w600)),
+                                                SizedBox(
+                                                  width: 6.sp,
                                                 ),
-                                                TextSpan(
-                                                  text: " ${locale.sar}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .primary),
-                                                ),
-                                                TextSpan(
-                                                  text: "/${locale.day}",
-                                                  style: Theme.of(context)
-                                                      .textTheme
-                                                      .bodyMedium!
-                                                      .copyWith(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .primary),
+                                                Row(
+                                                  children: [
+                                                    GestureDetector(
+                                                        onTap: () async {
+                                                          await showTopModalSheet(
+                                                              context,
+                                                              Container(
+                                                                color: Theme.of(
+                                                                        context)
+                                                                    .colorScheme
+                                                                    .secondaryContainer,
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.85,
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.symmetric(
+                                                                      vertical: MediaQuery.of(context)
+                                                                              .size
+                                                                              .height *
+                                                                          0.06,
+                                                                      horizontal: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.05),
+                                                                  child:
+                                                                      Container(
+                                                                    child:
+                                                                        Column(
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .spaceEvenly,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .stretch,
+                                                                      children: <Widget>[
+                                                                        Text(
+                                                                          widget.datum!.name.toString().toUpperCase() +
+                                                                              ' ' +
+                                                                              locale.lookLike1.toString(),
+                                                                          style: Theme.of(context)
+                                                                              .textTheme
+                                                                              .labelLarge!
+                                                                              .copyWith(color: kPrimaryColor),
+                                                                        ),
+                                                                        Text(
+                                                                          locale
+                                                                              .lookLike
+                                                                              .toString(),
+                                                                          style: TextStyle(
+                                                                              fontSize: 15.sp,
+                                                                              fontWeight: FontWeight.w500,
+                                                                              color: Theme.of(context).colorScheme.primary),
+                                                                        ),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ));
+                                                        },
+                                                        child: Icon(
+                                                            Icons.info_outline,
+                                                            size: 16.sp)),
+                                                  ],
                                                 ),
                                               ],
                                             ),
                                           ),
+                                          Row(
+                                            children: [
+                                              Text.rich(
+                                                TextSpan(
+                                                  text:
+                                                      "${widget.datum!.priceAfter} ",
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .bodyLarge!
+                                                      .copyWith(
+                                                          fontSize: 26.sp),
+                                                  children: [
+                                                    TextSpan(
+                                                      text:
+                                                          "${widget.datum!.priceBefore}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                            fontSize: 26,
+                                                            decoration:
+                                                                TextDecoration
+                                                                    .lineThrough,
+                                                            fontWeight:
+                                                                FontWeight.w100,
+                                                          ),
+                                                    ),
+                                                    TextSpan(
+                                                      text: " ${locale.sar}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .colorScheme
+                                                                  .primary),
+                                                    ),
+                                                    TextSpan(
+                                                      text: "/${locale.day}",
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium!
+                                                          .copyWith(
+                                                              color: Theme.of(
+                                                                      context)
+                                                                  .colorScheme
+                                                                  .primary),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ],
                                       ),
-                                    ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            if (widget.stockStatus != null)
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(horizontal: 4),
+                                  width: 100,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(8),
+                                      bottomRight: Radius.circular(8),
+                                    ),
+                                    color: Colors.red,
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      widget.stockStatus!,
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
                           ],
                         ),
                       ),
                       Expanded(
-                        flex:1,
+                        flex: 1,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: widget.datum!.photos!.length,
@@ -211,7 +303,8 @@ class _CarsInformationState extends State<CarsInformation> {
                                   context,
                                   MaterialPageRoute<void>(
                                     builder: (BuildContext context) =>
-                                        ImageCarPage(photo: widget.datum!.photos!),
+                                        ImageCarPage(
+                                            photo: widget.datum!.photos!),
                                   ),
                                 );
                               },
@@ -238,8 +331,7 @@ class _CarsInformationState extends State<CarsInformation> {
                         ),
                       ),
                     ],
-                  )
-              ),
+                  )),
               Expanded(
                   flex: 1,
                   child: Row(
@@ -249,7 +341,8 @@ class _CarsInformationState extends State<CarsInformation> {
                           image: "assets/images/car-door.png",
                           text: "${widget.datum!.doors}"),
                       CarIconInfo(
-                          image: "assets/images/seat.png", text: "${widget.datum!.luggage}"),
+                          image: "assets/images/seat.png",
+                          text: "${widget.datum!.luggage}"),
                       CarIconInfo(
                           image: "assets/images/transmission.png",
                           text: "${widget.datum!.transmission}"),
@@ -262,124 +355,214 @@ class _CarsInformationState extends State<CarsInformation> {
                   children: [
                     Container(
                       height: MediaQuery.of(context).size.height * 0.2,
-                      padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width*0.05),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: MediaQuery.of(context).size.width * 0.05),
                       margin: const EdgeInsets.all(1),
                       child: Text(
                         "${widget.datum!.description}",
                         maxLines: 5,
                         overflow: TextOverflow.visible,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(fontSize: 14.sp),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontSize: 14.sp),
                       ),
                     ),
                     Padding(
-                      padding:  EdgeInsets.symmetric(vertical: 10 , horizontal: MediaQuery.of(context).size.width*0.05),
+                      padding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: MediaQuery.of(context).size.width * 0.05),
                       child: InkWell(
+                        onTap: () {
+                          if (widget.filterModel == null) {
+                            pushNewScreen(context,
+                                screen: BranchWithCarScreen(
+                                    carModel: widget.datum!));
+                          } else {
+                            pushNewScreen(context,
+                                screen: AdditionsScreen(
+                                  datum:
+                                      widget.datum, /*fromNotCompleted: false,*/
+                                ));
+                          }
+                        },
+                        child: GestureDetector(
                           onTap: () {
-                            if (widget.filterModel == null) {
-                              pushNewScreen(context,
-                                  screen:  BranchWithCarScreen(carModel: widget.datum!));
-                            } else {
-                              pushNewScreen(context,
-                                  screen: AdditionsScreen(datum: widget.datum,/*fromNotCompleted: false,*/));
+
+                            if (widget.stockStatus != null) {
+                              Fluttertoast.showToast(
+                                msg: "Stock status is not available",
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                backgroundColor: Colors.grey,
+                                textColor: Colors.white,
+                                fontSize: 16.0,
+                              );
+                              return;
                             }
-                          },
-                          child: GestureDetector(
-                            onTap: (){
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return AlertDialog(
-                                      title: Text(
-                                        widget.datum!.name
-                                            .toString()
-                                            .toUpperCase() +
-                                            ' ' +
-                                            locale.lookLike1.toString(),
-                                        style: Theme.of(context).textTheme.labelMedium!.copyWith(fontSize: 16.sp,fontWeight: FontWeight.bold,fontFamily: 'Cairo'),
-                                      ),
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.all(Radius.circular(20.0))),
-                                      backgroundColor: Theme.of(context).brightness==Brightness.light?Colors.white:Theme.of(context).colorScheme.primary,
-                                      content: Container(
-                                        child: Text(
-                                          locale.lookLike.toString(),
-                                          style: Theme.of(context).textTheme.bodyMedium,
-                                        ),
-                                      ),
-                                      actions: [
-                                        BlocConsumer<AdditionsCubit,AdditionsState>(
-                                          listener: (context, state) {
-                                            if(state is AdditionsFailed){
-                                              HelperFunctions.showFlashBar(
-                                                context: context,
-                                                title: state.error.contains("Error Please LOGIN To Continue")?locale.loginToContinue.toString():state.error.toString().replaceAll("message: Error During Communication. -> Details: Exception:", ''),
-                                                message:'',
-                                                icon: Icons.info,  color: Color(0xffF6A9A9),
-                                                titlcolor: Colors.red,
-                                                iconColor: Colors.red,
 
-                                              );
-                                             if( state.error.contains("Error Please LOGIN To Continue")){
-                                               navigateAndFinish(context, SignInScreen());
-                                             }
+                            // Proceed with showing the dialog if stockStatus is null
+
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    title: Text(
+                                      widget.datum!.name
+                                              .toString()
+                                              .toUpperCase() +
+                                          ' ' +
+                                          locale.lookLike1.toString(),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium!
+                                          .copyWith(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.bold,
+                                              fontFamily: 'Cairo'),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(20.0))),
+                                    backgroundColor: Theme.of(context)
+                                                .brightness ==
+                                            Brightness.light
+                                        ? Colors.white
+                                        : Theme.of(context).colorScheme.primary,
+                                    content: Container(
+                                      child: Text(
+                                        locale.lookLike.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
+                                    ),
+                                    actions: [
+                                      BlocConsumer<AdditionsCubit,
+                                          AdditionsState>(
+                                        listener: (context, state) {
+                                          if (state is AdditionsFailed) {
+                                            HelperFunctions.showFlashBar(
+                                              context: context,
+                                              title: state.error.contains(
+                                                      "Error Please LOGIN To Continue")
+                                                  ? locale.loginToContinue
+                                                      .toString()
+                                                  : state.error
+                                                      .toString()
+                                                      .replaceAll(
+                                                          "message: Error During Communication. -> Details: Exception:",
+                                                          ''),
+                                              message: '',
+                                              icon: Icons.info,
+                                              color: Color(0xffF6A9A9),
+                                              titlcolor: Colors.red,
+                                              iconColor: Colors.red,
+                                            );
+                                            if (state.error.contains(
+                                                "Error Please LOGIN To Continue")) {
+                                              navigateAndFinish(
+                                                  context, SignInScreen());
                                             }
-                                          },
-                                          builder: (context, state) {
-                                            return InkWell(
-                                              onTap: ()async {
-                                                await BlocProvider.of<AdditionsCubit>(context).getCarFeatures(context, widget.datum!.id.toString());
-                                                if (widget.filterModel == null &&
-                                                    lookLike == true) {
+                                          }
+                                        },
+                                        builder: (context, state) {
+                                          return InkWell(
+                                            onTap: () async {
+                                              await BlocProvider.of<
+                                                      AdditionsCubit>(context)
+                                                  .getCarFeatures(
+                                                      context,
+                                                      widget.datum!.id
+                                                          .toString());
+                                              if (widget.filterModel == null &&
+                                                  lookLike == true) {
+                                                pushNewScreen(context,
+                                                    screen: BranchWithCarScreen(
+                                                        carModel:
+                                                            widget.datum!));
+                                              } else {
+                                                Navigator.pop(context);
+                                                if (state is AdditionsSuccess ||
+                                                    state is AdditionsInitial) {
                                                   pushNewScreen(context,
-                                                      screen: BranchWithCarScreen(
-                                                          carModel:
-                                                          widget.datum!));
-                                                } else {
-                                                    Navigator.pop(context);
-                                                    if(state is AdditionsSuccess ||state is AdditionsInitial){
-                                                      pushNewScreen(context,
-                                                          screen: AdditionsScreen(datum: widget.datum,));
-                                                    }
-                                                   if(state is AdditionsFailed){
-                                                    HelperFunctions.showFlashBar(
-                                                      context: context,
-                                                      message: state.error.contains("Error Please LOGIN To Continue")?locale.loginToContinue.toString():state.error.toString().replaceAll("message: Error During Communication. -> Details: Exception:", ''),
-                                                      title:locale.error.toString(),
-                                                      icon: Icons.info,  color: Color(0xffF6A9A9),
-                                                      titlcolor: Colors.red,
-                                                      iconColor: Colors.red,
-
-                                                    );
-                                                    if( state.error.contains("Error Please LOGIN To Continue")){
-                                                      navigateAndFinish(context, SignInScreen());
-                                                    }
+                                                      screen: AdditionsScreen(
+                                                        datum: widget.datum,
+                                                      ));
+                                                }
+                                                if (state is AdditionsFailed) {
+                                                  HelperFunctions.showFlashBar(
+                                                    context: context,
+                                                    message: state.error.contains(
+                                                            "Error Please LOGIN To Continue")
+                                                        ? locale.loginToContinue
+                                                            .toString()
+                                                        : state.error
+                                                            .toString()
+                                                            .replaceAll(
+                                                                "message: Error During Communication. -> Details: Exception:",
+                                                                ''),
+                                                    title:
+                                                        locale.error.toString(),
+                                                    icon: Icons.info,
+                                                    color: Color(0xffF6A9A9),
+                                                    titlcolor: Colors.red,
+                                                    iconColor: Colors.red,
+                                                  );
+                                                  if (state.error.contains(
+                                                      "Error Please LOGIN To Continue")) {
+                                                    navigateAndFinish(context,
+                                                        SignInScreen());
                                                   }
                                                 }
-                                              },
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  state is AdditionsLoading?Center(child: CircularProgressIndicator.adaptive(backgroundColor: Theme.of(context).colorScheme.onPrimary,)):Padding(
-                                                    padding: EdgeInsets.symmetric(
-                                                        horizontal: MediaQuery.of(context).size.width * 0.08,
-                                                        vertical: 8.sp,),
-                                                    child: Text(
-                                                      locale.ok.toString(),
-                                                      style:
-                                                      Theme.of(context).textTheme.bodyLarge,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            );
-                                          },
-                                        ),
-                                      ],
-                                    );
-                                  });
-                            },
-                              child: ADGradientButton(locale.bookNow))),
+                                              }
+                                            },
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                state is AdditionsLoading
+                                                    ? Center(
+                                                        child:
+                                                            CircularProgressIndicator
+                                                                .adaptive(
+                                                        backgroundColor:
+                                                            Theme.of(context)
+                                                                .colorScheme
+                                                                .onPrimary,
+                                                      ))
+                                                    : Padding(
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                          horizontal:
+                                                              MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.08,
+                                                          vertical: 8.sp,
+                                                        ),
+                                                        child: Text(
+                                                          locale.ok.toString(),
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .bodyLarge,
+                                                        ),
+                                                      ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    ],
+                                  );
+                                });
+                          },
+                          child: ADGradientButton(locale.bookNow),
+                        ),
+                      ),
                     ),
                   ],
                 ),

@@ -62,6 +62,7 @@ dependencies:
   # ui
   bounce: ^1.0.2
   motion: ^2.0.0
+  fluttertoast: ^8.2.8
 
 dev_dependencies:
   flutter_test:

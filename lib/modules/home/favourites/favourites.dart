@@ -58,21 +58,27 @@ class _FavouritesState extends State<Favourites> {
                                       screen: CarsInformation(
                                         datum: DataCars.fromMap(
                                             state.favourites[index].toMap()),
+                                        stockStatus: 'نفذت الكمية',
                                       ));
                                 },
                                 child: Container(
                                   height:
                                       MediaQuery.of(context).size.height * 0.4,
                                   padding: EdgeInsets.only(
-                                      top: 0,
-                                      right: MediaQuery.of(context).size.width * 0.02,
-                                      left: MediaQuery.of(context).size.width * 0.02,),
+                                    top: 0,
+                                    right: MediaQuery.of(context).size.width *
+                                        0.02,
+                                    left: MediaQuery.of(context).size.width *
+                                        0.02,
+                                  ),
                                   margin: EdgeInsets.symmetric(
                                       vertical: 0.sp, horizontal: 0.sp),
                                   decoration: BoxDecoration(
                                     color: Theme.of(context).brightness ==
                                             Brightness.light
-                                        ? Theme.of(context).colorScheme.primaryContainer
+                                        ? Theme.of(context)
+                                            .colorScheme
+                                            .primaryContainer
                                         : null,
                                     borderRadius: BorderRadius.circular(4),
                                   ),
@@ -143,8 +149,7 @@ class _FavouritesState extends State<Favourites> {
                                                               crossAxisAlignment:
                                                                   CrossAxisAlignment
                                                                       .stretch,
-                                                              children: <
-                                                                  Widget>[
+                                                              children: <Widget>[
                                                                 Text(
                                                                   locale
                                                                       .lookLike1

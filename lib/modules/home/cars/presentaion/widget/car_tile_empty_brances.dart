@@ -74,7 +74,7 @@ class _CarTileState extends State<CarTileEmptyInBranches> {
                 pushNewScreen(context,
                     screen: CarsInformation(
                       datum: widget.cubit.data[widget.index],
-                      filterModel: widget.filterModel,
+                      filterModel: widget.filterModel, stockStatus: 'نفذت الكميه',
                     ));
               },
               child: Container(
@@ -141,12 +141,13 @@ class _CarTileState extends State<CarTileEmptyInBranches> {
                         Align(
                           alignment: Alignment.topRight,
                           child: Container(
-                            margin:EdgeInsets.symmetric(
-                                horizontal: 4),
+                            margin: EdgeInsets.symmetric(horizontal: 4),
                             width: 100,
-                            height:  40,
+                            height: 40,
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(bottomLeft: Radius.circular(8),bottomRight: Radius.circular(8)),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(8),
+                                  bottomRight: Radius.circular(8)),
                               color: Colors.red,
                             ),
                             child: Center(

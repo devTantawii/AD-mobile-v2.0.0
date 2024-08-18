@@ -1,4 +1,3 @@
-import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/widgets/components/constants.dart';
 import 'package:flutter/material.dart';
