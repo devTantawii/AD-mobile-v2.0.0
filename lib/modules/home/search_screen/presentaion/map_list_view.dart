@@ -7,12 +7,9 @@ import 'package:abudiyab/modules/home/search_screen/presentaion/widget/location_
 import 'package:abudiyab/modules/home/search_screen/presentaion/widget/map_list_tapbar.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/shared/commponents.dart';
-import 'package:abudiyab/shared/style/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../blocs/search_bloc/search_cubit.dart';
 
 class MapListView extends StatefulWidget {
   final List<BranchModel>? branches;

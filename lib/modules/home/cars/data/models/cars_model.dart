@@ -55,7 +55,7 @@ class DataCars {
     required this.description,
     required this.photo,
     required this.photos,
-    required this.availableBranches,
+  //  required this.availableBranches,
   });
 
   num id;
@@ -74,7 +74,7 @@ class DataCars {
   String description;
   String photo;
   List<Photo>? photos;
-  List<Branch>? availableBranches;
+ // List<Branch>? availableBranches;
 
   DataCars copyWith({
     required num id,
@@ -93,7 +93,7 @@ class DataCars {
     required String description,
     required String photo,
     required List<Photo> photos,
-    required List<Branch> availableBranches,
+   // required List<Branch> availableBranches,
   }) =>
       DataCars(
         id: id,
@@ -112,7 +112,7 @@ class DataCars {
         description: description,
         photo: photo,
         photos: photos,
-        availableBranches: availableBranches,
+      //  availableBranches: availableBranches,
       );
 
   factory DataCars.fromMap(Map<String, dynamic> json) => DataCars(
@@ -132,7 +132,7 @@ class DataCars {
     description: json["description"],
     photo: json["photo"],
     photos: List<Photo>.from(json["photos"].map((x) => Photo.fromMap(x))),
-    availableBranches: List<Branch>.from(json["available_branches"].map((x) => Branch.fromMap(x))),
+   // availableBranches: List<Branch>.from(json["available_branches"].map((x) => Branch.fromMap(x))),
   );
 
   Map<String, dynamic> toMap() => {
@@ -152,7 +152,7 @@ class DataCars {
     "description": description,
     "photo": photo,
     "photos": List<dynamic>.from(photos?.map((x) => x.toMap()) ?? []),
-    "available_branches": List<dynamic>.from(availableBranches?.map((x) => x.toMap()) ?? []),
+   // "available_branches": List<dynamic>.from(availableBranches?.map((x) => x.toMap()) ?? []),
   };
 }
 
