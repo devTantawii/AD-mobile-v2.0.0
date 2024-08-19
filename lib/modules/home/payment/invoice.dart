@@ -13,9 +13,11 @@ import 'package:abudiyab/modules/home/payment/widget/info_invoice_notCompleted.d
 import 'package:abudiyab/modules/home/payment/widget/web_payment.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion/motion.dart';
 import 'package:pay/pay.dart';
 import '../../../core/constants/langCode.dart';
 import '../../../shared/commponents.dart';
@@ -163,10 +165,12 @@ class _InvoiceUIState extends State<InvoiceUI> {
                                       Theme.of(context).colorScheme.onPrimary,
                                 ))
                               : Container(
-                                  child: InkWell(
-                                    onTap: bookNow,
-                                    child: ADGradientButton(
-                                        locale.bookNow.toString()),
+                                  child: Motion(
+                                    child: Bounce(
+                                      onTap: bookNow,
+                                      child: ADGradientButton(
+                                          locale.bookNow.toString()),
+                                    ),
                                   ),
                                 ),
                         );
@@ -186,7 +190,7 @@ class _InvoiceUIState extends State<InvoiceUI> {
                                 ))
                               : Container(
                                   height: size.height * 0.065,
-                                  child: InkWell(
+                                  child: Bounce(
                                     onTap: bookNowWithVisa,
                                     child: ADGradientButton(
                                         locale.bookNow.toString()),

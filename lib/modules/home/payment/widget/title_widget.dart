@@ -19,7 +19,7 @@ class PageTitle extends StatelessWidget {
             SizedBox(height: 5),
             Text(
               locale.choosePaymentMethod.toString(),
-              style: Theme.of(context).textTheme.overline,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
           ],
         ),

@@ -90,7 +90,7 @@ class _CouponTileState extends State<CouponTile> {
                     locale!.addVoucher.toString(),
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .copyWith(fontSize: 12.sp),
                   ),
                 ),

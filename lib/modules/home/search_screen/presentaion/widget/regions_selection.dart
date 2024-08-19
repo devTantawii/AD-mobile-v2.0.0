@@ -24,8 +24,8 @@
 //     return DropdownButtonFormField(
 //       dropdownColor: Theme.of(context).backgroundColor,
 //       hint: Text(locale.selectRegion!,
-//           style: Theme.of(context).textTheme.bodyText2),
-//       style: Theme.of(context).textTheme.bodyText1!,
+//           style: Theme.of(context).textTheme.bodyMedium),
+//       style: Theme.of(context).textTheme.bodyLarge!,
 //       items: widget.regions!.isNotEmpty
 //           ? widget.regions!.map((value) {
 //               return DropdownMenuItem(

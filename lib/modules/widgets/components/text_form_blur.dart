@@ -120,7 +120,7 @@ class _TextFormFieldBlurState extends State<TextFormFieldBlur> {
                   ? EdgeInsets.only(top: 11, bottom: 12.5, left: 23, right: 10)
                   : widget.contentPadding,
               hintText: widget.hintText,
-              hintStyle: Theme.of(context).textTheme.bodyText2,
+              hintStyle: Theme.of(context).textTheme.bodyMedium,
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(12),
               ),

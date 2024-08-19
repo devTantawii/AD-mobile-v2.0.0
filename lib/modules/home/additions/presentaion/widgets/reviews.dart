@@ -9,7 +9,7 @@ class Reviews extends StatelessWidget {
     return SingleChildScrollView(
       // physics: ScrollPhysics(),
       child: Container(
-        color: Theme.of(context).backgroundColor,
+        color: Theme.of(context).colorScheme.surface,
         child: Column(
           children: [
             Container(
@@ -41,7 +41,7 @@ class Reviews extends StatelessWidget {
                       Text("98" + locale.peopleRated!,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText1!
+                              .headlineMedium!
                               .copyWith(fontSize: 12))
                     ],
                   ),
@@ -80,14 +80,14 @@ class Reviews extends StatelessWidget {
                                           locale.dummyName1!,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyText1!
+                                              .bodyLarge!
                                               .copyWith(fontSize: 13),
                                         ),
                                         Text(
                                           locale.dummyDate1!,
                                           style: Theme.of(context)
                                               .textTheme
-                                              .bodyText2!
+                                              .bodyMedium!
                                               .copyWith(fontSize: 10),
                                         )
                                       ],
@@ -134,7 +134,7 @@ class Reviews extends StatelessWidget {
                               locale.lorem!,
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText1!
+                                  .bodyLarge!
                                   .copyWith(
                                       fontSize: 12, color: Colors.grey[300]),
                             ),

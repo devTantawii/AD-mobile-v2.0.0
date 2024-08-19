@@ -15,7 +15,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           locale!.privacyPolicy.toString(),
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 fontSize: 16,
               ),
         ),
@@ -29,7 +29,7 @@ class PrivacyPolicyScreen extends StatelessWidget {
               langCode == "en" ? PRIVECYTITLEEN : PRIVECYTITLEAR,
               style: Theme.of(context)
                   .textTheme
-                  .headline6!
+                  .headlineSmall!
                   .copyWith(color: Colors.red, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20.0),

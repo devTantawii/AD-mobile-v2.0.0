@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'package:abudiyab/modules/home/blocs/booking_cubit/booking_cubit.dart';
 import 'package:abudiyab/shared/commponents.dart';
+import 'package:bounce/bounce.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/core/helpers/helper_fun.dart';
@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../auth/register/presentaion/pages/register_page.dart';
@@ -181,7 +182,7 @@ class _MyProfileState extends State<MyProfile> {
                         BoxTileWidget(profileModel: state.profileModel),
                         SizedBox(height: safeHeight * 0.02),
                         state.profileModel.deleteStatus == "1"
-                            ? InkWell(
+                            ? Bounce(
                                 //  onTap: () => context.read<ProfileCubit>().deleteProfile(),
                                 onTap: () {
                                   showDialog(
@@ -204,7 +205,7 @@ class _MyProfileState extends State<MyProfile> {
                                           actions: [
                                             Row(
                                               children: [
-                                                InkWell(
+                                                Bounce(
                                                   onTap: () {
                                                     context
                                                         .read<ProfileCubit>()
@@ -238,7 +239,7 @@ class _MyProfileState extends State<MyProfile> {
                                                 SizedBox(
                                                   width: 7,
                                                 ),
-                                                InkWell(
+                                                Bounce(
                                                   onTap: () {
                                                     Navigator.pop(context);
                                                   },
@@ -293,6 +294,7 @@ class _MyProfileState extends State<MyProfile> {
                                 ),
                               )
                             : Container(),
+                        SizedBox(height: 24,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -411,7 +413,7 @@ class _MyProfileState extends State<MyProfile> {
                 SizedBox(height: safeHeight * 0.08),
                 Row(
                   children: [
-                    InkWell(
+                    Bounce(
                         onTap: () {
                           pushNewScreen(
                             context,
@@ -444,7 +446,7 @@ class _MyProfileState extends State<MyProfile> {
 
                     ///second
                     Spacer(),
-                    InkWell(
+                    Bounce(
                         onTap: () {
                           pushNewScreen(
                             context,

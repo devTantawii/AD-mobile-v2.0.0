@@ -25,7 +25,7 @@ class InfoCarWidget extends StatelessWidget {
                   children: [
                     Text(
                       carModel!.name.toString(),
-                      style: Theme.of(context).textTheme.headline6,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -36,27 +36,27 @@ class InfoCarWidget extends StatelessWidget {
                           carModel!.manufactory,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText2!
+                              .bodyMedium!
                               .copyWith(fontSize: 14),
                         ),
                         SizedBox(height: 20),
                         Text.rich(
                           TextSpan(
                             text: carModel!.priceAfter.toString() + "  ",
-                            style: Theme.of(context).textTheme.headline6,
+                            style: Theme.of(context).textTheme.headlineSmall,
                             children: [
                               TextSpan(
                                 text: carModel!.priceBefore.toString(),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(
                                         decoration: TextDecoration.lineThrough,
                                         fontSize: 16),
                               ),
                               TextSpan(
                                 text: locale!.sar.toString(),
-                                style: Theme.of(context).textTheme.overline,
+                                style: Theme.of(context).textTheme.labelSmall,
                               )
                             ],
                           ),

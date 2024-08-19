@@ -19,7 +19,7 @@ class ADSocialButtons extends StatelessWidget {
       child: Container(
         // padding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.surface,
           borderRadius: BorderRadius.circular(25),
         ),
         child: Row(
@@ -36,7 +36,7 @@ class ADSocialButtons extends StatelessWidget {
             Text(
               title!,
               overflow: TextOverflow.ellipsis,
-              style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyLarge,
             )
           ],
         ),

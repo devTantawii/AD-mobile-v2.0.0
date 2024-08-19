@@ -1,9 +1,11 @@
 import 'package:abudiyab/modules/home/all_bookings/presentaion/bloc/allbooking_state.dart';
 import 'package:abudiyab/modules/home/all_bookings/presentaion/page/widget/texttile_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion/motion.dart';
 import '../../../../../../../core/helpers/helper_fun.dart';
 import '../../../../../../../language/locale.dart';
 import '../../../../../../../shared/commponents.dart';
@@ -34,7 +36,7 @@ class _NotCompletedOrderState extends State<NotCompletedOrder> {
           if(state is AllBookingLoading){
             Center(
               child: CircularProgressIndicator.adaptive(
-                backgroundColor: Theme.of(context).colorScheme.background,
+                backgroundColor: Theme.of(context).colorScheme.surface,
               ),
             );
           }
@@ -305,25 +307,27 @@ class _NotCompletedOrderState extends State<NotCompletedOrder> {
                                                     ),
                                                   ),
                                                 ),
-                                                InkWell(
-                                                  onTap:() {
-                                                     BlocProvider.of<AllBookingCubit>(context).deleteBooking(orderId: bookingData.id,).then((value) => Navigator.pop(context));
-                                                  },
-                                                  child: Container(
-                                                    width: size.width*0.25,
-                                                    height: size.height*0.045,
-                                                    decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(4),
-                                                        border: Border.all(
-                                                            color: Colors.red
-                                                        ),
-                                                        color:Colors.red
-                                                    ),
-                                                    child: Center(
-                                                      child: Text(
-                                                        locale.isDirectionRTL(context)?"حذف الحجز":"Cancel Order",
-                                                        style: TextStyle(
-                                                            color: Colors.white
+                                                Motion(
+                                                  child: Bounce(
+                                                    onTap:() {
+                                                       BlocProvider.of<AllBookingCubit>(context).deleteBooking(orderId: bookingData.id,).then((value) => Navigator.pop(context));
+                                                    },
+                                                    child: Container(
+                                                      width: size.width*0.25,
+                                                      height: size.height*0.045,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.circular(4),
+                                                          border: Border.all(
+                                                              color: Colors.red
+                                                          ),
+                                                          color:Colors.red
+                                                      ),
+                                                      child: Center(
+                                                        child: Text(
+                                                          locale.isDirectionRTL(context)?"حذف الحجز":"Cancel Order",
+                                                          style: TextStyle(
+                                                              color: Colors.white
+                                                          ),
                                                         ),
                                                       ),
                                                     ),

@@ -9,24 +9,26 @@ import 'package:dio/dio.dart';
 
 class BookingDataSources {
   SharedPreferencesHelper sharedPreferencesHelper = SharedPreferencesHelper();
+
   Future<Booking> getAllBooking({required String status}) async {
     final token = await sharedPreferencesHelper.getToken();
     try {
       final Dio dio = Dio();
       var uri = Uri.parse(getOrders);
       final Response response = await dio.post(
-        data:  {
+        data: {
           'status': status,
         },
         uri.toString(),
         options: Options(
           responseType: ResponseType.plain,
-            headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json",
-          "Authorization": "Bearer $token",
-          "Accept-Language": langCode == '' ? "en" : langCode,
-        },),
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token",
+            "Accept-Language": langCode == '' ? "en" : langCode,
+          },
+        ),
       );
       final dataOrders = json.decode(response.data);
       final Booking booking = Booking.fromMap(dataOrders);
@@ -37,5 +39,4 @@ class BookingDataSources {
       throw '..Oops $error';
     }
   }
-
 }

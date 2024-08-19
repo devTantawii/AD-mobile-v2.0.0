@@ -56,7 +56,7 @@ class _CategoryItemState extends State<CategoryItem> {
             child: FittedBox(
           child: AutoSizeText(
             widget.data.name.toString(),
-            style: Theme.of(context).textTheme.bodyText2!.copyWith(
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                 fontWeight: FontWeight.bold,
                 color: onclik ? Colors.white : null),
           ),

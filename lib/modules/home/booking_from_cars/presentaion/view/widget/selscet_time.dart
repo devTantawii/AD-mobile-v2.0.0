@@ -46,7 +46,7 @@ class _SelectTimeState extends State<SelectTime> {
                         child: Container(
                           padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.background,
+                              color: Theme.of(context).colorScheme.surface,
                               borderRadius: BorderRadius.circular(12)),
                           child: SfDateRangePicker(
                             cancelText: locale!.cancel.toString(),
@@ -59,7 +59,7 @@ class _SelectTimeState extends State<SelectTime> {
                                 Theme.of(context).textTheme.bodyLarge,
                             headerStyle: DateRangePickerHeaderStyle(
                                 textStyle:
-                                    Theme.of(context).textTheme.bodyText1),
+                                    Theme.of(context).textTheme.bodyLarge),
                             monthCellStyle: DateRangePickerMonthCellStyle(
                               textStyle: Theme.of(context).textTheme.bodyLarge,
                               disabledDatesTextStyle: Theme.of(context)
@@ -68,7 +68,7 @@ class _SelectTimeState extends State<SelectTime> {
                                   .copyWith(color: Colors.grey),
                             ),
                             yearCellStyle: DateRangePickerYearCellStyle(
-                              textStyle: Theme.of(context).textTheme.bodyText1,
+                              textStyle: Theme.of(context).textTheme.bodyLarge,
                             ),
                             showActionButtons: true,
                             initialDisplayDate: DateTime.now(),
@@ -82,7 +82,7 @@ class _SelectTimeState extends State<SelectTime> {
                             initialSelectedRange: PickerDateRange(
                                 DateTime.now().add(const Duration(days: 1)),
                                 DateTime.now().add(const Duration(days: 2))),
-                            backgroundColor: Theme.of(context).backgroundColor,
+                            backgroundColor: Theme.of(context).colorScheme.surface,
                             onSubmit: (dynamic value) {
                               widget.isReceive
                                   ? BlocProvider.of<SearchCubit>(context)
@@ -117,7 +117,7 @@ class _SelectTimeState extends State<SelectTime> {
                           "${BlocProvider.of<SearchCubit>(context).receiveDateValue.toString().substring(0, 11)}",
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText2!
+                              .bodyMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                       )
@@ -126,7 +126,7 @@ class _SelectTimeState extends State<SelectTime> {
                           "${BlocProvider.of<SearchCubit>(context).driveDateValue.toString().substring(0, 11)}",
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText2!
+                              .bodyMedium!
                               .copyWith(fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -188,28 +188,28 @@ class _SelectTimeState extends State<SelectTime> {
                                 "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.hour.toString()}  ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               AutoSizeText(
                                 " :  ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               AutoSizeText(
                                 "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.minute.toString()} ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               AutoSizeText(
                                 "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.period.name.toString().toUpperCase()} ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -222,28 +222,28 @@ class _SelectTimeState extends State<SelectTime> {
                                 " ${BlocProvider.of<SearchCubit>(context).driveTimeValue.hour.toString()}  ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               AutoSizeText(
                                 " :  ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               AutoSizeText(
                                 " ${BlocProvider.of<SearchCubit>(context).driveTimeValue.minute.toString()} ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                               AutoSizeText(
                                 "${BlocProvider.of<SearchCubit>(context).driveTimeValue.period.name.toString().toUpperCase()} ",
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText2!
+                                    .bodyMedium!
                                     .copyWith(fontWeight: FontWeight.bold),
                               ),
                             ],

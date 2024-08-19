@@ -2,32 +2,9 @@ import 'dart:convert';
 import 'package:abudiyab/core/constants/api_path.dart';
 import 'package:abudiyab/core/constants/langCode.dart';
 import 'package:abudiyab/core/helpers/SharedPreference/pereferences.dart';
-import 'package:abudiyab/core/helpers/exception/exceptions.dart';
 import 'package:abudiyab/modules/home/search_screen/data/models/offers_model.dart';
-import 'package:dio/dio.dart';
 import 'package:http/http.dart' as http;
 class OffersRemotDataSource {
-  // static Dio? _dio = Dio();
-  // static Future<OffersModel> getOffers() async {
-  //   try {
-  //     final Response response = await _dio!.get(
-  //       mainApi + offers,
-  //       options: Options(responseType: ResponseType.plain, headers: {
-  //         "Accept": "application/json",
-  //         "Accept-Language": langCode == '' ? "en" : langCode,
-  //         "Authorization": 'Bearer $userToken',
-  //       }),
-  //     );
-  //     final list = json.decode(response.data);
-  //     OffersModel offersModel = OffersModel.fromJson(list);
-  //
-  //     return offersModel;
-  //   } on DioError catch (dioError) {
-  //     throw Failure.fromDioError(dioError);
-  //   } catch (error) {
-  //     throw '..Oops $error';
-  //   }
-  // }
   static Future<OffersModel> getOffers(String? languageCode) async {
     try {
       final SharedPreferencesHelper preferences = SharedPreferencesHelper();

@@ -1,8 +1,10 @@
 import 'package:abudiyab/language/locale.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../auth/signin/presentation/pages/signin_screen.dart';
@@ -30,27 +32,29 @@ class ErrorImage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: Lottie.asset("assets/images/login.json")),
               SizedBox(height: 10.0),
-              InkWell(
-                  onTap: () {
-                    pushNewScreen(
-                      context,
-                      screen: SignInScreen(),
-                      withNavBar: false,
-                    );
-                  },
-                  child: Column(
-                    children: [
-                      Text(locale!.loginToContinue.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        fontSize: 18.sp,
-                        fontWeight: FontWeight.w600,
-                      ),),
-                      SizedBox(height: 30.sp,),
-                      ADGradientButton(
-                        locale.signIn.toString(),
-                        width: MediaQuery.of(context).size.width * 0.5,
-                      ),
-                    ],
-                  )),
+              Motion(
+                child: Bounce(
+                    onTap: () {
+                      pushNewScreen(
+                        context,
+                        screen: SignInScreen(),
+                        withNavBar: false,
+                      );
+                    },
+                    child: Column(
+                      children: [
+                        Text(locale!.loginToContinue.toString(),style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          fontSize: 18.sp,
+                          fontWeight: FontWeight.w600,
+                        ),),
+                        SizedBox(height: 30.sp,),
+                        ADGradientButton(
+                          locale.signIn.toString(),
+                          width: MediaQuery.of(context).size.width * 0.5,
+                        ),
+                      ],
+                    )),
+              ),
             ],
           ),
         ),

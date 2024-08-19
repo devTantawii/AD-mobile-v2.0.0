@@ -33,7 +33,7 @@ class _SearchState extends State<SearchScreen> {
 
   final targetDate = DateTime(2023, 10, 1);
   Timer? timer;
-  final CarouselController _controller = CarouselController();
+  final CarouselSliderController  _controller = CarouselSliderController ();
    List<String> images = [
     "assets/images/day1.png",
     "assets/images/day2.png",

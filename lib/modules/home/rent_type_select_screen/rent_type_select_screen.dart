@@ -64,13 +64,13 @@ class _RentTypeSelectionScreenState extends State<RentTypeSelectionScreen> {
                       locale!.abudiyab,
                       style: Theme.of(context)
                           .textTheme
-                          .headline6!
+                          .headlineSmall!
                           .copyWith(fontSize: 24),
                     ),
                     SizedBox(height: 5),
                     Text(
                       locale.abudiyabWelcome,
-                      style: Theme.of(context).textTheme.bodyText2!.copyWith(
+                      style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                           color: Theme.of(context).colorScheme.primary),
                     ),
                   ],

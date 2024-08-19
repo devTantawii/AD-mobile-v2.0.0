@@ -35,7 +35,7 @@ class _RunningNowState extends State<RunningNow> {
           if(state is AllBookingLoading){
             Center(
               child: CircularProgressIndicator.adaptive(
-                backgroundColor: Theme.of(context).colorScheme.background,
+                backgroundColor: Theme.of(context).colorScheme.surface,
               ),
             );
           }

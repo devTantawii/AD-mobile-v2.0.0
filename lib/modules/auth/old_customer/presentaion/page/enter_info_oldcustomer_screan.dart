@@ -6,8 +6,10 @@ import 'package:abudiyab/modules/home/profile/page/widget/container_tile.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
 import 'package:abudiyab/shared/commponents.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 import '../../../../widgets/components/ad_curve.dart';
@@ -86,20 +88,22 @@ class EnterInfoOldCustromerScrean extends StatelessWidget {
                                         child: CircularProgressIndicator
                                             .adaptive(),
                                       )
-                                    : InkWell(
-                                        onTap: () {
-                                          BlocProvider.of<OldCustomerCubit>(
-                                                  context)
-                                              .forgetOldCustomer(
-                                                  phone: phoneControler.text,
-                                                  id: idControler.text);
-                                        },
-                                        child: Container(
-                                          width: MediaQuery.of(context).size.width*0.6,
-                                          child: ADGradientButton(
-                                              locale.send.toString()),
+                                    : Motion(
+                                      child: Bounce(
+                                          onTap: () {
+                                            BlocProvider.of<OldCustomerCubit>(
+                                                    context)
+                                                .forgetOldCustomer(
+                                                    phone: phoneControler.text,
+                                                    id: idControler.text);
+                                          },
+                                          child: Container(
+                                            width: MediaQuery.of(context).size.width*0.6,
+                                            child: ADGradientButton(
+                                                locale.send.toString()),
+                                          ),
                                         ),
-                                      ),
+                                    ),
                               ],
                             ),
                           ),

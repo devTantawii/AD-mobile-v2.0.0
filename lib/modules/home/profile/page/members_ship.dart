@@ -18,7 +18,7 @@ class MemberShipScrean extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           locale!.memberShip!.toString(),
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                 fontSize: 16,
               ),
         ),
@@ -35,7 +35,7 @@ class MemberShipScrean extends StatelessWidget {
                   ),
                   Text(
                     "${locale.points} : ${member.membership!.ratioPoints}",
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                   SizedBox(
                     height: 15.sp,
@@ -77,7 +77,7 @@ class MemberShipScrean extends StatelessWidget {
                   ),
                  /* Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: InkWell(
+                    child: Bounce(
                       onTap: () {
                         // Navigator.of(context).push(
                         //   MaterialPageRoute<void>(
@@ -92,14 +92,14 @@ class MemberShipScrean extends StatelessWidget {
                           text: locale.moreMembershipDetails,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText2!
+                              .bodyMedium!
                               .copyWith(fontSize: 14),
                           children: [
                             TextSpan(
                                 text: locale.clickHere,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyText1!
+                                    .bodyLarge!
                                     .copyWith(fontSize: 14))
                           ],
                         ),

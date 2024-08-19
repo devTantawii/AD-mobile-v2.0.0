@@ -7,8 +7,10 @@ import 'package:abudiyab/modules/home/profile/page/widget/container_tile.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion/motion.dart';
 
 import '../../../../../../../service_locator.dart';
 
@@ -29,7 +31,7 @@ class ResetPasswordScrean extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             locale.resetPassword!.toString(),
-            style: Theme.of(context).textTheme.bodyText1!.copyWith(
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                   fontSize: 16,
                 ),
           ),
@@ -101,23 +103,25 @@ class ResetPasswordScrean extends StatelessWidget {
                                 ? const Center(
                                     child: CircularProgressIndicator.adaptive(),
                                   )
-                                : InkWell(
-                                    onTap: () {
-                                      if (_formKey.currentState!.validate()) {
-                                        BlocProvider.of<RsetePasswordCubit>(
-                                                context)
-                                            .rsetePassword(
-                                                oldPassWord:
-                                                    oldPasswordControler.text,
-                                                newPassWord:
-                                                    newPasswordControler.text,
-                                                confirmPassWord:
-                                                    confirmPasswordControler
-                                                        .text);
-                                      }
-                                    },
-                                    child: ADGradientButton(
-                                        locale.changePassword.toString())),
+                                : Motion(
+                                  child: Bounce(
+                                      onTap: () {
+                                        if (_formKey.currentState!.validate()) {
+                                          BlocProvider.of<RsetePasswordCubit>(
+                                                  context)
+                                              .rsetePassword(
+                                                  oldPassWord:
+                                                      oldPasswordControler.text,
+                                                  newPassWord:
+                                                      newPasswordControler.text,
+                                                  confirmPassWord:
+                                                      confirmPasswordControler
+                                                          .text);
+                                        }
+                                      },
+                                      child: ADGradientButton(
+                                          locale.changePassword.toString())),
+                                ),
                           ]),
                         ),
                       ),

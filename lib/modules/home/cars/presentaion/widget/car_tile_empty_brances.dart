@@ -5,10 +5,12 @@ import 'package:abudiyab/modules/home/booking_from_cars/presentaion/view/branchs
 import 'package:abudiyab/modules/home/cars/presentaion/bloc/cubit/cars_cubit.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/page/cars_info.dart';
 import 'package:abudiyab/modules/home/search_screen/data/models/filter_model.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../../../../core/helpers/helper_fun.dart';
 import '../../../../../shared/commponents.dart';
@@ -69,7 +71,7 @@ class _CarTileState extends State<CarTileEmptyInBranches> {
         return Stack(
           alignment: AlignmentDirectional.centerStart,
           children: [
-            InkWell(
+            Bounce(
               onTap: () {
                 pushNewScreen(context,
                     screen: CarsInformation(
@@ -152,7 +154,7 @@ class _CarTileState extends State<CarTileEmptyInBranches> {
                             ),
                             child: Center(
                               child: Text(
-                                'نفذت الكميه',
+                                locale!.isDirectionRTL(context) ? "نفذت الكميه" : "Out of Stock",
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -322,130 +324,132 @@ class _CarTileState extends State<CarTileEmptyInBranches> {
               left: locale.bookNow.toString() == "Book Now"
                   ? null
                   : MediaQuery.of(context).size.height * 0.03,
-              child: InkWell(
-                onTap: () async {
-                  if (lookLike == true) {
-                    // BlocProvider.of<AdditionsCubit>(context).getInit();
-                    BlocProvider.of<AdditionsCubit>(context).getCarFeatures(
-                        context, widget.cubit.data[widget.index].id.toString());
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: Text(
-                              widget.cubit.data[widget.index].name
-                                      .toString()
-                                      .toUpperCase() +
-                                  ' ' +
-                                  locale.lookLike1.toString(),
-                              style: TextStyle(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.w600,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary),
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(8.0))),
-                            backgroundColor:
-                                Theme.of(context).brightness == Brightness.light
-                                    ? Colors.white
-                                    : Theme.of(context).colorScheme.primary,
-                            content: Text(
-                              locale.lookLike.toString(),
-                              style: TextStyle(
-                                  fontSize: 15.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary),
-                            ),
-                            actions: [
-                              GestureDetector(
-                                onTap: () async {
-                                  if (widget.filterModel == null &&
-                                      lookLike == true) {
-                                    Navigator.pop(context);
-                                    pushNewScreen(context,
-                                        screen: BranchWithCarScreen(
-                                            carModel: widget
-                                                .cubit.data[widget.index]));
-                                  } else {
-                                    Navigator.pop(context);
-                                    if (state is AdditionsSuccess ||
-                                        state is AdditionsInitial) {
+              child: Motion(
+                child: Bounce(
+                  onTap: () async {
+                    if (lookLike == true) {
+                      // BlocProvider.of<AdditionsCubit>(context).getInit();
+                      BlocProvider.of<AdditionsCubit>(context).getCarFeatures(
+                          context, widget.cubit.data[widget.index].id.toString());
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                widget.cubit.data[widget.index].name
+                                        .toString()
+                                        .toUpperCase() +
+                                    ' ' +
+                                    locale.lookLike1.toString(),
+                                style: TextStyle(
+                                    fontSize: 16.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary),
+                              ),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(8.0))),
+                              backgroundColor:
+                                  Theme.of(context).brightness == Brightness.light
+                                      ? Colors.white
+                                      : Theme.of(context).colorScheme.primary,
+                              content: Text(
+                                locale.lookLike.toString(),
+                                style: TextStyle(
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w500,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary),
+                              ),
+                              actions: [
+                                GestureDetector(
+                                  onTap: () async {
+                                    if (widget.filterModel == null &&
+                                        lookLike == true) {
+                                      Navigator.pop(context);
                                       pushNewScreen(context,
-                                          screen: AdditionsScreen(
-                                            datum:
-                                                widget.cubit.data[widget.index],
-                                          ));
-                                    } else if (state is AdditionsFailed) {
-                                      HelperFunctions.showFlashBar(
-                                        context: context,
-                                        title: locale.error.toString(),
-                                        message: state.error.contains(
-                                                "Error Please LOGIN To Continue")
-                                            ? locale.loginToContinue.toString()
-                                            : state.error.toString().replaceAll(
-                                                "message: Error During Communication. -> Details: Exception:",
-                                                ''),
-                                        icon: Icons.info,
-                                        color: Color(0xffF6A9A9),
-                                        titlcolor: Colors.red,
-                                        iconColor: Colors.red,
-                                      );
-                                      if (state.error.contains(
-                                          "Error Please LOGIN To Continue")) {
-                                        navigateAndFinish(
-                                            context, SignInScreen());
+                                          screen: BranchWithCarScreen(
+                                              carModel: widget
+                                                  .cubit.data[widget.index]));
+                                    } else {
+                                      Navigator.pop(context);
+                                      if (state is AdditionsSuccess ||
+                                          state is AdditionsInitial) {
+                                        pushNewScreen(context,
+                                            screen: AdditionsScreen(
+                                              datum:
+                                                  widget.cubit.data[widget.index],
+                                            ));
+                                      } else if (state is AdditionsFailed) {
+                                        HelperFunctions.showFlashBar(
+                                          context: context,
+                                          title: locale.error.toString(),
+                                          message: state.error.contains(
+                                                  "Error Please LOGIN To Continue")
+                                              ? locale.loginToContinue.toString()
+                                              : state.error.toString().replaceAll(
+                                                  "message: Error During Communication. -> Details: Exception:",
+                                                  ''),
+                                          icon: Icons.info,
+                                          color: Color(0xffF6A9A9),
+                                          titlcolor: Colors.red,
+                                          iconColor: Colors.red,
+                                        );
+                                        if (state.error.contains(
+                                            "Error Please LOGIN To Continue")) {
+                                          navigateAndFinish(
+                                              context, SignInScreen());
+                                        }
                                       }
                                     }
-                                  }
-                                },
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      horizontal:
-                                          MediaQuery.of(context).size.width *
-                                              0.08,
-                                      vertical: 13.h),
-                                  child: Center(
-                                    child: Container(
-                                      width: size.width * 0.2,
-                                      height: 30.h,
-                                      decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                          borderRadius:
-                                              BorderRadius.circular(6)),
-                                      child: Center(
-                                        child: Text(
-                                          locale.ok.toString(),
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 16.sp,
-                                              fontWeight: FontWeight.w600),
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal:
+                                            MediaQuery.of(context).size.width *
+                                                0.08,
+                                        vertical: 13.h),
+                                    child: Center(
+                                      child: Container(
+                                        width: size.width * 0.2,
+                                        height: 30.h,
+                                        decoration: BoxDecoration(
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                            borderRadius:
+                                                BorderRadius.circular(6)),
+                                        child: Center(
+                                          child: Text(
+                                            locale.ok.toString(),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.w600),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              )
-                            ],
-                          );
-                        });
-                  }
-                },
-                child: Container(
-                  height: MediaQuery.of(context).size.height * 0.045,
-                  width: MediaQuery.of(context).size.width * 0.11,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6.0),
-                      color: Theme.of(context).colorScheme.primary),
-                  child: Center(
-                    child: Icon(
-                      Icons.arrow_forward_outlined,
-                      color: Colors.white,
-                      size: 28.sp,
+                                )
+                              ],
+                            );
+                          });
+                    }
+                  },
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.045,
+                    width: MediaQuery.of(context).size.width * 0.11,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6.0),
+                        color: Theme.of(context).colorScheme.primary),
+                    child: Center(
+                      child: Icon(
+                        Icons.arrow_forward_outlined,
+                        color: Colors.white,
+                        size: 28.sp,
+                      ),
                     ),
                   ),
                 ),

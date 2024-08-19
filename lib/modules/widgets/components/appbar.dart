@@ -15,7 +15,7 @@ AppBar appBar(BuildContext context, String title) {
     backgroundColor: Theme.of(context).scaffoldBackgroundColor,
     title: Text(
       title,
-      style: Theme.of(context).textTheme.bodyText1!.copyWith(
+      style: Theme.of(context).textTheme.bodyLarge!.copyWith(
           fontSize: 16, fontWeight: FontWeight.w600, letterSpacing: 0.5),
     ),
   );

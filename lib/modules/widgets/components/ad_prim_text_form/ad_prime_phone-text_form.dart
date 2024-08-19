@@ -74,11 +74,11 @@ class _ADPrimPhoneTextFormState extends State<ADPrimPhoneTextForm> {
         style: widget.auth
             ? Theme.of(context)
             .textTheme
-            .bodyText2!
+            .bodyMedium!
             .copyWith(fontSize: widget.sizeText , color: Colors.black87)
             : Theme.of(context)
             .textTheme
-            .bodyText2!
+            .bodyMedium!
             .copyWith(fontSize: widget.sizeText),
         // : Theme.of(context).textTheme.headline5!.copyWith(fontSize: 25),
 
@@ -117,7 +117,7 @@ class _ADPrimPhoneTextFormState extends State<ADPrimPhoneTextForm> {
           label: Text(widget.label),
           labelStyle: widget.auth
               ? TextStyle(color: Colors.grey[500])
-              : Theme.of(context).textTheme.bodyText2,
+              : Theme.of(context).textTheme.bodyMedium,
           hintText: widget.hint,
           prefixIcon:
               Icon(

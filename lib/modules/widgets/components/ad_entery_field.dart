@@ -22,11 +22,11 @@ class ADEntryField extends StatelessWidget {
         Text(
           labelText!,
           textAlign: TextAlign.start,
-          style: Theme.of(context).textTheme.bodyText2,
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         TextFormField(
           validator: validator,
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
           decoration: InputDecoration(
             isDense: true,
             suffixIcon: showSuffixIcon
@@ -38,7 +38,7 @@ class ADEntryField extends StatelessWidget {
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.grey[800]!)),
             hintText: hintText,
-            hintStyle: Theme.of(context).textTheme.bodyText1,
+            hintStyle: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
       ],
