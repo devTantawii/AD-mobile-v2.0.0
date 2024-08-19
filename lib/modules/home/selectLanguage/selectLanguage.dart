@@ -2,10 +2,12 @@ import 'package:abudiyab/modules/home/selectLanguage/languageCubit.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/search_screen/presentaion/search_Screen.dart';
 import 'package:abudiyab/shared/commponents.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:motion/motion.dart';
 import '../../../core/fade_route.dart';
 import '../../../core/helpers/SharedPreference/pereferences.dart';
 import '../../auth/on_boarding/on_boarding.dart';
@@ -199,35 +201,37 @@ class _SelectLanguageState extends State<SelectLanguage> {
                       SizedBox(
                         height: size.height * 0.04,
                       ),
-                      InkWell(
-                        onTap: () {
-                          if (_selectedLanguage == 0 && en_Selected == true) {
-                            _languageCubit.selectEngLanguage();
-                          } else if (_selectedLanguage == 1 &&
-                              ar_Selected == true) {
-                            _languageCubit.selectArabicLanguage();
-                          }
-                          if (widget.isStart) {
-                            Navigator.of(context).pushAndRemoveUntil(
-                              FadeRoute(
-                                builder: (BuildContext context) => token != null
-                                    ? OnBoarding()
-                                    : SearchScreen(
-
+                      Motion(
+                        child: Bounce(
+                          onTap: () {
+                            if (_selectedLanguage == 0 && en_Selected == true) {
+                              _languageCubit.selectEngLanguage();
+                            } else if (_selectedLanguage == 1 &&
+                                ar_Selected == true) {
+                              _languageCubit.selectArabicLanguage();
+                            }
+                            if (widget.isStart) {
+                              Navigator.of(context).pushAndRemoveUntil(
+                                FadeRoute(
+                                  builder: (BuildContext context) => token != null
+                                      ? OnBoarding()
+                                      : SearchScreen(
+                        
+                                  ),
                                 ),
-                              ),
-                              (route) => false,
-                            );
-                          } else {
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: defaultButton(
-                          context,
-                          Text(
-                            locale.confirm,
-                            style: defaultTextStyle(
-                                18, FontWeight.w700, Colors.white),
+                                (route) => false,
+                              );
+                            } else {
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: defaultButton(
+                            context,
+                            Text(
+                              locale.confirm,
+                              style: defaultTextStyle(
+                                  18, FontWeight.w700, Colors.white),
+                            ),
                           ),
                         ),
                       ),

@@ -81,7 +81,7 @@ class ADErrorDialog extends StatelessWidget {
                 'ok',
                 style: Theme.of(context)
                     .textTheme
-                    .headline5!
+                    .headlineMedium!
                     .copyWith(fontWeight: FontWeight.bold, color: Colors.white),
               ),
             ),
@@ -143,7 +143,7 @@ class ADStatusDialog extends StatelessWidget {
             child: AutoSizeText(
               status ? "Success Payment" : "Failed Payment",
               style:
-                  Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 18),
+                  Theme.of(context).textTheme.bodyLarge!.copyWith(fontSize: 18),
             ),
           ),
           Spacer(),
@@ -175,7 +175,7 @@ class ADStatusDialog extends StatelessWidget {
                 'ok',
                 style: Theme.of(context)
                     .textTheme
-                    .headline6!
+                    .headlineSmall!
                     .copyWith(color: Colors.white),
               ),
             ),

@@ -2,8 +2,10 @@ import 'package:abudiyab/core/helpers/validation/form_validator.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
+import 'package:motion/motion.dart';
 
 class BottomSheetContant extends StatefulWidget {
   const BottomSheetContant({Key? key}) : super(key: key);
@@ -95,9 +97,11 @@ class _BottomSheetContantState extends State<BottomSheetContant> {
                 SizedBox(height: 10),
                 SizedBox(
                   height: 45,
-                  child: InkWell(
-                    onTap: () {},
-                    child: ADGradientButton(locale!.bookNow),
+                  child: Motion(
+                    child: Bounce(
+                      onTap: () {},
+                      child: ADGradientButton(locale!.bookNow),
+                    ),
                   ),
                 ),
               ],

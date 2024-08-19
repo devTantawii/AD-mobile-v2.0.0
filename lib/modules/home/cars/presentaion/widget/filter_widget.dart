@@ -2,8 +2,10 @@ import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/cars/presentaion/bloc/filter_cubit/filter_cubit.dart';
 import 'package:abudiyab/modules/widgets/components/ad_colored_text_button.dart';
 import 'package:abudiyab/service_locator.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion/motion.dart';
 
 import '../all_cars_screen.dart';
 
@@ -140,25 +142,27 @@ class FilterWidget extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (_) => AllCarsScreen(fromFilter: true)));
-                      },
-                      child: Container(
-                        height: size.height * 0.05,
-                        width: size.width * 0.3,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25.0),
-                            gradient: LinearGradient(colors: [
-                              Color(0xff6e9ed3),
-                              Color(0xff344CB7),
-                            ])),
-                        child: Center(
-                            child: Text(
-                          "Search",
-                          style: TextStyle(color: Colors.white),
-                        )),
+                    Motion(
+                      child: Bounce(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => AllCarsScreen(fromFilter: true)));
+                        },
+                        child: Container(
+                          height: size.height * 0.05,
+                          width: size.width * 0.3,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(25.0),
+                              gradient: LinearGradient(colors: [
+                                Color(0xff6e9ed3),
+                                Color(0xff344CB7),
+                              ])),
+                          child: Center(
+                              child: Text(
+                            "Search",
+                            style: TextStyle(color: Colors.white),
+                          )),
+                        ),
                       ),
                     )
                   ],

@@ -32,7 +32,7 @@ class TileTimeBooking extends StatelessWidget {
         children: [
           Text(
             type,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(height: 5,),
           Row(

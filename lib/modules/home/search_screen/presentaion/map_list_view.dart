@@ -43,7 +43,6 @@ class _MapListViewState extends State<MapListView>
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final locale = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(

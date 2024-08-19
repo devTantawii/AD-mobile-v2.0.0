@@ -2,7 +2,6 @@ import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../shared/style/colors.dart';
 
 class ADBackButton extends StatelessWidget {
   final bool isBackHandled;
@@ -22,12 +21,12 @@ class ADBackButton extends StatelessWidget {
             Flexible(
               child: Container(
                 padding: EdgeInsets.only(
-                    left: locale!.isDirectionRTL(context) ? 0 : 10,
-                    right: locale.isDirectionRTL(context) ? 20 : 0
+                    left: locale!.isDirectionRTL(context) ? 6 : 10,
+                    right: locale.isDirectionRTL(context) ? 20 : 6
                 ),
                 child: Icon(
                   Icons.arrow_back_ios,
-                  size: 22,
+                  size: 16,
                   color: Theme.of(context).colorScheme.onPrimary,
                 ),
               ),

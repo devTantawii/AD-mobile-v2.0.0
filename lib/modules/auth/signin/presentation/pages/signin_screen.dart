@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:abudiyab/core/constants/langCode.dart';
 import 'package:abudiyab/core/helpers/validation/form_validator.dart';
 import 'package:abudiyab/language/locale.dart';
@@ -11,9 +10,11 @@ import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_te
 import 'package:abudiyab/service_locator.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion/motion.dart';
 import '../../../../../core/fade_route.dart';
 import '../../../../../shared/style/colors.dart';
 import '../../../../home/all_bookings/presentaion/bloc/allbooking_cubit.dart';
@@ -223,7 +224,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                         fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  InkWell(
+                                  Bounce(
                                     onTap: () {
                                       Navigator.of(context).pushAndRemoveUntil(
                                         FadeRoute(

@@ -27,13 +27,13 @@ class About extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyText1!
+                                .bodyLarge!
                                 .copyWith(fontSize: 15)),
                       ),
                       Text("${datum?.category}" ,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText2!
+                              .bodyMedium!
                               .copyWith(fontSize: 15)),
                     ],
                   ),
@@ -46,13 +46,13 @@ class About extends StatelessWidget {
                             overflow: TextOverflow.ellipsis,
                             style: Theme.of(context)
                                 .textTheme
-                                .bodyText1!
+                                .bodyLarge!
                                 .copyWith(fontSize: 15)),
                       ),
                       Text("${datum?.manufactory}" ,
                           style: Theme.of(context)
                               .textTheme
-                              .bodyText2!
+                              .bodyMedium!
                               .copyWith(fontSize: 15)),
                     ],
                   ),
@@ -60,7 +60,7 @@ class About extends StatelessWidget {
                   // Text(locale.about!,
                   //     style: Theme.of(context)
                   //         .textTheme
-                  //         .bodyText1!
+                  //         .bodyLarge!
                   //         .copyWith(fontSize: 15)),
                   SizedBox(height: 15),
                   Padding(
@@ -69,7 +69,7 @@ class About extends StatelessWidget {
                       datum?.description ?? "",
                       maxLines: 5,
                       overflow: TextOverflow.ellipsis,
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                   SizedBox(

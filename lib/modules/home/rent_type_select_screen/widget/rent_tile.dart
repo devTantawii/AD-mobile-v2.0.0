@@ -84,7 +84,7 @@ class _RentTileState extends State<RentTile> {
                   flex: 1,
                   child: Text(
                     this.widget.text,
-                    style: Theme.of(context).textTheme.bodyText1,
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ),
               ],

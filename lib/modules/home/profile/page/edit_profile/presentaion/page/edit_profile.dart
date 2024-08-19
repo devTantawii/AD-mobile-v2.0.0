@@ -16,10 +16,12 @@ import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:abudiyab/shared/style/colors.dart';
+import 'package:bounce/bounce.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -143,7 +145,7 @@ class _EditProfileState extends State<EditProfile> {
                                     border: Border.all(
                                         color: Colors.transparent,
                                         width: 0.0)),
-                                child: InkWell(
+                                child: Bounce(
                                   onTap: () {
                                     cubit.getImage();
                                   },
@@ -198,7 +200,7 @@ class _EditProfileState extends State<EditProfile> {
 
                               ///EDIT AND UPLOAD LICENCE
                               if (widget.profileModel.user_license != null)
-                                InkWell(
+                                Bounce(
                                   onTap: () {
                                     navigateTo(
                                         context,
@@ -276,7 +278,7 @@ class _EditProfileState extends State<EditProfile> {
                                 height: 10,
                               ),
                               if (widget.profileModel.user_license == null)
-                                InkWell(
+                                Bounce(
                                   onTap: () {
                                     cubit.getImageLicence();
                                   },
@@ -337,45 +339,49 @@ class _EditProfileState extends State<EditProfile> {
                                       child: CircularProgressIndicator
                                           .adaptive(),
                                     )
-                                  : InkWell(
-                                      onTap: () {
-                                        if (_formKey.currentState!
-                                            .validate()) {
-                                          log(cubit.imagePathFace);
-                                          log(cubit.imagePathFaceLicence);
-                                          log(nameControler.text);
-                                          log(emailControler.text);
-                                          log(phoneControler.text);
-                                          cubit.editProfile(
-                                            image: cubit.imagePathFace,
-                                            name: nameControler.text,
-                                            email: emailControler.text,
-                                            phone: phoneControler.text,
-                                            profileModel: widget.profileModel,
-                                            licenceFace:
-                                                cubit.imagePathFaceLicence,
-                                          );
-                                        }
-                                      },
-                                      child: ADGradientButton(locale.save)),
+                                  : Motion(
+                                    child: Bounce(
+                                        onTap: () {
+                                          if (_formKey.currentState!
+                                              .validate()) {
+                                            log(cubit.imagePathFace);
+                                            log(cubit.imagePathFaceLicence);
+                                            log(nameControler.text);
+                                            log(emailControler.text);
+                                            log(phoneControler.text);
+                                            cubit.editProfile(
+                                              image: cubit.imagePathFace,
+                                              name: nameControler.text,
+                                              email: emailControler.text,
+                                              phone: phoneControler.text,
+                                              profileModel: widget.profileModel,
+                                              licenceFace:
+                                                  cubit.imagePathFaceLicence,
+                                            );
+                                          }
+                                        },
+                                        child: ADGradientButton(locale.save)),
+                                  ),
                               SizedBox(height: 16.sp),
-                              InkWell(
-                                  onTap: () {
-                                    pushNewScreen(context,
-                                        screen: ResetPasswordScrean());
-                                  },
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.height * 0.053,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.secondaryContainer,
-                                      borderRadius: BorderRadius.circular(6)
-                                    ),
-                                    child: Center(
-                                      child: Text(locale.resetPassword!,
-                                          style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.primary,)),
-                                    ),
-                                  )),
+                              Motion(
+                                child: Bounce(
+                                    onTap: () {
+                                      pushNewScreen(context,
+                                          screen: ResetPasswordScrean());
+                                    },
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height * 0.053,
+                                      width: double.infinity,
+                                      decoration: BoxDecoration(
+                                        color: Theme.of(context).colorScheme.secondaryContainer,
+                                        borderRadius: BorderRadius.circular(6)
+                                      ),
+                                      child: Center(
+                                        child: Text(locale.resetPassword!,
+                                            style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.primary,)),
+                                      ),
+                                    )),
+                              ),
                               SizedBox(height: 10.0),
                             ]),
                           ),

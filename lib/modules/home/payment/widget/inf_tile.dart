@@ -29,7 +29,7 @@ class InfoTileWidget extends StatelessWidget {
                 price,
                 style: Theme.of(context)
                     .textTheme
-                    .bodyText2!
+                    .bodyMedium!
                     .copyWith(fontWeight: FontWeight.bold),
               ),
             ],

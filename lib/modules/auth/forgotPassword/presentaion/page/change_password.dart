@@ -7,9 +7,11 @@ import 'package:abudiyab/modules/auth/forgotPassword/presentaion/bloc/forget_pas
 import 'package:abudiyab/modules/auth/forgotPassword/presentaion/page/successPage.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
+import 'package:bounce/bounce.dart';
 // import 'package:animation_wrappers/Animations/faded_scale_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion/motion.dart';
 import '../../../../../shared/commponents.dart';
 import '../../../../widgets/components/ad_curve.dart';
 
@@ -95,15 +97,17 @@ class ChangePasswordScreen extends StatelessWidget {
                     state is ChangePasswordLoading
                         ? Center(
                             child: CircularProgressIndicator.adaptive())
-                        : InkWell(
-                            onTap: () {
-                              BlocProvider.of<ForgetPasswordCubit>(context)
-                                  .passwordchange(
-                                      password: newPasswordControler.text,
-                                      confirmPassword: confirmPasswordControler.text);
-                            },
-                            child: ADGradientButton(
-                                locale.changePassword.toString())),
+                        : Motion(
+                          child: Bounce(
+                              onTap: () {
+                                BlocProvider.of<ForgetPasswordCubit>(context)
+                                    .passwordchange(
+                                        password: newPasswordControler.text,
+                                        confirmPassword: confirmPasswordControler.text);
+                              },
+                              child: ADGradientButton(
+                                  locale.changePassword.toString())),
+                        ),
                   ]),
                 );
 

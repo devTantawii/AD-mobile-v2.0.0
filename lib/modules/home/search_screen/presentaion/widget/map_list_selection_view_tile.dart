@@ -1,5 +1,4 @@
 import 'package:abudiyab/core/constants/assets/assets.dart';
-import 'package:abudiyab/core/constants/langCode.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/home/all_branching/data/models/branch_model.dart';
 import 'package:abudiyab/modules/home/search_screen/blocs/search_bloc/search_cubit.dart';
@@ -10,7 +9,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-import '../../../../../shared/style/colors.dart';
 import '../map_list_view.dart';
 
 class MapListSelectionViewTile extends StatelessWidget {

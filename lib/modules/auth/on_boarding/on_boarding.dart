@@ -2,7 +2,6 @@ import 'package:abudiyab/core/fade_route.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lottie/lottie.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../language/locale.dart';
 import '../../auth/signin/presentation/pages/signin_screen.dart';

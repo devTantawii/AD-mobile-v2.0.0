@@ -44,7 +44,7 @@ class _PinkBox extends StatelessWidget {
         height: 360,
         width: 360,
         decoration: BoxDecoration(
-          color: Theme.of(context).backgroundColor,
+          color: Theme.of(context).colorScheme.surface,
           boxShadow: [
             BoxShadow(
               color: Theme.of(context).colorScheme.primary.withOpacity(0.0),

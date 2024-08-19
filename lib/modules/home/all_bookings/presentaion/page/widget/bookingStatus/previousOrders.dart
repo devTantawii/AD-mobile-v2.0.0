@@ -93,7 +93,7 @@ class _PreviousOrdersState extends State<PreviousOrders> {
            if(state is AllBookingLoading){
              Center(
                child: CircularProgressIndicator.adaptive(
-                 backgroundColor: Theme.of(context).colorScheme.background,
+                 backgroundColor: Theme.of(context).colorScheme.surface,
                ),
              );
            }

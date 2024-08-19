@@ -20,7 +20,7 @@ class InfoCar extends StatelessWidget {
                 children: [
                   Text(
                     carModel.name,
-                    style: Theme.of(context).textTheme.headline6,
+                    style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -31,20 +31,20 @@ class InfoCar extends StatelessWidget {
                         carModel.manufactory,
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText2!
+                            .bodyMedium!
                             .copyWith(fontSize: 14),
                       ),
                       SizedBox(height: 20),
                       Text.rich(
                         TextSpan(
                           text: '${carModel.priceAfter}' + "  ",
-                          style: Theme.of(context).textTheme.headline6,
+                          style: Theme.of(context).textTheme.headlineSmall,
                           children: [
                             TextSpan(
                               text: "${carModel.priceBefore}",
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     fontSize: 16,
                                     decoration: TextDecoration.lineThrough,
@@ -55,7 +55,7 @@ class InfoCar extends StatelessWidget {
                               text: " ${locale!.sar}",
                               style: Theme.of(context)
                                   .textTheme
-                                  .bodyText2!
+                                  .bodyMedium!
                                   .copyWith(
                                     color:
                                         Theme.of(context).colorScheme.primary,

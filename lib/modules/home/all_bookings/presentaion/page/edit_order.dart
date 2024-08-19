@@ -13,9 +13,11 @@ import 'package:abudiyab/modules/home/search_screen/blocs/search_bloc/search_cub
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion/motion.dart';
 
 import '../../../../../core/helpers/helper/date_helper.dart';
 import '../../../../../service_locator.dart';
@@ -43,7 +45,7 @@ class _EditOrderState extends State<EditOrder> {
       appBar: AppBar(
         title: Text(
           locale!.editOrder.toString(),
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         leading: ADBackButton(),
       ),
@@ -102,7 +104,7 @@ class _EditOrderState extends State<EditOrder> {
                                                     .toString(),
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .headline6,
+                                                    .headlineSmall,
                                               ),
                                               Column(
                                                 mainAxisAlignment:
@@ -115,7 +117,7 @@ class _EditOrderState extends State<EditOrder> {
                                                     '${widget.carModel.name}',
                                                     style: Theme.of(context)
                                                         .textTheme
-                                                        .bodyText1!
+                                                        .bodyLarge!
                                                         .copyWith(
                                                             fontSize: 14,
                                                             fontWeight:
@@ -129,7 +131,7 @@ class _EditOrderState extends State<EditOrder> {
                                                           "${widget.bookingModel.price} ",
                                                       style: Theme.of(context)
                                                           .textTheme
-                                                          .headline6,
+                                                          .headlineSmall,
                                                       children: [
                                                         TextSpan(
                                                           text:
@@ -137,7 +139,7 @@ class _EditOrderState extends State<EditOrder> {
                                                           style: Theme.of(
                                                                   context)
                                                               .textTheme
-                                                              .bodyText2!
+                                                              .bodyMedium!
                                                               .copyWith(
                                                                   color: Theme.of(
                                                                           context)
@@ -216,7 +218,7 @@ class _EditOrderState extends State<EditOrder> {
                                                 .toString(),
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .bodyText2,
+                                                .bodyMedium,
                                           ),
                                         ),
                                         SizedBox(
@@ -307,17 +309,19 @@ class _EditOrderState extends State<EditOrder> {
                                               locale.toTime.toString(),
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyText2,
+                                                  .bodyMedium,
                                             ),
                                           ),
                                         )
                                       ],
                                     ),
                                     SizedBox(height: 20),
-                                    InkWell(
-                                        onTap: () => onTap(context),
-                                        child:
-                                            ADGradientButton(locale.editOrder))
+                                    Motion(
+                                      child: Bounce(
+                                          onTap: () => onTap(context),
+                                          child:
+                                              ADGradientButton(locale.editOrder)),
+                                    )
                                   ],
                                 ),
                               ),

@@ -8,8 +8,10 @@ import 'package:abudiyab/modules/home/profile/page/widget/container_tile.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion/motion.dart';
 
 class CreatEmailAndPassOldCustomerScrean extends StatelessWidget {
   CreatEmailAndPassOldCustomerScrean({Key? key}) : super(key: key);
@@ -128,32 +130,34 @@ class CreatEmailAndPassOldCustomerScrean extends StatelessWidget {
                                             child: CircularProgressIndicator
                                                 .adaptive(),
                                           )
-                                        : InkWell(
-                                            onTap: () {
-                                              if (_formKey.currentState!
-                                                  .validate()) {
-                                                BlocProvider.of<OldCustomerCubit>(
-                                                        context)
-                                                    .resetOldCustomer(
-                                                        email: emailController
-                                                            .text
-                                                            .toString(),
-                                                        password:
-                                                            passwordController
-                                                                .text
-                                                                .toString(),
-                                                        confPass:
-                                                            confirmPasswordController
-                                                                .text
-                                                                .toString());
-                                              }
-                                            },
-                                      child: Container(
-                                        width: MediaQuery.of(context).size.width*0.6,
-                                        child: ADGradientButton(
-                                            locale.signIn.toString()),
-                                      ),
-                                          ),
+                                        : Motion(
+                                          child: Bounce(
+                                              onTap: () {
+                                                if (_formKey.currentState!
+                                                    .validate()) {
+                                                  BlocProvider.of<OldCustomerCubit>(
+                                                          context)
+                                                      .resetOldCustomer(
+                                                          email: emailController
+                                                              .text
+                                                              .toString(),
+                                                          password:
+                                                              passwordController
+                                                                  .text
+                                                                  .toString(),
+                                                          confPass:
+                                                              confirmPasswordController
+                                                                  .text
+                                                                  .toString());
+                                                }
+                                              },
+                                                                                child: Container(
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          child: ADGradientButton(
+                                              locale.signIn.toString()),
+                                                                                ),
+                                            ),
+                                        ),
                                   ],
                                 ),
                               ),

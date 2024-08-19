@@ -8,11 +8,13 @@ import 'package:abudiyab/modules/widgets/components/ad_curve.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:abudiyab/shared/style/colors.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:motion/motion.dart';
 import '../../../../../core/fade_route.dart';
 import '../../../../../service_locator.dart';
 import '../../../signin/presentation/pages/signin_screen.dart';
@@ -235,106 +237,108 @@ class _RegisterPageState extends State<RegisterPage> {
                                ),
                              ),
                              SizedBox(height: 10.sp),
-                             InkWell(
-                               onTap: () {
-                                 showDialog(
-                                     context: context,
-                                     builder: (context) {
-                                       return AlertDialog(
-                                         backgroundColor: Colors.white,
-                                         content: Row(
-                                           mainAxisAlignment:
-                                           MainAxisAlignment.spaceAround,
-                                           children: [
-                                             Column(
-                                               mainAxisSize: MainAxisSize.min,
-                                               children: [
-                                                 IconButton(
-                                                   onPressed: () {
-                                                     cubit
-                                                         .getImage("camera")
-                                                         .then((value) {
-                                                       Navigator.pop(context);
-                                                     });
-                                                   },
-                                                   icon: const Icon(
-                                                     Icons.camera_alt,
-                                                     color: Color(0xff7F89C0),
+                             Motion(
+                               child: Bounce(
+                                 onTap: () {
+                                   showDialog(
+                                       context: context,
+                                       builder: (context) {
+                                         return AlertDialog(
+                                           backgroundColor: Colors.white,
+                                           content: Row(
+                                             mainAxisAlignment:
+                                             MainAxisAlignment.spaceAround,
+                                             children: [
+                                               Column(
+                                                 mainAxisSize: MainAxisSize.min,
+                                                 children: [
+                                                   IconButton(
+                                                     onPressed: () {
+                                                       cubit
+                                                           .getImage("camera")
+                                                           .then((value) {
+                                                         Navigator.pop(context);
+                                                       });
+                                                     },
+                                                     icon: const Icon(
+                                                       Icons.camera_alt,
+                                                       color: Color(0xff7F89C0),
+                                                     ),
+                                                     iconSize: 40,
                                                    ),
-                                                   iconSize: 40,
-                                                 ),
-                                                 Text(
-                                                   locale.tackPhoto.toString(),
-                                                   style: TextStyle(
-                                                       color: Colors.black),
-                                                 ),
-                                               ],
-                                             ),
-                                             Column(
-                                               mainAxisSize: MainAxisSize.min,
-                                               children: [
-                                                 IconButton(
-                                                   onPressed: () {
-                                                     cubit
-                                                         .getImage("gallery")
-                                                         .then((value) {
-                                                       Navigator.pop(context);
-                                                     });
-                                                   },
-                                                   icon: const Icon(
-                                                     Icons.image,
-                                                     color: Color(0xff7F89C0),
+                                                   Text(
+                                                     locale.tackPhoto.toString(),
+                                                     style: TextStyle(
+                                                         color: Colors.black),
                                                    ),
-                                                   iconSize: 40,
-                                                 ),
-                                                 Text(
-                                                   locale.gallery.toString(),
-                                                   style: TextStyle(
-                                                       color: Colors.black),
-                                                 )
-                                               ],
-                                             ),
-                                           ],
-                                         ),
-                                       );
-                                     });
-                               },
-                               child: Container(
-                                 padding: const EdgeInsets.all(10.0),
-                                 height: 50.0,
-                                 decoration: BoxDecoration(
-                                   borderRadius: BorderRadius.circular(12),
-                                   border: Border.all(
-                                       color: Colors.blueAccent, width: 1.0),
-                                   color: Color(0xff7F89C0),
-                                   shape: BoxShape.rectangle,
-                                 ),
-                                 child: Row(
-                                   children: [
-                                     FaIcon(
-                                       FontAwesomeIcons.upload,
-                                       color: Colors.white,
-                                     ),
-                                     SizedBox(
-                                       width: 15.0,
-                                     ),
-                                     Text(
-                                       cubit.imagePathFace == ""
-                                           ? locale.uploadLicense.toString()
-                                           : locale.uploadedSuccessfully
-                                           .toString(),
-                                       style: TextStyle(
-                                           color: Colors.white, fontSize: 16.sp),
-                                     ),
-                                     Spacer(),
-                                     cubit.imagePathFace != ""
-                                         ? Icon(
-                                       Icons.check_circle_outline_outlined,
-                                       color: Colors.white,
-                                       size: 20,
-                                     )
-                                         : SizedBox()
-                                   ],
+                                                 ],
+                                               ),
+                                               Column(
+                                                 mainAxisSize: MainAxisSize.min,
+                                                 children: [
+                                                   IconButton(
+                                                     onPressed: () {
+                                                       cubit
+                                                           .getImage("gallery")
+                                                           .then((value) {
+                                                         Navigator.pop(context);
+                                                       });
+                                                     },
+                                                     icon: const Icon(
+                                                       Icons.image,
+                                                       color: Color(0xff7F89C0),
+                                                     ),
+                                                     iconSize: 40,
+                                                   ),
+                                                   Text(
+                                                     locale.gallery.toString(),
+                                                     style: TextStyle(
+                                                         color: Colors.black),
+                                                   )
+                                                 ],
+                                               ),
+                                             ],
+                                           ),
+                                         );
+                                       });
+                                 },
+                                 child: Container(
+                                   padding: const EdgeInsets.all(10.0),
+                                   height: 50.0,
+                                   decoration: BoxDecoration(
+                                     borderRadius: BorderRadius.circular(12),
+                                     border: Border.all(
+                                         color: Colors.blueAccent, width: 1.0),
+                                     color: Color(0xff7F89C0),
+                                     shape: BoxShape.rectangle,
+                                   ),
+                                   child: Row(
+                                     children: [
+                                       FaIcon(
+                                         FontAwesomeIcons.upload,
+                                         color: Colors.white,
+                                       ),
+                                       SizedBox(
+                                         width: 15.0,
+                                       ),
+                                       Text(
+                                         cubit.imagePathFace == ""
+                                             ? locale.uploadLicense.toString()
+                                             : locale.uploadedSuccessfully
+                                             .toString(),
+                                         style: TextStyle(
+                                             color: Colors.white, fontSize: 16.sp),
+                                       ),
+                                       Spacer(),
+                                       cubit.imagePathFace != ""
+                                           ? Icon(
+                                         Icons.check_circle_outline_outlined,
+                                         color: Colors.white,
+                                         size: 20,
+                                       )
+                                           : SizedBox()
+                                     ],
+                                   ),
                                  ),
                                ),
                              ),
@@ -358,16 +362,18 @@ class _RegisterPageState extends State<RegisterPage> {
                                            }),
                                      ),
                                    ),
-                                   InkWell(
-                                     onTap: () {
-                                       Navigator.of(context).push(MaterialPageRoute(
-                                           builder: (_) => PrivacyPolicyScreen()));
-                                     },
-                                     child: Text(
-                                       locale.agreeTermsAndConditions.toString(),
-                                       style: TextStyle(
-                                         fontSize: 14.sp,
-                                         color: KSecondColor,
+                                   Motion(
+                                     child: Bounce(
+                                       onTap: () {
+                                         Navigator.of(context).push(MaterialPageRoute(
+                                             builder: (_) => PrivacyPolicyScreen()));
+                                       },
+                                       child: Text(
+                                         locale.agreeTermsAndConditions.toString(),
+                                         style: TextStyle(
+                                           fontSize: 14.sp,
+                                           color: KSecondColor,
+                                         ),
                                        ),
                                      ),
                                    )
@@ -451,21 +457,23 @@ class _RegisterPageState extends State<RegisterPage> {
                                  SizedBox(
                                    width: 5,
                                  ),
-                                 InkWell(
-                                   onTap: () {
-                                     Navigator.of(context).pushAndRemoveUntil(
-                                       FadeRoute(
-                                           builder: (BuildContext context) =>
-                                           const SignInScreen()),
-                                           (route) => false,
-                                     );
-                                   },
-                                   child: Text(
-                                     locale.signIn.toString(),
-                                     style: TextStyle(
-                                       fontSize: 14,
-                                       color: Theme.of(context).colorScheme.onPrimary,
-                                       fontWeight: FontWeight.w600,
+                                 Motion(
+                                   child: Bounce(
+                                     onTap: () {
+                                       Navigator.of(context).pushAndRemoveUntil(
+                                         FadeRoute(
+                                             builder: (BuildContext context) =>
+                                             const SignInScreen()),
+                                             (route) => false,
+                                       );
+                                     },
+                                     child: Text(
+                                       locale.signIn.toString(),
+                                       style: TextStyle(
+                                         fontSize: 14,
+                                         color: Theme.of(context).colorScheme.onPrimary,
+                                         fontWeight: FontWeight.w600,
+                                       ),
                                      ),
                                    ),
                                  ),

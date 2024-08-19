@@ -3,8 +3,7 @@ import 'package:abudiyab/modules/home/all_bookings/presentaion/page/bookDetailes
 import 'package:abudiyab/modules/home/blocs/booking_cubit/booking_cubit.dart';
 import 'package:abudiyab/modules/home/cars/data/models/cars_model.dart';
 import 'package:abudiyab/modules/home/payment/data/models/invoice_model.dart';
-import 'package:abudiyab/modules/home/payment/widget/inf_tile.dart';
-import 'package:abudiyab/modules/home/payment/widget/info_total_tile.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

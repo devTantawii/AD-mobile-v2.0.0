@@ -31,7 +31,7 @@ class WebViewLicenceState extends State<WebViewLicence> {
       appBar:  AppBar(
         title: Text(
             locale.viewLicense.toString(),
-          style: Theme.of(context).textTheme.bodyText1,
+          style: Theme.of(context).textTheme.bodyLarge,
         ),
         leading: ADBackButton(),
       ),

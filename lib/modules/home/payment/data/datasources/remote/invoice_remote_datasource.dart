@@ -5,7 +5,6 @@ import 'package:abudiyab/modules/home/payment/data/models/automated_invoice_mode
 import 'package:abudiyab/modules/home/payment/data/models/invoice_model.dart';
 import 'package:dio/dio.dart';
 
-import '../../models/credit_card_model.dart';
 
 class InvoiceRemoteDatasource {
   final Dio _dio = Dio();

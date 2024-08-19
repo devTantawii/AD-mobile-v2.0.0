@@ -51,7 +51,7 @@ class AllMemberShip extends StatelessWidget {
                                 ),
                                 Text(
                                   "${locale!.points} : ${state.allMember.data[index].ratioPoints}",
-                                  style: Theme.of(context).textTheme.bodyText1,
+                                  style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                                 SizedBox(
                                   height: 20,

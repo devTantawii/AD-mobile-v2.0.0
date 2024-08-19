@@ -9,10 +9,11 @@ import 'package:abudiyab/modules/home/payment/blocs/invoice_cubit.dart';
 import 'package:abudiyab/modules/home/payment/data/models/credit_card_model.dart';
 import 'package:abudiyab/modules/home/payment/invouce_notCompleted.dart';
 import 'package:abudiyab/modules/home/payment/widget/coupon_tile.dart';
-import 'package:abudiyab/modules/home/profile/blocs/profile_cubit/profile_cubit.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../../core/constants/langCode.dart';
 import '../../widgets/components/ad_gradient_btn.dart';
@@ -71,21 +72,21 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                          BlocProvider.of<AdditionsCubit>(context).stepModel!.order!.visaActive!:widget.stepOneOrderModel!.visaActive!)
                           PaymentMethodCard(
                             text: locale.visa.toString(),
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).colorScheme.surface,
                             svg: Assets.icon_cvv,
                           ),
                         if (widget.stepOneOrderModel==null?
                         BlocProvider.of<AdditionsCubit>(context).stepModel!.order!.cashActive!: widget.stepOneOrderModel!.cashActive!)
                           PaymentMethodCard(
                             text: locale.cash.toString(),
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).colorScheme.surface,
                             svg: Assets.icon_money,
                           ),
                         if (widget.stepOneOrderModel==null?
                         BlocProvider.of<AdditionsCubit>(context).stepModel!.order!.apple_active!: widget.stepOneOrderModel!.apple_active!)
                           Platform.isIOS?PaymentMethodCard(
                             text: 'Apple Pay'.toString(),
-                            color: Theme.of(context).colorScheme.background,
+                            color: Theme.of(context).colorScheme.surface,
                             svg: Assets.icon_apple_pay,
                           ):Container(),
                         if (widget.stepOneOrderModel==null?
@@ -94,7 +95,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                             alignment: Alignment.center,
                             child: PaymentMethodCard(
                               text: locale.points.toString(),
-                              color: Theme.of(context).colorScheme.background,
+                              color: Theme.of(context).colorScheme.surface,
                               svg: Assets.icon_points,
                             ),
                           ),
@@ -120,18 +121,20 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                                     }),
                               ),
                             ),
-                            InkWell(
-                              onTap: () {
-                                Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (_) => PrivacyPolicyScreen()));
-                              },
-                              child: Text(
-                                locale.agreeTerms.toString(),
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary,
+                            Motion(
+                              child: Bounce(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (_) => PrivacyPolicyScreen()));
+                                },
+                                child: Text(
+                                  locale.agreeTerms.toString(),
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        Theme.of(context).colorScheme.onPrimary,
+                                  ),
                                 ),
                               ),
                             ),

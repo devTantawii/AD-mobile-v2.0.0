@@ -11,12 +11,15 @@ import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:abudiyab/shared/style/colors.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
+import 'package:widget_zoom/widget_zoom.dart';
 
 import '../../../../../core/helpers/helper_fun.dart';
 import 'image_car_page.dart';
@@ -100,7 +103,8 @@ class _CarsInformationState extends State<CarsInformation> {
                                 Expanded(
                                   flex: 3,
                                   child: Center(
-                                    child: Image.network(widget.datum!.photo),
+                                    child: WidgetZoom(heroAnimationTag: 'tag',
+                                        zoomWidget: Image.network(widget.datum!.photo)),
                                   ),
                                 ),
                                 Expanded(
@@ -265,7 +269,7 @@ class _CarsInformationState extends State<CarsInformation> {
                             ),
                             if (widget.stockStatus != null)
                               Align(
-                                alignment: Alignment.topRight,
+                                alignment: Alignment.topLeft,
                                 child: Container(
                                   margin: EdgeInsets.symmetric(horizontal: 4),
                                   width: 100,
@@ -279,7 +283,7 @@ class _CarsInformationState extends State<CarsInformation> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      widget.stockStatus!,
+                                      locale.isDirectionRTL(context) ? "نفذت الكميه" : "Out of Stock",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
@@ -297,7 +301,7 @@ class _CarsInformationState extends State<CarsInformation> {
                           scrollDirection: Axis.horizontal,
                           itemCount: widget.datum!.photos!.length,
                           itemBuilder: (context, index) {
-                            return InkWell(
+                            return Bounce(
                               onTap: () {
                                 Navigator.push(
                                   context,
@@ -372,7 +376,7 @@ class _CarsInformationState extends State<CarsInformation> {
                       padding: EdgeInsets.symmetric(
                           vertical: 10,
                           horizontal: MediaQuery.of(context).size.width * 0.05),
-                      child: InkWell(
+                      child: Bounce(
                         onTap: () {
                           if (widget.filterModel == null) {
                             pushNewScreen(context,
@@ -386,181 +390,183 @@ class _CarsInformationState extends State<CarsInformation> {
                                 ));
                           }
                         },
-                        child: GestureDetector(
-                          onTap: () {
-
-                            if (widget.stockStatus != null) {
-                              Fluttertoast.showToast(
-                                msg: "Stock status is not available",
-                                toastLength: Toast.LENGTH_LONG,
-                                gravity: ToastGravity.BOTTOM,
-                                timeInSecForIosWeb: 1,
-                                backgroundColor: Colors.grey,
-                                textColor: Colors.white,
-                                fontSize: 16.0,
-                              );
-                              return;
-                            }
-
-                            // Proceed with showing the dialog if stockStatus is null
-
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    title: Text(
-                                      widget.datum!.name
-                                              .toString()
-                                              .toUpperCase() +
-                                          ' ' +
-                                          locale.lookLike1.toString(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium!
-                                          .copyWith(
-                                              fontSize: 16.sp,
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'Cairo'),
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20.0))),
-                                    backgroundColor: Theme.of(context)
-                                                .brightness ==
-                                            Brightness.light
-                                        ? Colors.white
-                                        : Theme.of(context).colorScheme.primary,
-                                    content: Container(
-                                      child: Text(
-                                        locale.lookLike.toString(),
+                        child: Motion(
+                          child: Bounce(
+                            onTap: () {
+                          
+                              if (widget.stockStatus != null) {
+                                Fluttertoast.showToast(
+                                  msg:   locale.isDirectionRTL(context) ? "السيارة غير متاحه حاليا. استمتع معنا بتجربه اخرى" : "Stock status is not available.Enjoy another experience.",
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  backgroundColor: Colors.redAccent.shade400,
+                                  textColor: Colors.white,
+                                  fontSize: 14.sp,
+                                );
+                                return;
+                              }
+                          
+                              // Proceed with showing the dialog if stockStatus is null
+                          
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text(
+                                        widget.datum!.name
+                                                .toString()
+                                                .toUpperCase() +
+                                            ' ' +
+                                            locale.lookLike1.toString(),
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyMedium,
+                                            .labelMedium!
+                                            .copyWith(
+                                                fontSize: 16.sp,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Cairo'),
                                       ),
-                                    ),
-                                    actions: [
-                                      BlocConsumer<AdditionsCubit,
-                                          AdditionsState>(
-                                        listener: (context, state) {
-                                          if (state is AdditionsFailed) {
-                                            HelperFunctions.showFlashBar(
-                                              context: context,
-                                              title: state.error.contains(
-                                                      "Error Please LOGIN To Continue")
-                                                  ? locale.loginToContinue
-                                                      .toString()
-                                                  : state.error
-                                                      .toString()
-                                                      .replaceAll(
-                                                          "message: Error During Communication. -> Details: Exception:",
-                                                          ''),
-                                              message: '',
-                                              icon: Icons.info,
-                                              color: Color(0xffF6A9A9),
-                                              titlcolor: Colors.red,
-                                              iconColor: Colors.red,
-                                            );
-                                            if (state.error.contains(
-                                                "Error Please LOGIN To Continue")) {
-                                              navigateAndFinish(
-                                                  context, SignInScreen());
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(20.0))),
+                                      backgroundColor: Theme.of(context)
+                                                  .brightness ==
+                                              Brightness.light
+                                          ? Colors.white
+                                          : Theme.of(context).colorScheme.primary,
+                                      content: Container(
+                                        child: Text(
+                                          locale.lookLike.toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                      ),
+                                      actions: [
+                                        BlocConsumer<AdditionsCubit,
+                                            AdditionsState>(
+                                          listener: (context, state) {
+                                            if (state is AdditionsFailed) {
+                                              HelperFunctions.showFlashBar(
+                                                context: context,
+                                                title: state.error.contains(
+                                                        "Error Please LOGIN To Continue")
+                                                    ? locale.loginToContinue
+                                                        .toString()
+                                                    : state.error
+                                                        .toString()
+                                                        .replaceAll(
+                                                            "message: Error During Communication. -> Details: Exception:",
+                                                            ''),
+                                                message: '',
+                                                icon: Icons.info,
+                                                color: Color(0xffF6A9A9),
+                                                titlcolor: Colors.red,
+                                                iconColor: Colors.red,
+                                              );
+                                              if (state.error.contains(
+                                                  "Error Please LOGIN To Continue")) {
+                                                navigateAndFinish(
+                                                    context, SignInScreen());
+                                              }
                                             }
-                                          }
-                                        },
-                                        builder: (context, state) {
-                                          return InkWell(
-                                            onTap: () async {
-                                              await BlocProvider.of<
-                                                      AdditionsCubit>(context)
-                                                  .getCarFeatures(
-                                                      context,
-                                                      widget.datum!.id
-                                                          .toString());
-                                              if (widget.filterModel == null &&
-                                                  lookLike == true) {
-                                                pushNewScreen(context,
-                                                    screen: BranchWithCarScreen(
-                                                        carModel:
-                                                            widget.datum!));
-                                              } else {
-                                                Navigator.pop(context);
-                                                if (state is AdditionsSuccess ||
-                                                    state is AdditionsInitial) {
+                                          },
+                                          builder: (context, state) {
+                                            return Bounce(
+                                              onTap: () async {
+                                                await BlocProvider.of<
+                                                        AdditionsCubit>(context)
+                                                    .getCarFeatures(
+                                                        context,
+                                                        widget.datum!.id
+                                                            .toString());
+                                                if (widget.filterModel == null &&
+                                                    lookLike == true) {
                                                   pushNewScreen(context,
-                                                      screen: AdditionsScreen(
-                                                        datum: widget.datum,
-                                                      ));
-                                                }
-                                                if (state is AdditionsFailed) {
-                                                  HelperFunctions.showFlashBar(
-                                                    context: context,
-                                                    message: state.error.contains(
-                                                            "Error Please LOGIN To Continue")
-                                                        ? locale.loginToContinue
-                                                            .toString()
-                                                        : state.error
-                                                            .toString()
-                                                            .replaceAll(
-                                                                "message: Error During Communication. -> Details: Exception:",
-                                                                ''),
-                                                    title:
-                                                        locale.error.toString(),
-                                                    icon: Icons.info,
-                                                    color: Color(0xffF6A9A9),
-                                                    titlcolor: Colors.red,
-                                                    iconColor: Colors.red,
-                                                  );
-                                                  if (state.error.contains(
-                                                      "Error Please LOGIN To Continue")) {
-                                                    navigateAndFinish(context,
-                                                        SignInScreen());
+                                                      screen: BranchWithCarScreen(
+                                                          carModel:
+                                                              widget.datum!));
+                                                } else {
+                                                  Navigator.pop(context);
+                                                  if (state is AdditionsSuccess ||
+                                                      state is AdditionsInitial) {
+                                                    pushNewScreen(context,
+                                                        screen: AdditionsScreen(
+                                                          datum: widget.datum,
+                                                        ));
+                                                  }
+                                                  if (state is AdditionsFailed) {
+                                                    HelperFunctions.showFlashBar(
+                                                      context: context,
+                                                      message: state.error.contains(
+                                                              "Error Please LOGIN To Continue")
+                                                          ? locale.loginToContinue
+                                                              .toString()
+                                                          : state.error
+                                                              .toString()
+                                                              .replaceAll(
+                                                                  "message: Error During Communication. -> Details: Exception:",
+                                                                  ''),
+                                                      title:
+                                                          locale.error.toString(),
+                                                      icon: Icons.info,
+                                                      color: Color(0xffF6A9A9),
+                                                      titlcolor: Colors.red,
+                                                      iconColor: Colors.red,
+                                                    );
+                                                    if (state.error.contains(
+                                                        "Error Please LOGIN To Continue")) {
+                                                      navigateAndFinish(context,
+                                                          SignInScreen());
+                                                    }
                                                   }
                                                 }
-                                              }
-                                            },
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                state is AdditionsLoading
-                                                    ? Center(
-                                                        child:
-                                                            CircularProgressIndicator
-                                                                .adaptive(
-                                                        backgroundColor:
-                                                            Theme.of(context)
-                                                                .colorScheme
-                                                                .onPrimary,
-                                                      ))
-                                                    : Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                          horizontal:
-                                                              MediaQuery.of(
-                                                                          context)
-                                                                      .size
-                                                                      .width *
-                                                                  0.08,
-                                                          vertical: 8.sp,
-                                                        ),
-                                                        child: Text(
-                                                          locale.ok.toString(),
-                                                          style:
+                                              },
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  state is AdditionsLoading
+                                                      ? Center(
+                                                          child:
+                                                              CircularProgressIndicator
+                                                                  .adaptive(
+                                                          backgroundColor:
                                                               Theme.of(context)
-                                                                  .textTheme
-                                                                  .bodyLarge,
+                                                                  .colorScheme
+                                                                  .onPrimary,
+                                                        ))
+                                                      : Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                            horizontal:
+                                                                MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.08,
+                                                            vertical: 8.sp,
+                                                          ),
+                                                          child: Text(
+                                                            locale.ok.toString(),
+                                                            style:
+                                                                Theme.of(context)
+                                                                    .textTheme
+                                                                    .bodyLarge,
+                                                          ),
                                                         ),
-                                                      ),
-                                              ],
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                });
-                          },
-                          child: ADGradientButton(locale.bookNow),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: ADGradientButton(locale.bookNow),
+                          ),
                         ),
                       ),
                     ),

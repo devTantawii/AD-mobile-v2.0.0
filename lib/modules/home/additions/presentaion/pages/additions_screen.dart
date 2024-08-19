@@ -7,9 +7,11 @@ import 'package:abudiyab/modules/home/cars/data/models/cars_model.dart';
 import 'package:abudiyab/modules/widgets/components/ADHomeButton.dart';
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion/motion.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import '../../../../../core/helpers/helper_fun.dart';
 import 'package:abudiyab/modules/home/all_bookings/data/model/booking_model.dart';
@@ -147,7 +149,7 @@ class _AdditionsScreenState extends State<AdditionsScreen>
                             ),
                             SizedBox(height: 10.sp),
                             if (state.error.contains("not Authanticated"))
-                              InkWell(
+                              Bounce(
                                   onTap: () async {
                                     var data = await pushNewScreen(
                                       context,

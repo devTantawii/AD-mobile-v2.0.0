@@ -13,10 +13,12 @@ import 'package:abudiyab/modules/home/search_screen/blocs/search_bloc/search_cub
 import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:motion/motion.dart';
 
 import '../../../../../service_locator.dart';
 import '../../../../../shared/commponents.dart';
@@ -213,24 +215,26 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                                   return BlocConsumer<AdditionsCubit,AdditionsState>(
                                     listener: (context, state) {},
                                     builder: (context, state) {
-                                      return InkWell(
-                                          onTap: (){
-                                            if(BlocProvider.of<SearchCubit>(context).selectedReceiveBranch!=null){
-                                              onTapFirst(context);
-                                              BlocProvider.of<AdditionsCubit>(context).getCarFeatures(context, widget.carModel.id.toString());
-                                                onTap(context);
-                                            }else{
-                                              HelperFunctions.showFlashBar(
-                                                  context: context,
-                                                  title: locale.error.toString(),
-                                                  message: locale.isDirectionRTL(context)?"يجب عيك اختيار الفرع":"You Must Select The Branch",
-                                                  icon: Icons.warning_amber,
-                                                  color: Color(0xffF6A9A9),
-                                                  titlcolor: Colors.red,
-                                                  iconColor: Colors.red);
-                                            }
-                                          },
-                                          child: ADGradientButton(locale.bookNow));
+                                      return Motion(
+                                        child: Bounce(
+                                            onTap: (){
+                                              if(BlocProvider.of<SearchCubit>(context).selectedReceiveBranch!=null){
+                                                onTapFirst(context);
+                                                BlocProvider.of<AdditionsCubit>(context).getCarFeatures(context, widget.carModel.id.toString());
+                                                  onTap(context);
+                                              }else{
+                                                HelperFunctions.showFlashBar(
+                                                    context: context,
+                                                    title: locale.error.toString(),
+                                                    message: locale.isDirectionRTL(context)?"يجب عيك اختيار الفرع":"You Must Select The Branch",
+                                                    icon: Icons.warning_amber,
+                                                    color: Color(0xffF6A9A9),
+                                                    titlcolor: Colors.red,
+                                                    iconColor: Colors.red);
+                                              }
+                                            },
+                                            child: ADGradientButton(locale.bookNow)),
+                                      );
                                     },
                                   );
                                 },

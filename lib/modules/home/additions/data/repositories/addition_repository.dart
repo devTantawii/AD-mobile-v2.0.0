@@ -21,7 +21,7 @@ class AdditionRepository {
     required String receiveTimeValue,
     required String driveTimeValue,
   }) async {
-    String receiveHour = receiveTimeValue
+    receiveTimeValue
         .toString()
         .replaceAll("TimeOfDay", "")
         .replaceAll("(", "")

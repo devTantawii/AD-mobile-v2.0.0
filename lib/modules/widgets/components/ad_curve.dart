@@ -1,7 +1,8 @@
-import 'package:abudiyab/modules/widgets/components/ad_back_button.dart';
+import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:motion/motion.dart';
 import '../../../shared/commponents.dart';
 import '../../home/search_screen/blocs/search_bloc/search_cubit.dart';
 import '../../home/search_screen/presentaion/widget/region_tile.dart';
@@ -35,16 +36,18 @@ class CurveWidget extends StatelessWidget {
            top: size.height*0.05,
            child:  Row(
           children: [
-            InkWell(
-              onTap: () {Navigator.of(context).pop();},
-              child: Container(
-                padding: EdgeInsets.only(
-                    left: locale.isDirectionRTL(context) ? 0 : 10,
-                    right: locale.isDirectionRTL(context) ? 10 : 0),
-                child: Icon(
-                  Icons.arrow_back_ios,
-                  size: 22,
-                  color: Color(0xffFDFDFD),
+            Motion(
+              child: Bounce(
+                onTap: () {Navigator.of(context).pop();},
+                child: Container(
+                  padding: EdgeInsets.only(
+                      left: locale.isDirectionRTL(context) ? 0 : 10,
+                      right: locale.isDirectionRTL(context) ? 10 : 0),
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    size: 22,
+                    color: Color(0xffFDFDFD),
+                  ),
                 ),
               ),
             ),
