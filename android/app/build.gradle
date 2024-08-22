@@ -37,7 +37,7 @@ if (keystorePropertiesFile.exists()) {
 }
 
 android {
-    compileSdkVersion 34
+
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -47,11 +47,11 @@ android {
         disable 'InvalidPackage'
         checkReleaseBuilds false
     }
-
+    compileSdkVersion 34
     defaultConfig {
         applicationId "com.abudiyab.abudiyab"
         minSdkVersion 23
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
