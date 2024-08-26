@@ -105,7 +105,7 @@ Map<String, String> arabic() {
     "search": "بحث",
     "fromTime": "موعد الاستلام",
     "toTime": "موعد التسليم",
-    "sar": "ر.س",
+    "sar": "ريال",
     "day": "يوم",
     "deliverAnotherBranch": "تسليم الي فرع اخر",
     "pickUpBranch": "فرع الاستلام",

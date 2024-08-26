@@ -120,7 +120,7 @@ class _RunningNowState extends State<RunningNow> {
                       Container(
                         margin:  EdgeInsets.only(bottom: 13.0.sp),
                         padding:  EdgeInsets.all(size.width *0.02),
-                        height: MediaQuery.of(context).size.height * 0.25,
+                        height: MediaQuery.of(context).size.height * 0.26,
                         decoration: BoxDecoration(
                             color: Theme.of(context).colorScheme.primaryContainer,
                             borderRadius: BorderRadius.circular(8)
@@ -212,7 +212,7 @@ class _RunningNowState extends State<RunningNow> {
                                                 FittedBox(
                                                   child: TextTileWidget(
                                                     contant: "${bookingData[index]!.price}"+" "+locale.sar.toString(),
-                                                    title: locale.isDirectionRTL(context)?"المبلغ المدفوع: ":"Total amount: ",
+                                                    title: locale.isDirectionRTL(context)?"تكلفة الحجز: ":"Total amount: ",
                                                     size: 30,
                                                   ),
                                                 ),

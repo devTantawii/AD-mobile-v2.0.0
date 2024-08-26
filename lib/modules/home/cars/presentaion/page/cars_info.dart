@@ -103,7 +103,8 @@ class _CarsInformationState extends State<CarsInformation> {
                                 Expanded(
                                   flex: 3,
                                   child: Center(
-                                    child: WidgetZoom(heroAnimationTag: 'tag',
+                                    child: WidgetZoom(
+                                        heroAnimationTag: 'tag',
                                         zoomWidget: Image.network(widget.datum!.photo)),
                                   ),
                                 ),
