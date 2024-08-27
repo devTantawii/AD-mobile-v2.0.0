@@ -13,8 +13,12 @@ class DateCheckerRemote {
     required String receivingDate,
     required String deliveryDate,
   }) async {
+
+    print("sdds");
+
     try {
-      final Response response = await _dio.post(dateCheckPoint,
+      final Response response = await _dio.post(
+          dateCheckPoint,
           options: Options(headers: {
             "Accept": "application/json",
             "Accept-Language": langCode == '' ? "en" : langCode
@@ -26,10 +30,22 @@ class DateCheckerRemote {
             'delivery_branche': deliveryId,
             "delivery_date": deliveryDate,
           });
+
+      print(
+          "${
+              'receiving_branche: ' + receivingId +
+                  '\nreceiving_date: ' +  receivingDate +
+                  '\ndelivery_branche: ' + deliveryId +
+                  "\ndelivery_date: " + deliveryDate
+          }"
+      );
       return response.data['msg'].toString();
+
     } on DioError catch (dioError) {
+      print("dio error time: "+dioError.message);
       throw Failure.fromDioError(dioError);
     } catch (error) {
+      print('Error check data remote: $error');
       throw '..Oops $error';
     }
   }

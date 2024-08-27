@@ -11,6 +11,7 @@ import 'package:abudiyab/modules/home/search_screen/data/models/offers_model.dar
 import 'package:abudiyab/modules/home/search_screen/data/models/regions_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import '../../../../../core/helpers/helper/date_helper.dart';
 import '../../data/datasources/remote/offers_remte_datasource.dart';
@@ -124,19 +125,35 @@ class SearchCubit extends Cubit<SearchState> {
   Future validate() async {
     emit(SearchCheckLoading());
     try {
-      String receiveHour = DateHandler.timeOfDayToHour(receiveTimeValue);
-      String deliveryHour = DateHandler.timeOfDayToHour(driveTimeValue);
+
+      // Define a date format
+      final DateFormat dateFormat = DateFormat('yyyy-MM-dd HH:mm:ss');
+
+      // String receiveHour = DateHandler.timeOfDayToHour(receiveTimeValue);
+      // String deliveryHour = DateHandler.timeOfDayToHour(driveTimeValue);
+
+// Combine date and time into the required format
+      String formatDateTime(DateTime date, ) {
+        final formattedDate = dateFormat.format(date);
+        return '$formattedDate';
+      }
+
       final response = await dateCheckerRemote.validate(
         receivingId: selectedReceiveModel!.id.toString(),
         deliveryId: selectedDriveModel?.id.toString() ?? selectedReceiveModel!.id.toString(),
-        receivingDate: DateHandler.mixDateWithHours(receiveDateValue, receiveHour),
-        deliveryDate: DateHandler.mixDateWithHours(driveDateValue, deliveryHour),
+        receivingDate: formatDateTime(receiveDateValue),
+        deliveryDate: formatDateTime(driveDateValue),
       );
+      print("SearchCheckLoading: ${response}");
       if (response == "success") {
         emit(SearchValidate(response));
-      } else
+        print("SearchValidate: ${response}");
+      } else {
         emit(SearchInvalid(response));
+        print("SearchInvalid: ${response}");
+      }
     } catch (error) {
+      print("Search error: ${error}");
       emit(SearchFailed(error.toString()));
     }
   }
@@ -156,8 +173,8 @@ class SearchCubit extends Cubit<SearchState> {
     emit(OffersLoding());
     try {
       final OffersModel? offersModel = await OffersRemotDataSource.getOffers(langCode);
-     message=  offersModel!.message.toString();
-     print(message.toString());
+      message=  offersModel!.message.toString();
+      print(message.toString());
       discountValue=  offersModel.discountValue;
       emit(OffersLoded(offersModel));
     } catch (e) {

@@ -813,30 +813,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "3.0.0-pre"
-  motion:
-    dependency: "direct main"
-    description:
-      name: motion
-      sha256: "307e266730f56f53bafb2bc3d9622a8ef220cae2711402a2b42cbfd68d114d4f"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
-  motion_platform_interface:
-    dependency: transitive
-    description:
-      name: motion_platform_interface
-      sha256: b1f18343564450158c0ec0f6707937544831367f5eafae57d9f15708e3bf0ad0
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
-  motion_web:
-    dependency: transitive
-    description:
-      name: motion_web
-      sha256: "848c98f852acb9447ff786f59edd33642e9ee92ef58f31e2aa3e9fd66d15e4c6"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "2.0.0"
   nested:
     dependency: transitive
     description:
@@ -985,10 +961,10 @@ packages:
     dependency: "direct main"
     description:
       name: persistent_bottom_nav_bar
-      sha256: b8dc9cfc1ea36cef1a55c059c151d8ec8aaa28da4f0dcd224a3b3c0bed8bf130
+      sha256: "6aa9b97ced1abd92c90cedd1997d34ea0b35c3ded762ac6063baccc299b0c4c5"
       url: "https://pub.flutter-io.cn"
     source: hosted
-    version: "4.0.2"
+    version: "6.2.1"
   petitparser:
     dependency: transitive
     description:
@@ -1419,7 +1395,7 @@ packages:
     source: hosted
     version: "0.0.4"
   win32:
-    dependency: "direct overridden"
+    dependency: "direct main"
     description:
       name: win32
       sha256: "68d1e89a91ed61ad9c370f9f8b6effed9ae5e0ede22a270bdfa6daf79fc2290a"

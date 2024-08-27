@@ -7,8 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../../../../../core/constants/assets/assets.dart';
 import '../../../../../shared/commponents.dart';
@@ -39,15 +38,14 @@ class _BranchesListViewState extends State<BranchesListView> {
         itemCount: widget.branches.length,
         itemBuilder: (context, index) {
 
-          return Motion(
-            child: Bounce(
+          return  Bounce(
               onTap: () {
                 widget.isReceive
                     ? BlocProvider.of<SearchCubit>(context)
                         .selectedReceiveBranch = widget.branches[index].name
                     : BlocProvider.of<SearchCubit>(context).selectedDriveBranch =
                     context.read<AllBranchCubit>().branchesData[index].name;
-            
+
                 widget.isReceive
                     ?BlocProvider.of<SearchCubit>(context).selectedReceiveModel =
                     BlocProvider.of<SearchCubit>(context)
@@ -262,7 +260,7 @@ class _BranchesListViewState extends State<BranchesListView> {
             
                       GestureDetector(
                         onTap: () {
-                          pushNewScreen(context,
+                          PersistentNavBarNavigator.pushNewScreen(context,
                               screen: ViewLocation(
                                 title: "${widget.branches[index].name}",
                                 url: widget.branches[index].locationUrl,
@@ -285,7 +283,7 @@ class _BranchesListViewState extends State<BranchesListView> {
                   ),
                 ),
               ),
-            ),
+
           );
         });
   }

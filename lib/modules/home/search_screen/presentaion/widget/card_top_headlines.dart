@@ -6,7 +6,6 @@ import 'package:abudiyab/modules/home/search_screen/data/models/slider_model.dar
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class CardTopHeadlines extends StatefulWidget {
@@ -62,8 +61,7 @@ class _CardTopHeadlinesState extends State<CardTopHeadlines> {
             child: CircularProgressIndicator.adaptive(),
           );
         } else if (state is HeadlinesLoaded) {
-          return Motion(
-            child: Bounce(
+          return  Bounce(
               onTap: () {
                 timer!.cancel();
                 if (currentPage < state.sliderModel.data.length) {
@@ -155,7 +153,7 @@ class _CardTopHeadlinesState extends State<CardTopHeadlines> {
                       )),
                 ],
               ),
-            ),
+
           );
         }
         return Container();

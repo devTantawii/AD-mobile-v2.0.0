@@ -176,8 +176,8 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
           "GGG");
       print(BlocProvider.of<SearchCubit>(context).driveDateValue.toString() +
           "HHH");
-      // print(BlocProvider.of<SearchCubit>(context).selectedRegion.toString()+"GGG");
-      // print(BlocProvider.of<SearchCubit>(context).selectedDriveBranch.toString()+"fff");
+       print(BlocProvider.of<SearchCubit>(context).selectedRegion.toString()+"GGG");
+       print(BlocProvider.of<SearchCubit>(context).selectedDriveBranch.toString()+"fff");
       if (BlocProvider.of<ProfileCubit>(context).custClass == '1'.toString()) {
         setState(() {
           searchError = false;
@@ -193,35 +193,25 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
           searchError = false;
         });
       }
-      final triggeredBranchModel = context
-          .read<SearchCubit>()
-          .branchesData
-          .where((element) =>
-              element.name ==
-              BlocProvider.of<SearchCubit>(context).selectedReceiveBranch)
-          .first;
-      BlocProvider.of<SearchCubit>(context).selectedReceiveModel =
-          triggeredBranchModel;
+      final triggeredBranchModel = context.read<SearchCubit>().branchesData.where((element) =>
+              element.name == BlocProvider.of<SearchCubit>(context).selectedReceiveBranch).first;
+      BlocProvider.of<SearchCubit>(context).selectedReceiveModel = triggeredBranchModel;
       // drive
       if (BlocProvider.of<SearchCubit>(context).selectedDriveBranch != null) {
-        final triggeredDriveBranchModel = context
-            .read<AllBranchCubit>()
-            .branchesData
-            .where((element) =>
-                element.name ==
-                BlocProvider.of<SearchCubit>(context).selectedDriveBranch)
-            .first;
-        BlocProvider.of<SearchCubit>(context).selectedDriveModel =
-            triggeredDriveBranchModel;
+        final triggeredDriveBranchModel = context.read<AllBranchCubit>().branchesData.where((element) =>
+        element.name == BlocProvider.of<SearchCubit>(context).selectedDriveBranch).first;
+        BlocProvider.of<SearchCubit>(context).selectedDriveModel = triggeredDriveBranchModel;
       } else {
-        BlocProvider.of<SearchCubit>(context).selectedDriveModel =
-            triggeredBranchModel;
-        print(BlocProvider.of<SearchCubit>(context).selectedDriveBranch);
+        BlocProvider.of<SearchCubit>(context).selectedDriveModel = triggeredBranchModel;
+        print("rent driv1: ${BlocProvider.of<SearchCubit>(context).selectedDriveBranch}");
       }
-
+      print("rent driv2: ${BlocProvider.of<SearchCubit>(context).selectedDriveBranch}");
       // Validation
-      await BlocProvider.of<SearchCubit>(context).validate();
+     await BlocProvider.of<SearchCubit>(context).validate();
     } catch (e) {
+
+      print("validation Error: ${e.toString()} ");
+
       setState(() {
         searchError = true;
       });

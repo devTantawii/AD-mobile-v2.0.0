@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:motion/motion.dart';
 import '../../../core/fade_route.dart';
 import '../../../core/helpers/SharedPreference/pereferences.dart';
 import '../../auth/on_boarding/on_boarding.dart';
@@ -201,8 +200,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                       SizedBox(
                         height: size.height * 0.04,
                       ),
-                      Motion(
-                        child: Bounce(
+                      Bounce(
                           onTap: () {
                             if (_selectedLanguage == 0 && en_Selected == true) {
                               _languageCubit.selectEngLanguage();
@@ -233,7 +231,7 @@ class _SelectLanguageState extends State<SelectLanguage> {
                                   18, FontWeight.w700, Colors.white),
                             ),
                           ),
-                        ),
+
                       ),
                     ],
                   ),

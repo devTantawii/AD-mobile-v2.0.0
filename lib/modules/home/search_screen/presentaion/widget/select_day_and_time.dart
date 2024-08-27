@@ -50,12 +50,14 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                   initialDate: selectedDateTime.add(Duration(days: 1)),
                   firstDate: DateTime(2024),
                   lastDate: DateTime(2040),
-                  builder: (context,child){
-                    return  Theme(
+                  builder: (context, child) {
+                    return Theme(
                       data: Theme.of(context).copyWith(
                         colorScheme: ColorScheme.light(
-                          primary: Colors.blueAccent, // header background color
-                          onPrimary: Colors.white, // header text color
+                          primary: Colors.blueAccent,
+                          // header background color
+                          onPrimary: Colors.white,
+                          // header text color
                           onSurface: Colors.black, // body text color
                         ),
                         textButtonTheme: TextButtonThemeData(
@@ -72,17 +74,20 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                   final TimeOfDay? pickedTime = await showTimePicker(
                     context: context,
                     initialTime: TimeOfDay.fromDateTime(selectedDateTime),
-                    builder: (context,child){
-                      return  Theme(
+                    builder: (context, child) {
+                      return Theme(
                         data: Theme.of(context).copyWith(
                           colorScheme: ColorScheme.light(
-                            primary: Colors.blueAccent, // header background color
-                            onPrimary: Colors.white, // header text color
+                            primary: Colors.blueAccent,
+                            // header background color
+                            onPrimary: Colors.white,
+                            // header text color
                             onSurface: Colors.black, // body text color
                           ),
                           textButtonTheme: TextButtonThemeData(
                             style: TextButton.styleFrom(
-                              foregroundColor: Colors.black, // button text color
+                              foregroundColor:
+                                  Colors.black, // button text color
                             ),
                           ),
                         ),
@@ -100,14 +105,18 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                         pickedTime.minute,
                       );
                     });
+
                     widget.isReceive
-                        ? BlocProvider.of<SearchCubit>(context)
-                                .receiveDateValue =
-                            DateTime.parse((selectedDateTime.toString()))
-                        : BlocProvider.of<SearchCubit>(context).driveDateValue =
-                            DateTime.parse(selectedDateTime.toString());
+                        ? BlocProvider.of<SearchCubit>(context).receiveDateValue = selectedDateTime
+                        : BlocProvider.of<SearchCubit>(context).driveDateValue = selectedDateTime;
+
                     BlocProvider.of<SearchCubit>(context).changeState();
-                    print(selectedDateTime.toString());
+
+
+                    final timeFormatted = pickedTime.format(context);
+                    print('Selected Time1: $timeFormatted');
+                    print("Selected Time2: " + selectedDateTime.toString());
+
                     // Navigator.pop(context);
                   }
                 };
@@ -120,12 +129,14 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                   borderRadius: BorderRadius.circular(12.sp),
                 ),
                 child: Padding(
-                  padding:  EdgeInsets.symmetric(vertical: 10.0.h),
+                  padding: EdgeInsets.symmetric(vertical: 10.0.h),
                   child: ListView(
                     children: [
                       Center(
                         child: Text(
-                          widget.isReceive?locale!.reciveDate.toString():locale!.deliveryDate.toString(),
+                          widget.isReceive
+                              ? locale!.reciveDate.toString()
+                              : locale!.deliveryDate.toString(),
                           style: TextStyle(
                               fontSize: 14.sp,
                               fontWeight: FontWeight.w700,
@@ -138,10 +149,9 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                           widget.isReceive
                               ? Center(
                                   child: AutoSizeText(
-                                    DateFormat.d().format(DateTime.parse(
+                                    DateFormat.d().format(
                                         BlocProvider.of<SearchCubit>(context)
-                                            .receiveDateValue
-                                            .toString())),
+                                            .receiveDateValue),
                                     style: TextStyle(
                                         fontSize: 56.sp,
                                         color: Colors.black,
@@ -150,17 +160,16 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                                 )
                               : Center(
                                   child: AutoSizeText(
-                                    DateFormat.d().format(DateTime.parse(
+                                    DateFormat.d().format(
                                         BlocProvider.of<SearchCubit>(context)
-                                            .driveDateValue
-                                            .toString())),
+                                            .driveDateValue),
                                     style: TextStyle(
                                         fontSize: 56.sp,
                                         color: Colors.black,
                                         fontWeight: FontWeight.w700),
                                   ),
                                 ),
-                               Column(
+                          Column(
                             children: [
                               widget.isReceive
                                   ? Center(
@@ -224,37 +233,34 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                       ),
                       widget.isReceive
                           ? Center(
-                        child: AutoSizeText(
-                          DateFormat.jm().format(DateTime.parse(
-                              BlocProvider.of<SearchCubit>(
-                                  context)
-                                  .receiveDateValue
-                                  .toString())),
-                          style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      )
+                              child: AutoSizeText(
+                                DateFormat.jm().format(DateTime.parse(
+                                    BlocProvider.of<SearchCubit>(context)
+                                        .receiveDateValue
+                                        .toString())),
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            )
                           : Center(
-                        child: AutoSizeText(
-                          DateFormat.jm().format(DateTime.parse(
-                              BlocProvider.of<SearchCubit>(
-                                  context)
-                                  .driveDateValue
-                                  .toString())),
-                          style: TextStyle(
-                              fontSize: 14.sp,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600),
-                        ),
-                      ),
+                              child: AutoSizeText(
+                                DateFormat.jm().format(DateTime.parse(
+                                    BlocProvider.of<SearchCubit>(context)
+                                        .driveDateValue
+                                        .toString())),
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
                     ],
                   ),
                 ),
               ),
             ))
-
           ],
         );
       },

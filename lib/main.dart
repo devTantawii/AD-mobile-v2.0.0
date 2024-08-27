@@ -17,9 +17,9 @@ Future<void> main() async{
   await InitializeApp.run();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-    statusBarColor:  Colors.transparent,
-    statusBarIconBrightness: Brightness.dark,
-  ),
+      statusBarColor:  Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+    ),
   );
   ///----------------StartFirebase Code -------------------
   if (Platform.isIOS) {

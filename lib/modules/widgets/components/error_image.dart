@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lottie/lottie.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../auth/signin/presentation/pages/signin_screen.dart';
 import 'ad_gradient_btn.dart';
@@ -32,10 +31,9 @@ class ErrorImage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: Lottie.asset("assets/images/login.json")),
               SizedBox(height: 10.0),
-              Motion(
-                child: Bounce(
+               Bounce(
                     onTap: () {
-                      pushNewScreen(
+                      PersistentNavBarNavigator.pushNewScreen(
                         context,
                         screen: SignInScreen(),
                         withNavBar: false,
@@ -53,8 +51,8 @@ class ErrorImage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.5,
                         ),
                       ],
-                    )),
-              ),
+                    ),),
+
             ],
           ),
         ),

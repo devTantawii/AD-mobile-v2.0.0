@@ -6,7 +6,7 @@ import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../../service_locator.dart';
 import '../all_cars_screen.dart';
@@ -221,7 +221,7 @@ class _FiltersCarsState extends State<FiltersCars>
                   ),
                   GestureDetector(
                     onTap: () {
-                      pushNewScreen(context, screen: AllCarsScreen(fromFilter: true));
+                      PersistentNavBarNavigator.pushNewScreen(context, screen: AllCarsScreen(fromFilter: true));
                     },
                     child: ADGradientButton(locale.search),
                   ),

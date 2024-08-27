@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class InfoCar extends StatelessWidget {
   const InfoCar({Key? key, required this.carModel}) : super(key: key);
   final DataCars carModel;
+
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context);

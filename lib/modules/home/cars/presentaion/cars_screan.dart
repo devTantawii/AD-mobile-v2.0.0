@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../profile/blocs/profile_cubit/profile_cubit.dart';
 import 'bloc/cubit/cars_cubit.dart';
 import 'widget/car_tile.dart';
@@ -116,7 +116,7 @@ class _CarsScreenState extends State<CarsScreen> with TickerProviderStateMixin {
               ? SizedBox()
               : IconButton(
                   onPressed: () {
-                    pushNewScreen(context, screen: FiltersCars());
+                    PersistentNavBarNavigator.pushNewScreen(context, screen: FiltersCars());
                   },
                   icon: FittedBox(
                     child: SizedBox(

@@ -18,7 +18,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
 
 import '../../../../../service_locator.dart';
 import '../../../../../shared/commponents.dart';
@@ -215,8 +214,7 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                                   return BlocConsumer<AdditionsCubit,AdditionsState>(
                                     listener: (context, state) {},
                                     builder: (context, state) {
-                                      return Motion(
-                                        child: Bounce(
+                                      return Bounce(
                                             onTap: (){
                                               if(BlocProvider.of<SearchCubit>(context).selectedReceiveBranch!=null){
                                                 onTapFirst(context);
@@ -233,7 +231,7 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                                                     iconColor: Colors.red);
                                               }
                                             },
-                                            child: ADGradientButton(locale.bookNow)),
+                                            child: ADGradientButton(locale.bookNow),
                                       );
                                     },
                                   );

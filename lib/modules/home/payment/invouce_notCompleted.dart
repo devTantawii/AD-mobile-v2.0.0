@@ -15,7 +15,6 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
 import 'package:pay/pay.dart';
 import '../../../core/constants/langCode.dart';
 import '../../../shared/commponents.dart';
@@ -24,6 +23,9 @@ import '../additions/presentaion/blocs/addition_cubit/additions_cubit.dart';
 import '../all_bookings/data/model/booking_model.dart';
 import 'blocs/invoice_cubit.dart';
 import 'payment_configurations.dart' as payment_configurations;
+
+
+
 class InvoiceNotCompletedUI extends StatefulWidget {
   final DataCars? carModel;
   // final InvoiceModel? invoiceModel;
@@ -130,12 +132,11 @@ class _InvoiceNotCompletedUIState extends State<InvoiceNotCompletedUI> {
                 child: state is InvoiceLoading?Center(child: CircularProgressIndicator.adaptive(
                   backgroundColor: Theme.of(context).colorScheme.onPrimary,
                 )):Container(
-                  child: Motion(
-                    child: Bounce(
+                  child:  Bounce(
                       onTap: bookNow,
                       child: ADGradientButton(locale.bookNow.toString()),
                     ),
-                  ),
+
                 ),);
             },
           )
@@ -148,12 +149,11 @@ class _InvoiceNotCompletedUIState extends State<InvoiceNotCompletedUI> {
                   backgroundColor: Theme.of(context).colorScheme.onPrimary,
                 )):Container(
                   height: size.height*0.065,
-                  child: Motion(
-                    child: Bounce(
+                  child:  Bounce(
                       onTap: bookNowWithVisa,
                       child: ADGradientButton(locale.bookNow.toString()),
                     ),
-                  ),
+
                 );
               },
             ),

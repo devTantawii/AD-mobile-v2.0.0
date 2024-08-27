@@ -1,3 +1,4 @@
+import 'package:abudiyab/core/constants/assets/assets.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:abudiyab/modules/widgets/components/constants.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class Reviews extends StatelessWidget {
     return SingleChildScrollView(
       // physics: ScrollPhysics(),
       child: Container(
-        color: Theme.of(context).colorScheme.surface,
+        color: Theme.of(context).colorScheme.background,
         child: Column(
           children: [
             Container(
@@ -41,7 +42,7 @@ class Reviews extends StatelessWidget {
                       Text("98" + locale.peopleRated!,
                           style: Theme.of(context)
                               .textTheme
-                              .headlineMedium!
+                              .bodyLarge!
                               .copyWith(fontSize: 12))
                     ],
                   ),

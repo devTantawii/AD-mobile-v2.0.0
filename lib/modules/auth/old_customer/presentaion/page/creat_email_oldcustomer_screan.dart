@@ -11,7 +11,6 @@ import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_te
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
 
 class CreatEmailAndPassOldCustomerScrean extends StatelessWidget {
   CreatEmailAndPassOldCustomerScrean({Key? key}) : super(key: key);
@@ -130,8 +129,7 @@ class CreatEmailAndPassOldCustomerScrean extends StatelessWidget {
                                             child: CircularProgressIndicator
                                                 .adaptive(),
                                           )
-                                        : Motion(
-                                          child: Bounce(
+                                        : Bounce(
                                               onTap: () {
                                                 if (_formKey.currentState!
                                                     .validate()) {
@@ -157,7 +155,7 @@ class CreatEmailAndPassOldCustomerScrean extends StatelessWidget {
                                               locale.signIn.toString()),
                                                                                 ),
                                             ),
-                                        ),
+
                                   ],
                                 ),
                               ),

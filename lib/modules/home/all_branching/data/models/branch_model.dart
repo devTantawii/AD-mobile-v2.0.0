@@ -16,17 +16,17 @@ class Data {
   Meta meta;
 
   factory Data.fromMap(Map<String, dynamic> json) => Data(
-        data: List<BranchModel>.from(
-            json["data"].map((x) => BranchModel.fromMap(x))),
-        links: Links.fromMap(json["links"]),
-        meta: Meta.fromMap(json["meta"]),
-      );
+    data: List<BranchModel>.from(
+        json["data"].map((x) => BranchModel.fromMap(x))),
+    links: Links.fromMap(json["links"]),
+    meta: Meta.fromMap(json["meta"]),
+  );
 
   Map<String, dynamic> toMap() => {
-        "data": List<dynamic>.from(data.map((x) => x.toMap())),
-        "links": links.toMap(),
-        "meta": meta.toMap(),
-      };
+    "data": List<dynamic>.from(data.map((x) => x.toMap())),
+    "links": links.toMap(),
+    "meta": meta.toMap(),
+  };
 }
 
 class BranchModel {
@@ -57,33 +57,33 @@ class BranchModel {
   int? bookToday;
 
   factory BranchModel.fromMap(Map<String, dynamic> json) => BranchModel(
-        id: json["id"],
-        name: json["name"],
-        bookToday: json["book_today"],
-        region: json["region"],
-        regionId: json["region_id"],
-        address: json["address"],
-        lat: json["lat"],
-        long: json["long"],
-        phone: json["phone"],
-        locationUrl: json["location_url"] == null ? null : json["location_url"],
-        workTime: json["work_time"] != null
-            ? WorkTime.fromMap(json["work_time"])
-            : WorkTime(),
-      );
+    id: json["id"],
+    name: json["name"],
+    bookToday: json["book_today"],
+    region: json["region"],
+    regionId: json["region_id"],
+    address: json["address"],
+    lat: json["lat"],
+    long: json["long"],
+    phone: json["phone"],
+    locationUrl: json["location_url"] == null ? null : json["location_url"],
+    workTime: json["work_time"] != null
+        ? WorkTime.fromMap(json["work_time"])
+        : WorkTime(),
+  );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "name": name,
-        "region": region,
-        "region_id": regionId,
-        "address": address,
-        "lat": lat,
-        "long": long,
-        "phone": phone,
-        "location_url": locationUrl == null ? null : locationUrl,
-        "work_time": workTime?.toMap(),
-      };
+    "id": id,
+    "name": name,
+    "region": region,
+    "region_id": regionId,
+    "address": address,
+    "lat": lat,
+    "long": long,
+    "phone": phone,
+    "location_url": locationUrl == null ? null : locationUrl,
+    "work_time": workTime?.toMap(),
+  };
 }
 
 enum Region { EMPTY, REGION }
@@ -115,28 +115,28 @@ class WorkTime {
   String? openAllDays;
 
   factory WorkTime.fromMap(Map<String, dynamic> json) => WorkTime(
-        alldays: Alldays.fromMap(json["alldays"]),
-        fri: Fri.fromMap(json["fri"]),
-        sat: Mon.fromMap(json["sat"]),
-        sun: Mon.fromMap(json["sun"]),
-        mon: Mon.fromMap(json["mon"]),
-        tue: Mon.fromMap(json["tue"]),
-        wed: Mon.fromMap(json["wed"]),
-        thu: Mon.fromMap(json["thu"]),
-        openAllDays: json["openAllDays"],
-      );
+    alldays: Alldays.fromMap(json["alldays"]),
+    fri: Fri.fromMap(json["fri"]),
+    sat: Mon.fromMap(json["sat"]),
+    sun: Mon.fromMap(json["sun"]),
+    mon: Mon.fromMap(json["mon"]),
+    tue: Mon.fromMap(json["tue"]),
+    wed: Mon.fromMap(json["wed"]),
+    thu: Mon.fromMap(json["thu"]),
+    openAllDays: json["openAllDays"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "alldays": alldays?.toMap(),
-        "fri": fri?.toMap(),
-        "sat": sat?.toMap(),
-        "sun": sun?.toMap(),
-        "mon": mon?.toMap(),
-        "tue": tue?.toMap(),
-        "wed": wed?.toMap(),
-        "thu": thu?.toMap(),
-        "openAllDays": openAllDays,
-      };
+    "alldays": alldays?.toMap(),
+    "fri": fri?.toMap(),
+    "sat": sat?.toMap(),
+    "sun": sun?.toMap(),
+    "mon": mon?.toMap(),
+    "tue": tue?.toMap(),
+    "wed": wed?.toMap(),
+    "thu": thu?.toMap(),
+    "openAllDays": openAllDays,
+  };
 }
 
 class Alldays {
@@ -151,16 +151,16 @@ class Alldays {
   Afternone? afternone;
 
   factory Alldays.fromMap(Map<String, dynamic> json) => Alldays(
-        period: json["period"],
-        morning: Afternone.fromMap(json["morning"]),
-        afternone: Afternone.fromMap(json["afternone"]),
-      );
+    period: json["period"],
+    morning: Afternone.fromMap(json["morning"]),
+    afternone: Afternone.fromMap(json["afternone"]),
+  );
 
   Map<String, dynamic> toMap() => {
-        "period": period,
-        "morning": morning?.toMap(),
-        "afternone": afternone?.toMap(),
-      };
+    "period": period,
+    "morning": morning?.toMap(),
+    "afternone": afternone?.toMap(),
+  };
 }
 
 class Afternone {
@@ -173,14 +173,14 @@ class Afternone {
   String? timeclose;
 
   factory Afternone.fromMap(Map<String, dynamic> json) => Afternone(
-        timeopen: json["timeopen"] == null ? null : json["timeopen"],
-        timeclose: json["timeclose"] == null ? null : json["timeclose"],
-      );
+    timeopen: json["timeopen"] == null ? null : json["timeopen"],
+    timeclose: json["timeclose"] == null ? null : json["timeclose"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "timeopen": timeopen == null ? null : timeopen,
-        "timeclose": timeclose == null ? null : timeclose,
-      };
+    "timeopen": timeopen == null ? null : timeopen,
+    "timeclose": timeclose == null ? null : timeclose,
+  };
 }
 
 class Fri {
@@ -197,18 +197,18 @@ class Fri {
   String? lock;
 
   factory Fri.fromMap(Map<String, dynamic> json) => Fri(
-        period: json["period"],
-        morning: Afternone.fromMap(json["morning"]),
-        afternone: Afternone.fromMap(json["afternone"]),
-        lock: json["lock"],
-      );
+    period: json["period"],
+    morning: Afternone.fromMap(json["morning"]),
+    afternone: Afternone.fromMap(json["afternone"]),
+    lock: json["lock"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "period": period,
-        "morning": morning?.toMap(),
-        "afternone": afternone?.toMap(),
-        "lock": lock,
-      };
+    "period": period,
+    "morning": morning?.toMap(),
+    "afternone": afternone?.toMap(),
+    "lock": lock,
+  };
 }
 
 class Mon {
@@ -219,12 +219,12 @@ class Mon {
   String? lock;
 
   factory Mon.fromMap(Map<String, dynamic> json) => Mon(
-        lock: json["lock"],
-      );
+    lock: json["lock"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "lock": lock,
-      };
+    "lock": lock,
+  };
 }
 
 class Links {
@@ -241,18 +241,18 @@ class Links {
   String? next;
 
   factory Links.fromMap(Map<String, dynamic> json) => Links(
-        first: json["first"],
-        last: json["last"],
-        prev: json["prev"],
-        next: json["next"],
-      );
+    first: json["first"],
+    last: json["last"],
+    prev: json["prev"],
+    next: json["next"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "first": first,
-        "last": last,
-        "prev": prev,
-        "next": next,
-      };
+    "first": first,
+    "last": last,
+    "prev": prev,
+    "next": next,
+  };
 }
 
 class Meta {
@@ -277,26 +277,26 @@ class Meta {
   int? total;
 
   factory Meta.fromMap(Map<String, dynamic> json) => Meta(
-        currentPage: json["current_page"],
-        from: json["from"],
-        lastPage: json["last_page"],
-        links: List<Link>.from(json["links"].map((x) => Link.fromMap(x))),
-        path: json["path"],
-        perPage: json["per_page"],
-        to: json["to"],
-        total: json["total"],
-      );
+    currentPage: json["current_page"],
+    from: json["from"],
+    lastPage: json["last_page"],
+    links: List<Link>.from(json["links"].map((x) => Link.fromMap(x))),
+    path: json["path"],
+    perPage: json["per_page"],
+    to: json["to"],
+    total: json["total"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "current_page": currentPage,
-        "from": from,
-        "last_page": lastPage,
-        "links": List<dynamic>.from(links!.map((x) => x.toMap())),
-        "path": path,
-        "per_page": perPage,
-        "to": to,
-        "total": total,
-      };
+    "current_page": currentPage,
+    "from": from,
+    "last_page": lastPage,
+    "links": List<dynamic>.from(links!.map((x) => x.toMap())),
+    "path": path,
+    "per_page": perPage,
+    "to": to,
+    "total": total,
+  };
 }
 
 class Link {
@@ -311,16 +311,16 @@ class Link {
   bool? active;
 
   factory Link.fromMap(Map<String, dynamic> json) => Link(
-        url: json["url"] == null ? null : json["url"],
-        label: json["label"],
-        active: json["active"],
-      );
+    url: json["url"] == null ? null : json["url"],
+    label: json["label"],
+    active: json["active"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "url": url == null ? null : url,
-        "label": label,
-        "active": active,
-      };
+    "url": url == null ? null : url,
+    "label": label,
+    "active": active,
+  };
 }
 
 class EnumValues<T> {

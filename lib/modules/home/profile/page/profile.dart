@@ -13,8 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../auth/register/presentaion/pages/register_page.dart';
 import '../../../auth/signin/presentation/pages/signin_screen.dart';
@@ -68,7 +67,7 @@ class _MyProfileState extends State<MyProfile> {
           if (state is ProfileFailed) {
           } else if (state is ProfileLogout) {
             BlocProvider.of<AllBookingCubit>(context).booking = null;
-            pushNewScreen(context, screen: SignInScreen(), withNavBar: false);
+            PersistentNavBarNavigator.pushNewScreen(context, screen: SignInScreen(), withNavBar: false);
           }
         },
         builder: (context, state) {
@@ -146,7 +145,7 @@ class _MyProfileState extends State<MyProfile> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        pushNewScreen(context,
+                        PersistentNavBarNavigator.pushNewScreen(context,
                             screen: EditProfile(
                               profileModel: state.profileModel,
                             ));
@@ -415,7 +414,7 @@ class _MyProfileState extends State<MyProfile> {
                   children: [
                     Bounce(
                         onTap: () {
-                          pushNewScreen(
+                          PersistentNavBarNavigator.pushNewScreen(
                             context,
                             screen: SignInScreen(),
                             withNavBar: false,
@@ -448,7 +447,7 @@ class _MyProfileState extends State<MyProfile> {
                     Spacer(),
                     Bounce(
                         onTap: () {
-                          pushNewScreen(
+                          PersistentNavBarNavigator.pushNewScreen(
                             context,
                             screen: RegisterPage(),
                             withNavBar: false,
@@ -485,14 +484,14 @@ class _MyProfileState extends State<MyProfile> {
                     title: locale.changeLanguage.toString(),
                     icon: Assets.profile_language,
                     ontap: () {
-                      pushNewScreen(context, screen: SelectLanguage());
+                      PersistentNavBarNavigator.pushNewScreen(context, screen: SelectLanguage());
                     }),
                 SpaceWidget(),
                 CardTileWidget(
                     title: locale.privacyPolicy.toString(),
                     icon: Assets.profile_privacy,
                     ontap: () {
-                      pushNewScreen(context, screen: PrivacyPolicyScreen());
+                      PersistentNavBarNavigator.pushNewScreen(context, screen: PrivacyPolicyScreen());
                     }),
                 SpaceWidget(),
                 // CardTileWidget(

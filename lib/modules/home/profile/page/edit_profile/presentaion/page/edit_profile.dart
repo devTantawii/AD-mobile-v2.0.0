@@ -21,8 +21,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 import '../../../../../../../service_locator.dart';
@@ -339,8 +338,7 @@ class _EditProfileState extends State<EditProfile> {
                                       child: CircularProgressIndicator
                                           .adaptive(),
                                     )
-                                  : Motion(
-                                    child: Bounce(
+                                  : Bounce(
                                         onTap: () {
                                           if (_formKey.currentState!
                                               .validate()) {
@@ -361,12 +359,11 @@ class _EditProfileState extends State<EditProfile> {
                                           }
                                         },
                                         child: ADGradientButton(locale.save)),
-                                  ),
+
                               SizedBox(height: 16.sp),
-                              Motion(
-                                child: Bounce(
+                              Bounce(
                                     onTap: () {
-                                      pushNewScreen(context,
+                                      PersistentNavBarNavigator.pushNewScreen(context,
                                           screen: ResetPasswordScrean());
                                     },
                                     child: Container(
@@ -381,7 +378,7 @@ class _EditProfileState extends State<EditProfile> {
                                             style: TextStyle(fontSize: 16,fontWeight: FontWeight.w600,color: Theme.of(context).colorScheme.primary,)),
                                       ),
                                     )),
-                              ),
+
                               SizedBox(height: 10.0),
                             ]),
                           ),

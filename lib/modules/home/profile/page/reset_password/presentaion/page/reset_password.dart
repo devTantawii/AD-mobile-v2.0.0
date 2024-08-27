@@ -10,7 +10,6 @@ import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_te
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
 
 import '../../../../../../../service_locator.dart';
 
@@ -59,74 +58,70 @@ class ResetPasswordScrean extends StatelessWidget {
               }
             },
             builder: (context, state) {
-              return
-                  Center(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Form(
-                          key: _formKey,
-                          child: ContainerTileWidget(widgets: [
-                            ADPrimTextForm(
-                              controller: oldPasswordControler,
-                              type: TextInputType.visiblePassword,
-                              label: locale.oldPassword.toString(),
-                              pIcon: Icons.lock,
-                              validat: (value) =>
-                                  Validate.validatePassword(context, value),
-                            ),
-                            SizedBox(height: 20.0),
-                            ADPrimTextForm(
-                              controller: newPasswordControler,
-                              type: TextInputType.visiblePassword,
-                              label: locale.newPassword.toString(),
-                              pIcon: Icons.lock,
-                              validat: (value) =>
-                                  Validate.validatePassword(context, value),
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            ADPrimTextForm(
-                              controller: confirmPasswordControler,
-                              type: TextInputType.visiblePassword,
-                              label: locale.confirmPassword.toString(),
-                              pIcon: Icons.lock,
-                              validat: (value) => Validate.validatePassword(
-                                  context, newPasswordControler.text,
-                                  confirmPassword: value),
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            state is RsetePasswordLoading
-                                ? const Center(
-                                    child: CircularProgressIndicator.adaptive(),
-                                  )
-                                : Motion(
-                                  child: Bounce(
-                                      onTap: () {
-                                        if (_formKey.currentState!.validate()) {
-                                          BlocProvider.of<RsetePasswordCubit>(
-                                                  context)
-                                              .rsetePassword(
-                                                  oldPassWord:
-                                                      oldPasswordControler.text,
-                                                  newPassWord:
-                                                      newPasswordControler.text,
-                                                  confirmPassWord:
-                                                      confirmPasswordControler
-                                                          .text);
-                                        }
-                                      },
-                                      child: ADGradientButton(
-                                          locale.changePassword.toString())),
-                                ),
-                          ]),
+              return Center(
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Form(
+                      key: _formKey,
+                      child: ContainerTileWidget(widgets: [
+                        ADPrimTextForm(
+                          controller: oldPasswordControler,
+                          type: TextInputType.visiblePassword,
+                          label: locale.oldPassword.toString(),
+                          pIcon: Icons.lock,
+                          validat: (value) =>
+                              Validate.validatePassword(context, value),
                         ),
-                      ),
+                        SizedBox(height: 20.0),
+                        ADPrimTextForm(
+                          controller: newPasswordControler,
+                          type: TextInputType.visiblePassword,
+                          label: locale.newPassword.toString(),
+                          pIcon: Icons.lock,
+                          validat: (value) =>
+                              Validate.validatePassword(context, value),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        ADPrimTextForm(
+                          controller: confirmPasswordControler,
+                          type: TextInputType.visiblePassword,
+                          label: locale.confirmPassword.toString(),
+                          pIcon: Icons.lock,
+                          validat: (value) => Validate.validatePassword(
+                              context, newPasswordControler.text,
+                              confirmPassword: value),
+                        ),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        state is RsetePasswordLoading
+                            ? const Center(
+                                child: CircularProgressIndicator.adaptive(),
+                              )
+                            : Bounce(
+                                onTap: () {
+                                  if (_formKey.currentState!.validate()) {
+                                    BlocProvider.of<RsetePasswordCubit>(context)
+                                        .rsetePassword(
+                                            oldPassWord:
+                                                oldPasswordControler.text,
+                                            newPassWord:
+                                                newPasswordControler.text,
+                                            confirmPassWord:
+                                                confirmPasswordControler.text);
+                                  }
+                                },
+                                child: ADGradientButton(
+                                    locale.changePassword.toString()),
+                              ),
+                      ]),
                     ),
-                  );
+                  ),
+                ),
+              );
             },
           ),
         ),

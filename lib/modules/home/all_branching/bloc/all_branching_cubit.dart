@@ -12,7 +12,7 @@ class AllBranchCubit extends Cubit<AllBranchState> {
     emit(AllBranchLoading());
     try {
       final data =
-          await allBranchRemoteDataSource.getBranches(pageIndex: pageNumber);
+      await allBranchRemoteDataSource.getBranches(pageIndex: pageNumber);
       pageNumber == 1
           ? branchesData = data.data
           : branchesData.addAll(data.data);

@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 import '../../../../shared/style/colors.dart';
@@ -137,7 +137,7 @@ class _BranchesScreenState extends State<BranchesScreen> {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              pushNewScreen(context,
+                              PersistentNavBarNavigator.pushNewScreen(context,
                                   screen: ViewLocation(
                                     title: "${state.branchModel[index].name}",
                                     url: state.branchModel[index].locationUrl,

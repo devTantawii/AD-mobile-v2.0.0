@@ -3,7 +3,6 @@ import 'package:abudiyab/modules/home/home_screen/home_screen.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
-import 'package:motion/motion.dart';
 
 
 class ADHomeButton extends StatelessWidget {
@@ -15,15 +14,14 @@ class ADHomeButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context);
-    return Motion(
-      child: Bounce(
+    return Bounce(
         onTap: isBackHandled ? onPressed : () => navigateAndFinish(context,HomeScreen()),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Flexible(child: Text(locale!.goHome.toString(),style: defaultTextStyle(14, FontWeight.w600, Theme.of(context).colorScheme.onPrimary),))],
         ),
-      ),
+
     );
   }
 }

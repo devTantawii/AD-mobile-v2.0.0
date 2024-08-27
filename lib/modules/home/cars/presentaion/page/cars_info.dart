@@ -16,8 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:top_modal_sheet/top_modal_sheet.dart';
 import 'package:widget_zoom/widget_zoom.dart';
 
@@ -103,7 +102,8 @@ class _CarsInformationState extends State<CarsInformation> {
                                 Expanded(
                                   flex: 3,
                                   child: Center(
-                                    child: WidgetZoom(heroAnimationTag: 'tag',
+                                    child: WidgetZoom(
+                                        heroAnimationTag: 'tag',
                                         zoomWidget: Image.network(widget.datum!.photo)),
                                   ),
                                 ),
@@ -379,19 +379,18 @@ class _CarsInformationState extends State<CarsInformation> {
                       child: Bounce(
                         onTap: () {
                           if (widget.filterModel == null) {
-                            pushNewScreen(context,
+                            PersistentNavBarNavigator.pushNewScreen(context,
                                 screen: BranchWithCarScreen(
                                     carModel: widget.datum!));
                           } else {
-                            pushNewScreen(context,
+                            PersistentNavBarNavigator.pushNewScreen(context,
                                 screen: AdditionsScreen(
                                   datum:
                                       widget.datum, /*fromNotCompleted: false,*/
                                 ));
                           }
                         },
-                        child: Motion(
-                          child: Bounce(
+                        child:  Bounce(
                             onTap: () {
                           
                               if (widget.stockStatus != null) {
@@ -483,7 +482,7 @@ class _CarsInformationState extends State<CarsInformation> {
                                                             .toString());
                                                 if (widget.filterModel == null &&
                                                     lookLike == true) {
-                                                  pushNewScreen(context,
+                                                  PersistentNavBarNavigator.pushNewScreen(context,
                                                       screen: BranchWithCarScreen(
                                                           carModel:
                                                               widget.datum!));
@@ -491,7 +490,7 @@ class _CarsInformationState extends State<CarsInformation> {
                                                   Navigator.pop(context);
                                                   if (state is AdditionsSuccess ||
                                                       state is AdditionsInitial) {
-                                                    pushNewScreen(context,
+                                                    PersistentNavBarNavigator.pushNewScreen(context,
                                                         screen: AdditionsScreen(
                                                           datum: widget.datum,
                                                         ));
@@ -568,7 +567,6 @@ class _CarsInformationState extends State<CarsInformation> {
                             child: ADGradientButton(locale.bookNow),
                           ),
                         ),
-                      ),
                     ),
                   ],
                 ),

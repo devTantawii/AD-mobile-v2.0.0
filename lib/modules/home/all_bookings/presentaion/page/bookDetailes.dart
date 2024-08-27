@@ -7,7 +7,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../../core/helpers/helper_fun.dart';
 import '../../../../../language/locale.dart';
 import '../../../../widgets/components/ad_back_button.dart';
@@ -191,7 +191,7 @@ class BookDetails extends StatelessWidget {
                    checkOrderStepModel: BlocProvider.of<AdditionsCubit>(context).stepModel,
                  )):null;
                }else if( bookingData.step==3){
-                 BlocProvider.of<AdditionsCubit>(context).stepModel!=null?pushNewScreen(context, screen: InvoiceNotCompletedUI(
+                 BlocProvider.of<AdditionsCubit>(context).stepModel!=null? PersistentNavBarNavigator.pushNewScreen(context, screen: InvoiceNotCompletedUI(
                    carModel: dataCars,
                    isNotCompletedOrder: true,
                    orderID: bookingData.id.toString(),

@@ -17,7 +17,6 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
 import 'package:pay/pay.dart';
 import '../../../core/constants/langCode.dart';
 import '../../../shared/commponents.dart';
@@ -165,13 +164,12 @@ class _InvoiceUIState extends State<InvoiceUI> {
                                       Theme.of(context).colorScheme.onPrimary,
                                 ))
                               : Container(
-                                  child: Motion(
-                                    child: Bounce(
+                                  child:  Bounce(
                                       onTap: bookNow,
                                       child: ADGradientButton(
                                           locale.bookNow.toString()),
                                     ),
-                                  ),
+
                                 ),
                         );
                       },

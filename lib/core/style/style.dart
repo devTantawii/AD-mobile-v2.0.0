@@ -1,3 +1,4 @@
+import 'package:abudiyab/shared/style/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -45,6 +46,7 @@ ThemeData lightTheme() {
     dialogTheme: DialogTheme(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(16)))),
+
     textTheme: TextTheme(
         labelLarge: GoogleFonts.cairo(
           fontSize: 15.sp,
@@ -77,77 +79,53 @@ ThemeData lightTheme() {
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
-        ),
-        backgroundColor: const Color(0xff6e9ed3).withOpacity(0.8),
+        ), backgroundColor: const Color(0xff6e9ed3).withOpacity(0.8),
         padding: const EdgeInsets.all(16.0),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: const Color(0xff6e9ed3).withOpacity(0.8),
-        shape: RoundedRectangleBorder(
+        foregroundColor: const Color(0xff6e9ed3).withOpacity(0.8), shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
         padding: const EdgeInsets.all(16.0),
       ),
-    ),
-    checkboxTheme: CheckboxThemeData(
-      fillColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff1877F2).withOpacity(0.8);
-        }
-        return null;
-      }),
-    ),
-    radioTheme: RadioThemeData(
-      fillColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff1877F2).withOpacity(0.8);
-        }
-        return null;
-      }),
-    ),
-    switchTheme: SwitchThemeData(
-      thumbColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff1877F2).withOpacity(0.8);
-        }
-        return null;
-      }),
-      trackColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff1877F2).withOpacity(0.8);
-        }
-        return null;
-      }),
-    ),
-    colorScheme: ColorScheme(
+    ), checkboxTheme: CheckboxThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff1877F2).withOpacity(0.8); }
+ return null;
+ }),
+ ), radioTheme: RadioThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff1877F2).withOpacity(0.8); }
+ return null;
+ }),
+ ), switchTheme: SwitchThemeData(
+ thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff1877F2).withOpacity(0.8); }
+ return null;
+ }),
+ trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff1877F2).withOpacity(0.8); }
+ return null;
+ }),
+ ), colorScheme: ColorScheme(
       brightness: Brightness.light,
       primary: Color(0xFF505AC9),
       primaryContainer: const Color(0xffE9E9EA),
       secondary: Color(0xffF08A61),
       secondaryContainer: Color(0xFFCAD3F3),
       surface: Color(0xffFFFFFF),
+      background: Color(0xffFFFFFF),
       error: Color(0xffB00020),
       onPrimary: Color(0xFF505AC9),
       onSecondary: const Color(0xFFF6F5F8),
       onSurface: Color(0xff000000),
+      onBackground: Color(0xffF8F9FC),
       onError: Color(0xffB00020),
     ).copyWith(background: const Color(0xFFF6F5F8)),
   );
@@ -156,10 +134,10 @@ ThemeData lightTheme() {
 ThemeData darkTheme() {
   return ThemeData(
     scaffoldBackgroundColor: const Color(0xff222249),
-    appBarTheme: AppBarTheme(
+    appBarTheme:   AppBarTheme(
       centerTitle: true,
       elevation: 0.0,
-      backgroundColor: Color(0xff1e1e29),
+      backgroundColor:  Color(0xff1e1e29),
       titleTextStyle: TextStyle(
         color: Color(0xffFFFFFF),
         fontWeight: FontWeight.bold,
@@ -169,7 +147,7 @@ ThemeData darkTheme() {
       iconTheme: IconThemeData(color: Color(0xff6e9ed3)),
     ),
     // radioTheme: RadioThemeData(),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme:  BottomNavigationBarThemeData(
       elevation: 0.0,
       backgroundColor: Color(0xff323376),
       enableFeedback: true,
@@ -224,15 +202,13 @@ ThemeData darkTheme() {
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
-        ),
-        backgroundColor: const Color(0xff6e9ed3).withOpacity(0.8),
+        ), backgroundColor: const Color(0xff6e9ed3).withOpacity(0.8),
         padding: const EdgeInsets.all(16.0),
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-        foregroundColor: const Color(0xff6e9ed3).withOpacity(0.8),
-        shape: RoundedRectangleBorder(
+        foregroundColor: const Color(0xff6e9ed3).withOpacity(0.8), shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.0),
         ),
         padding: const EdgeInsets.all(16.0),
@@ -244,65 +220,44 @@ ThemeData darkTheme() {
           Radius.circular(16),
         ),
       ),
-    ),
-    checkboxTheme: CheckboxThemeData(
-      fillColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff6e9ed3).withOpacity(0.8);
-        }
-        return null;
-      }),
-    ),
-    radioTheme: RadioThemeData(
-      fillColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff6e9ed3).withOpacity(0.8);
-        }
-        return null;
-      }),
-    ),
-    switchTheme: SwitchThemeData(
-      thumbColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff6e9ed3).withOpacity(0.8);
-        }
-        return null;
-      }),
-      trackColor:
-          WidgetStateProperty.resolveWith<Color?>((Set<WidgetState> states) {
-        if (states.contains(WidgetState.disabled)) {
-          return null;
-        }
-        if (states.contains(WidgetState.selected)) {
-          return Color(0xff6e9ed3).withOpacity(0.8);
-        }
-        return null;
-      }),
-    ),
-    colorScheme: ColorScheme(
+    ), checkboxTheme: CheckboxThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ ), radioTheme: RadioThemeData(
+ fillColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ ), switchTheme: SwitchThemeData(
+ thumbColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ trackColor: MaterialStateProperty.resolveWith<Color?>((Set<MaterialState> states) {
+ if (states.contains(MaterialState.disabled)) { return null; }
+ if (states.contains(MaterialState.selected)) { return Color(0xff6e9ed3).withOpacity(0.8); }
+ return null;
+ }),
+ ), colorScheme: ColorScheme(
       brightness: Brightness.dark,
       primary: Color(0xff222249),
       primaryContainer: Color(0xffCACACA).withOpacity(0.2),
       secondary: Color(0xffF08A61),
       secondaryContainer: Color(0xffE1E6F8),
       surface: Color(0xff1e1e29),
+      background: Color(0xff1e1e29),
       error: Color(0xffB00020),
       onPrimary: Color(0xffffffff),
       onSecondary: const Color(0xff3a3b55),
       onSurface: Color(0xff000000),
+      onBackground: Color(0xff34345E),
       onError: Color(0xffB00020),
-    ).copyWith(surface: const Color(0xff1e1e29)),
+
+    ).copyWith(background: const Color(0xff1e1e29)),
   );
 }
