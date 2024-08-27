@@ -9,8 +9,7 @@ import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_te
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import 'creat_email_oldcustomer_screan.dart';
 
@@ -35,7 +34,7 @@ class EnterCodeOldCustomerScrean extends StatelessWidget {
               );
             }
             if (state is CodeLoaded) {
-              pushNewScreen(context,
+              PersistentNavBarNavigator.pushNewScreen(context,
                   screen: CreatEmailAndPassOldCustomerScrean());
             }
           },
@@ -94,8 +93,7 @@ class EnterCodeOldCustomerScrean extends StatelessWidget {
                                         child: CircularProgressIndicator
                                             .adaptive(),
                                       )
-                                    : Motion(
-                                      child: Bounce(
+                                    :  Bounce(
                                           onTap: () {
                                             BlocProvider.of<OldCustomerCubit>(
                                                     context)
@@ -109,7 +107,7 @@ class EnterCodeOldCustomerScrean extends StatelessWidget {
                                           locale.send.toString()),
                                                                         ),
                                         ),
-                                    ),
+
                               ],
                             ),
                           ),

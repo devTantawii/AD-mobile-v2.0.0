@@ -5,7 +5,6 @@ import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_te
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
-import 'package:motion/motion.dart';
 
 class BottomSheetContant extends StatefulWidget {
   const BottomSheetContant({Key? key}) : super(key: key);
@@ -97,12 +96,11 @@ class _BottomSheetContantState extends State<BottomSheetContant> {
                 SizedBox(height: 10),
                 SizedBox(
                   height: 45,
-                  child: Motion(
-                    child: Bounce(
+                  child:  Bounce(
                       onTap: () {},
                       child: ADGradientButton(locale!.bookNow),
                     ),
-                  ),
+
                 ),
               ],
             )),

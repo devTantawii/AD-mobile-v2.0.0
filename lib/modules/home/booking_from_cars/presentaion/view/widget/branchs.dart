@@ -56,11 +56,11 @@ class _BranchTileState extends State<BranchTile> {
                     Text(
                         widget.isRecieve
                             ? BlocProvider.of<SearchCubit>(context)
-                                    .selectedReceiveBranch ??
-                                locale!.selectBranch.toString()
+                            .selectedReceiveBranch ??
+                            locale!.selectBranch.toString()
                             : BlocProvider.of<SearchCubit>(context)
-                                    .selectedDriveBranch ??
-                                locale!.selectBranch.toString(),
+                            .selectedDriveBranch ??
+                            locale!.selectBranch.toString(),
                         style: Theme.of(context).textTheme.bodyMedium)
                   ],
                 ),
@@ -86,9 +86,9 @@ class _PopupCard extends StatefulWidget {
 
   const _PopupCard(
       {Key? key,
-      required this.branches,
-      required this.isRecieve,
-      required this.onChanged})
+        required this.branches,
+        required this.isRecieve,
+        required this.onChanged})
       : super(key: key);
 
   @override
@@ -110,39 +110,39 @@ class _PopupCardState extends State<_PopupCard> {
             color: Theme.of(context).scaffoldBackgroundColor,
             elevation: 2,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: widget.branches!.isEmpty
                     ? Text(
-                        locale!.carNotAvailable!,
-                        style: Theme.of(context).textTheme.bodyLarge,
-                      )
+                  locale!.carNotAvailable!,
+                  style: Theme.of(context).textTheme.bodyLarge,
+                )
                     : Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ...widget.branches!
-                              .map(
-                                (branch) => SelectionTile(
-                                    text: branch.text,
-                                    onTap: () {
-                                      if (widget.isRecieve) {
-                                        BlocProvider.of<SearchCubit>(context)
-                                                .selectedReceiveBranch =
-                                            branch.text;
-                                      } else {
-                                        BlocProvider.of<SearchCubit>(context)
-                                            .selectedDriveBranch = branch.text;
-                                      }
-                                      widget.onChanged(true);
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    ...widget.branches!
+                        .map(
+                          (branch) => SelectionTile(
+                          text: branch.text,
+                          onTap: () {
+                            if (widget.isRecieve) {
+                              BlocProvider.of<SearchCubit>(context)
+                                  .selectedReceiveBranch =
+                                  branch.text;
+                            } else {
+                              BlocProvider.of<SearchCubit>(context)
+                                  .selectedDriveBranch = branch.text;
+                            }
+                            widget.onChanged(true);
 
-                                      Navigator.pop(context);
-                                    }),
-                              )
-                              .toList(),
-                        ],
-                      ),
+                            Navigator.pop(context);
+                          }),
+                    )
+                        .toList(),
+                  ],
+                ),
               ),
             ),
           ),

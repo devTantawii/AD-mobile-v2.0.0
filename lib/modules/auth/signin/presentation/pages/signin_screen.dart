@@ -14,7 +14,6 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
 import '../../../../../core/fade_route.dart';
 import '../../../../../shared/style/colors.dart';
 import '../../../../home/all_bookings/presentaion/bloc/allbooking_cubit.dart';

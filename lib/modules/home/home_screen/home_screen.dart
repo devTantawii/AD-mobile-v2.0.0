@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:new_version/new_version.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../all_bookings/presentaion/page/all_booking_screen.dart';
 import '../profile/blocs/profile_cubit/profile_cubit.dart';
@@ -181,29 +181,29 @@ class _HomeScreenState extends State<HomeScreen> {
         controller: _controller,
         screens: _buildScreens(),
         items: _navBarsItems(),
-        confineInSafeArea: true,
+        confineToSafeArea: true,
         backgroundColor: Theme.of(context).brightness==Brightness.light?Colors.white:Color(0xff222249),
         handleAndroidBackButtonPress: true,
         resizeToAvoidBottomInset: true,
         stateManagement: true,
         //navBarHeight: Platform.isIOS?MediaQuery.of(context).size.height * 0.060:MediaQuery.of(context).size.height * 0.080,
-        hideNavigationBarWhenKeyboardShows: true,
-        //margin: Platform.isIOS ? EdgeInsets.all(0) : EdgeInsets.all(20.0),
-        popActionScreens: PopActionScreensType.all,
+        // hideNavigationBarWhenKeyboardShows: true,
+        // //margin: Platform.isIOS ? EdgeInsets.all(0) : EdgeInsets.all(20.0),
+        // popActionScreens: PopActionScreensType.all,
 
         selectedTabScreenContext: (context) {},
-        hideNavigationBar: false,
+        //hideNavigationBar: false,
         decoration: NavBarDecoration(),
-        popAllScreensOnTapOfSelectedTab: true,
-        itemAnimationProperties: ItemAnimationProperties(
-          duration: Duration(milliseconds: 100),
-          // curve: Curves.fastOutSlowIn,
-        ),
-        screenTransitionAnimation: ScreenTransitionAnimation(
-          animateTabTransition: true,
-          // curve: Curves.linear,
-         duration: Duration(milliseconds: 100),
-        ),
+        //popAllScreensOnTapOfSelectedTab: true,
+        // itemAnimationProperties: ItemAnimationProperties(
+        //   duration: Duration(milliseconds: 100),
+        //   // curve: Curves.fastOutSlowIn,
+        // ),
+        // screenTransitionAnimation: ScreenTransitionAnimation(
+        //   animateTabTransition: true,
+        //   // curve: Curves.linear,
+        //  duration: Duration(milliseconds: 100),
+        // ),
         navBarStyle: NavBarStyle.style8,
       ),
     );

@@ -5,7 +5,6 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
 import '../../../../../../../core/helpers/helper_fun.dart';
 import '../../../../../../../language/locale.dart';
 import '../../../../../../../shared/commponents.dart';
@@ -307,8 +306,7 @@ class _NotCompletedOrderState extends State<NotCompletedOrder> {
                                                     ),
                                                   ),
                                                 ),
-                                                Motion(
-                                                  child: Bounce(
+                                               Bounce(
                                                     onTap:() {
                                                        BlocProvider.of<AllBookingCubit>(context).deleteBooking(orderId: bookingData.id,).then((value) => Navigator.pop(context));
                                                     },
@@ -332,7 +330,7 @@ class _NotCompletedOrderState extends State<NotCompletedOrder> {
                                                       ),
                                                     ),
                                                   ),
-                                                ),
+
                                               ],
                                             ),
                                           ],

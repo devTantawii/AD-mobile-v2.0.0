@@ -11,7 +11,7 @@ import 'package:abudiyab/modules/home/profile/page/widget/space.dart';
 import 'package:abudiyab/modules/home/selectLanguage/selectLanguage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../blocs/profile_cubit/profile_cubit.dart';
@@ -67,14 +67,14 @@ class _BoxTileWidgetState extends State<BoxTileWidget> {
               title: locale.myBookings!,
               icon: Assets.layout_booking,
               ontap: () {
-                pushNewScreen(context, screen: AllBookingScreen());
+                PersistentNavBarNavigator.pushNewScreen(context, screen: AllBookingScreen());
               }),
           SpaceWidget(),
           CardTileWidget(
               title: locale.memberShip!.toString(),
               icon: Assets.profile_membership,
               ontap: () {
-                pushNewScreen(context,
+                PersistentNavBarNavigator.pushNewScreen(context,
                     screen: MemberShipScrean(
                       member: widget.profileModel,
                     ));
@@ -84,13 +84,13 @@ class _BoxTileWidgetState extends State<BoxTileWidget> {
               title: locale.favorite.toString(),
               icon: Assets.profile_favorites,
               ontap: () {
-                pushNewScreen(context, screen: Favourites(),withNavBar: false);
+                PersistentNavBarNavigator.pushNewScreen(context, screen: Favourites(),withNavBar: false);
               }),
           CardTileWidget(
               title: locale.privacyPolicy.toString(),
               icon: Assets.profile_privacy,
               ontap: () {
-                pushNewScreen(context, screen: PrivacyPolicyScreen());
+                PersistentNavBarNavigator.pushNewScreen(context, screen: PrivacyPolicyScreen());
               }),
         ]),
         // SizedBox(
@@ -102,7 +102,7 @@ class _BoxTileWidgetState extends State<BoxTileWidget> {
               title: locale.changeLanguage.toString(),
               icon: Assets.profile_language,
               ontap: () {
-                pushNewScreen(context, screen: SelectLanguage());
+                PersistentNavBarNavigator.pushNewScreen(context, screen: SelectLanguage());
               }),
           SpaceWidget(),
           CardTileWidget(title:  locale.logout.toString(), ontap: () => context.read<ProfileCubit>().logOut(),icon: Assets.logout,isLogout: true),

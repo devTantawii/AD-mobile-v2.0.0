@@ -17,7 +17,6 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
 
 import '../../../../../core/helpers/helper/date_helper.dart';
 import '../../../../../service_locator.dart';
@@ -316,12 +315,11 @@ class _EditOrderState extends State<EditOrder> {
                                       ],
                                     ),
                                     SizedBox(height: 20),
-                                    Motion(
-                                      child: Bounce(
+                                    Bounce(
                                           onTap: () => onTap(context),
                                           child:
                                               ADGradientButton(locale.editOrder)),
-                                    )
+
                                   ],
                                 ),
                               ),

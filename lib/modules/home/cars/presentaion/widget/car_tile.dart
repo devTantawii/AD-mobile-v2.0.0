@@ -10,8 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../../core/helpers/helper_fun.dart';
 import '../../../../../shared/commponents.dart';
 import '../../../../auth/signin/presentation/pages/signin_screen.dart';
@@ -71,10 +70,9 @@ class _CarTileState extends State<CarTile> {
         return Stack(
           alignment: AlignmentDirectional.centerStart,
           children: [
-            Motion(
-              child: Bounce(
+           Bounce(
                 onTap: () {
-                  pushNewScreen(context,
+                  PersistentNavBarNavigator.pushNewScreen(context,
                       screen: CarsInformation(
                         datum: widget.cubit.data[widget.index],
                         filterModel: widget.filterModel,
@@ -300,7 +298,6 @@ class _CarTileState extends State<CarTile> {
                   ),
                 ),
               ),
-            ),
             Positioned(
               bottom: MediaQuery.of(context).size.height * 0.02,
               right: locale.bookNow.toString() == "Book Now"
@@ -352,7 +349,7 @@ class _CarTileState extends State<CarTile> {
                                   if (widget.filterModel == null &&
                                       lookLike == true) {
                                     Navigator.pop(context);
-                                    pushNewScreen(context,
+                                    PersistentNavBarNavigator.pushNewScreen(context,
                                         screen: BranchWithCarScreen(
                                             carModel: widget
                                                 .cubit.data[widget.index]));
@@ -360,7 +357,7 @@ class _CarTileState extends State<CarTile> {
                                     Navigator.pop(context);
                                     if (state is AdditionsSuccess ||
                                         state is AdditionsInitial) {
-                                      pushNewScreen(context,
+                                      PersistentNavBarNavigator.pushNewScreen(context,
                                           screen: AdditionsScreen(
                                             datum:
                                                 widget.cubit.data[widget.index],
@@ -423,18 +420,19 @@ class _CarTileState extends State<CarTile> {
                   }
                 },
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.045,
-                  width: MediaQuery.of(context).size.width * 0.11,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6.0),
-                      color: Theme.of(context).colorScheme.primary),
-                  child: Center(
-                    child: Icon(
-                      Icons.arrow_forward_outlined,
-                      color: Colors.white,
-                      size: 28.sp,
-                    ),
-                  ),
+                  // TODO: this Arrow button to go booking direct
+                  // height: MediaQuery.of(context).size.height * 0.045,
+                  // width: MediaQuery.of(context).size.width * 0.11,
+                  // decoration: BoxDecoration(
+                  //     borderRadius: BorderRadius.circular(6.0),
+                  //     color: Theme.of(context).colorScheme.primary),
+                  // child: Center(
+                  //   child: Icon(
+                  //     Icons.arrow_forward_outlined,
+                  //     color: Colors.white,
+                  //     size: 28.sp,
+                  //   ),
+                  // ),
                 ),
               ),
             ),

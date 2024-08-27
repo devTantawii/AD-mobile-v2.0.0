@@ -3,7 +3,6 @@ import 'package:abudiyab/modules/home/home_screen/home_screen.dart';
 import 'package:abudiyab/shared/commponents.dart';
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
-import 'package:motion/motion.dart';
 
 
 class AdHomeButton extends StatelessWidget {
@@ -18,8 +17,7 @@ class AdHomeButton extends StatelessWidget {
     final locale = AppLocalizations.of(context);
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Motion(
-        child: Bounce(
+      child:  Bounce(
           onTap: isBackHandled ? onPressed : () =>
               navigateAndFinish(context, HomeScreen()),
           child: Container(
@@ -39,7 +37,7 @@ class AdHomeButton extends StatelessWidget {
                 )),
           ),
         ),
-      ),
+
     );
   }
 }

@@ -5,7 +5,6 @@ import 'package:abudiyab/service_locator.dart';
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
 
 import '../all_cars_screen.dart';
 
@@ -142,8 +141,7 @@ class FilterWidget extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 10),
-                    Motion(
-                      child: Bounce(
+                     Bounce(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (_) => AllCarsScreen(fromFilter: true)));
@@ -164,7 +162,6 @@ class FilterWidget extends StatelessWidget {
                           )),
                         ),
                       ),
-                    )
                   ],
                 ),
               ),

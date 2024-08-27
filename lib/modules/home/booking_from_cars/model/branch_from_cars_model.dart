@@ -19,8 +19,8 @@ class BranchFromCarModel {
       );
 
   Map<String, dynamic> toMap() => {
-        "data": List<dynamic>.from(data.map((x) => x.toMap())),
-      };
+    "data": List<dynamic>.from(data.map((x) => x.toMap())),
+  };
 }
 
 class Datum {
@@ -37,16 +37,16 @@ class Datum {
   int canBookToday;
 
   factory Datum.fromMap(Map<String, dynamic> json) => Datum(
-        id: json["id"],
-        text: json["text"],
-        image: json["image"],
-        canBookToday: json["can_book_today"],
-      );
+    id: json["id"],
+    text: json["text"],
+    image: json["image"],
+    canBookToday: json["can_book_today"],
+  );
 
   Map<String, dynamic> toMap() => {
-        "id": id,
-        "text": text,
-        "image": image,
-        "can_book_today": canBookToday,
-      };
+    "id": id,
+    "text": text,
+    "image": image,
+    "can_book_today": canBookToday,
+  };
 }

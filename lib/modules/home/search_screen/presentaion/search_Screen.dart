@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../all_branching/bloc/all_branching_cubit.dart';
 import '../../profile/blocs/profile_cubit/profile_cubit.dart';
 import '../blocs/headlines_bloc/headlines_cubit.dart';
@@ -85,8 +85,7 @@ class _SearchState extends State<SearchScreen> {
           // }
           ///-----------When Offers Day ------------------
           if (BlocProvider.of<SearchCubit>(context).message == '1' &&
-              isAlertboxOpened == true &&
-              isAlertboxOpenedz == false) {
+              isAlertboxOpened == true && isAlertboxOpenedz == false) {
             isAlertboxOpenedz = true;
             showAlert(
               context,
@@ -118,35 +117,20 @@ class _SearchState extends State<SearchScreen> {
                 body: state.props.first.toString());
           } else if (state is SearchValidate) {
             final triggeredBranchModel = context
-                .read<SearchCubit>()
-                .branchesData
-                .where((element) =>
-                    element.name ==
-                    BlocProvider.of<SearchCubit>(context).selectedReceiveBranch)
-                .first;
+                .read<SearchCubit>().branchesData.where((element) => element.name ==
+                    BlocProvider.of<SearchCubit>(context).selectedReceiveBranch).first;
             final filterModel = FilterModel(
               selectedBranch: triggeredBranchModel,
-              receiveTimeValue: BlocProvider.of<SearchCubit>(context)
-                  .receiveTimeValue
-                  .hour
-                  .toString(),
-              driveTimeValue: BlocProvider.of<SearchCubit>(context)
-                  .driveTimeValue
-                  .hour
-                  .toString(),
-              receiveDateValue: BlocProvider.of<SearchCubit>(context)
-                  .receiveDateValue
-                  .toString(),
-              driveDateValue: BlocProvider.of<SearchCubit>(context)
-                  .driveDateValue
-                  .toString(),
+              receiveTimeValue: BlocProvider.of<SearchCubit>(context).receiveTimeValue.hour.toString(),
+              driveTimeValue: BlocProvider.of<SearchCubit>(context).driveTimeValue.hour.toString(),
+              receiveDateValue: BlocProvider.of<SearchCubit>(context).receiveDateValue.toString(),
+              driveDateValue: BlocProvider.of<SearchCubit>(context).driveDateValue.toString(),
             );
-            await BlocProvider.of<CarsCubit>(context)
-                .getAllCars(1,
-                    branchId: triggeredBranchModel.id,
-                    castClass: BlocProvider.of<ProfileCubit>(context).custClass.toString())
-                .then((value) => pushNewScreen(context,
-                    screen: CarsScreen(filterModel: filterModel)));
+            await BlocProvider.of<CarsCubit>(context).getAllCars(
+                1,
+                branchId: triggeredBranchModel.id,
+                castClass: BlocProvider.of<ProfileCubit>(context).custClass.toString())
+                .then((value) => PersistentNavBarNavigator.pushNewScreen(context, screen: CarsScreen(filterModel: filterModel)));
           } else if (state is SearchCheckLoading) {
             HelperFunctions.showFlashBar(
               context: context,

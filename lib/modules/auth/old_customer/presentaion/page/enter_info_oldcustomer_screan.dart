@@ -6,11 +6,9 @@ import 'package:abudiyab/modules/home/profile/page/widget/container_tile.dart';
 import 'package:abudiyab/modules/widgets/components/ad_gradient_btn.dart';
 import 'package:abudiyab/modules/widgets/components/ad_prim_text_form/ad_prim_text_form.dart';
 import 'package:abudiyab/shared/commponents.dart';
-import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
 import '../../../../widgets/components/ad_curve.dart';
 import 'enter_code_oldcustomer_screan.dart';
@@ -41,7 +39,7 @@ class EnterInfoOldCustromerScrean extends StatelessWidget {
               );
             }
             if (state is ForgetLoaded) {
-              pushNewScreen(context, screen: EnterCodeOldCustomerScrean());
+              PersistentNavBarNavigator.pushNewScreen(context, screen: EnterCodeOldCustomerScrean());
             }
           },
           builder: (context, state) {
@@ -88,22 +86,20 @@ class EnterInfoOldCustromerScrean extends StatelessWidget {
                                         child: CircularProgressIndicator
                                             .adaptive(),
                                       )
-                                    : Motion(
-                                      child: Bounce(
-                                          onTap: () {
-                                            BlocProvider.of<OldCustomerCubit>(
-                                                    context)
-                                                .forgetOldCustomer(
-                                                    phone: phoneControler.text,
-                                                    id: idControler.text);
-                                          },
-                                          child: Container(
-                                            width: MediaQuery.of(context).size.width*0.6,
-                                            child: ADGradientButton(
-                                                locale.send.toString()),
-                                          ),
+                                    : InkWell(
+                                        onTap: () {
+                                          BlocProvider.of<OldCustomerCubit>(
+                                                  context)
+                                              .forgetOldCustomer(
+                                                  phone: phoneControler.text,
+                                                  id: idControler.text);
+                                        },
+                                        child: Container(
+                                          width: MediaQuery.of(context).size.width*0.6,
+                                          child: ADGradientButton(
+                                              locale.send.toString()),
                                         ),
-                                    ),
+                                      ),
                               ],
                             ),
                           ),

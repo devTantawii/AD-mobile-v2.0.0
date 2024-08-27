@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../profile/blocs/profile_cubit/profile_cubit.dart';
 import '../../profile/data/models/profile_model.dart';
 import 'bloc/all_cars_cubit/all_cars_cubit.dart';
@@ -134,7 +134,7 @@ class _AllCarsScreenState extends State<AllCarsScreen>
               ? SizedBox()
               : IconButton(
                   onPressed: () {
-                    pushNewScreen(context, screen: FiltersCars());
+                    PersistentNavBarNavigator.pushNewScreen(context, screen: FiltersCars());
                   },
                   icon: SvgPicture.asset(
                     Assets.icon_filter,

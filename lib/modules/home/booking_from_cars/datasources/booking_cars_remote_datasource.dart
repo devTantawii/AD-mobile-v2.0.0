@@ -22,7 +22,7 @@ class BookingFromCarsRemoteDataSource {
       );
       final dataBranch = json.decode(response.data);
       final BranchFromCarModel branchModel =
-          BranchFromCarModel.fromMap(dataBranch);
+      BranchFromCarModel.fromMap(dataBranch);
       return branchModel;
     } on DioError catch (dioError) {
       throw Failure.fromDioError(dioError);

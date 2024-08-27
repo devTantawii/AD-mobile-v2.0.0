@@ -2,7 +2,6 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:abudiyab/language/locale.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:motion/motion.dart';
 import '../../../shared/commponents.dart';
 import '../../home/search_screen/blocs/search_bloc/search_cubit.dart';
 import '../../home/search_screen/presentaion/widget/region_tile.dart';
@@ -36,8 +35,7 @@ class CurveWidget extends StatelessWidget {
            top: size.height*0.05,
            child:  Row(
           children: [
-            Motion(
-              child: Bounce(
+             Bounce(
                 onTap: () {Navigator.of(context).pop();},
                 child: Container(
                   padding: EdgeInsets.only(
@@ -49,7 +47,7 @@ class CurveWidget extends StatelessWidget {
                     color: Color(0xffFDFDFD),
                   ),
                 ),
-              ),
+
             ),
             Text(locale.back.toString(),style: defaultTextStyle(14, FontWeight.w600,  Color(0xffFDFDFD)),)],
         )):Container(),

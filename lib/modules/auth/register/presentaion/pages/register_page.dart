@@ -14,7 +14,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:motion/motion.dart';
 import '../../../../../core/fade_route.dart';
 import '../../../../../service_locator.dart';
 import '../../../signin/presentation/pages/signin_screen.dart';
@@ -237,8 +236,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                ),
                              ),
                              SizedBox(height: 10.sp),
-                             Motion(
-                               child: Bounce(
+                              Bounce(
                                  onTap: () {
                                    showDialog(
                                        context: context,
@@ -340,7 +338,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                      ],
                                    ),
                                  ),
-                               ),
                              ),
                              FittedBox(
                                child: Row(
@@ -362,8 +359,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                            }),
                                      ),
                                    ),
-                                   Motion(
-                                     child: Bounce(
+                                    Bounce(
                                        onTap: () {
                                          Navigator.of(context).push(MaterialPageRoute(
                                              builder: (_) => PrivacyPolicyScreen()));
@@ -376,7 +372,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                          ),
                                        ),
                                      ),
-                                   )
+
                                  ],
                                ),
                              ),
@@ -457,8 +453,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                  SizedBox(
                                    width: 5,
                                  ),
-                                 Motion(
-                                   child: Bounce(
+                                     Bounce(
                                      onTap: () {
                                        Navigator.of(context).pushAndRemoveUntil(
                                          FadeRoute(
@@ -476,7 +471,6 @@ class _RegisterPageState extends State<RegisterPage> {
                                        ),
                                      ),
                                    ),
-                                 ),
 
                                ],
                              ),

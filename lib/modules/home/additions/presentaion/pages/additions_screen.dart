@@ -11,8 +11,7 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../../../core/helpers/helper_fun.dart';
 import 'package:abudiyab/modules/home/all_bookings/data/model/booking_model.dart';
 import '../../../../auth/signin/presentation/pages/signin_screen.dart';
@@ -151,7 +150,7 @@ class _AdditionsScreenState extends State<AdditionsScreen>
                             if (state.error.contains("not Authanticated"))
                               Bounce(
                                   onTap: () async {
-                                    var data = await pushNewScreen(
+                                    var data = await PersistentNavBarNavigator.pushNewScreen(
                                       context,
                                       screen:
                                       SignInScreen(pushAddition: true),

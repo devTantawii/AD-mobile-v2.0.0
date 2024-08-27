@@ -13,8 +13,7 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:motion/motion.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 import '../../../core/constants/langCode.dart';
 import '../../widgets/components/ad_gradient_btn.dart';
 import '../additions/presentaion/blocs/addition_cubit/additions_cubit.dart';
@@ -121,8 +120,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                                     }),
                               ),
                             ),
-                            Motion(
-                              child: Bounce(
+                            Bounce(
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
                                       builder: (_) => PrivacyPolicyScreen()));
@@ -137,7 +135,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                                   ),
                                 ),
                               ),
-                            ),
+
                           ],
                         ),
                       ],
@@ -171,7 +169,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                                 context.read<AdditionsCubit>().stepModel!.order!.additions.toString().isEmpty;
                                 await BlocProvider.of<InvoiceCubit>(context).getInvoiceNotCompletedOrder(context,widget.orderId.toString());
                                 await context.read<AdditionsCubit>().checkOrderStep(orderId: widget.orderId);
-                                 pushNewScreen(
+                                PersistentNavBarNavigator.pushNewScreen(
                                     context,
                                     withNavBar: false,
                                     screen:InvoiceNotCompletedUI(
@@ -180,7 +178,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                                       isNotCompletedOrder: widget.isNotCompleted==true?true:false,
                                     ));
                               }else{
-                                pushNewScreen(
+                                PersistentNavBarNavigator.pushNewScreen(
                                     context,
                                     withNavBar: false,
                                     screen:InvoiceUI(
@@ -207,7 +205,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                               }
                               else{
                                 if(widget.isNotCompleted==true){
-                                  pushNewScreen(
+                                  PersistentNavBarNavigator.pushNewScreen(
                                       context,
                                       withNavBar: false,
                                       screen:InvoiceNotCompletedUI(
@@ -217,7 +215,7 @@ class _PaymentMethodsScreenState extends State<PaymentMethodsScreen> {
                                       ));
 
                                 }else{
-                                  pushNewScreen(
+                                  PersistentNavBarNavigator.pushNewScreen(
                                       context,
                                       withNavBar: false,
                                       screen: InvoiceUI(

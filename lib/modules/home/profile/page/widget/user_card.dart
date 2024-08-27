@@ -1,7 +1,6 @@
 import 'package:abudiyab/modules/home/profile/data/models/profile_model.dart';
 import 'package:bounce/bounce.dart';
 import 'package:flutter/material.dart';
-import 'package:motion/motion.dart';
 
 import '../profile.dart';
 
@@ -21,8 +20,7 @@ class _CardUserState extends State<CardUser> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Motion(
-      child: Bounce(
+    return  Bounce(
         onTap: () {
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (_) => MyProfile()));
@@ -208,7 +206,7 @@ class _CardUserState extends State<CardUser> {
             ],
           ),
         ),
-      ),
+
     );
   }
 }
