@@ -420,7 +420,7 @@ class _CarTileState extends State<CarTile> {
                   }
                 },
                 child: Container(
-                  // TODO: this Arrow button to go booking direct
+                  // TODO: this Arrow button to go booking direct we hidden now
                   // height: MediaQuery.of(context).size.height * 0.045,
                   // width: MediaQuery.of(context).size.width * 0.11,
                   // decoration: BoxDecoration(
