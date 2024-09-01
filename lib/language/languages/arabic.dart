@@ -85,7 +85,7 @@ Map<String, String> arabic() {
     "continueAsGuest": "المتابعة كزائر",
     "reciveDate": "وقت الاستلام",
     "deliveryDate": "وقت التسليم",
-    "checkUsernameAndPassword": "برجاء فخص البريد ورقم السر",
+    "checkUsernameAndPassword": "برجاء فحص البريد ورقم السر",
     "allDays": "يوميآ",
     "createEmailAndPassword": "برجاء انشاء حساب",
     "pleaseCreateNewAccount": "إنشاء حساب جديد",
