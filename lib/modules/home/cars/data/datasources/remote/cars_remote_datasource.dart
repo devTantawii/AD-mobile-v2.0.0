@@ -33,13 +33,7 @@ class CarsRemoteDataSource {
       final Response response = await _dio.get(
         branchId == null
             ? mainApi + allCars + "?page=$pageNumber&cust_class=$castClass"
-            : mainApi +
-                carsByBranch +
-                "$branchId" +
-                carsByPages2 +
-                "$pageNumber" +
-                custClass +
-                "$castClass",
+            : mainApi + carsByBranch + "$branchId" + carsByPages2 + "$pageNumber" + custClass + "$castClass",
         //   queryParameters: {
         //   if (availableOnly != "null" && availableOnly!) 'available': 1,
         // },

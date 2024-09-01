@@ -163,7 +163,6 @@ class _CardTopHeadlinesState extends State<CardTopHeadlines> {
 }
 
 // import 'dart:async';
-//
 // import 'package:abudiyab/modules/home/search_screen/blocs/headlines_bloc/headlines_cubit.dart';
 // import 'package:abudiyab/modules/home/search_screen/blocs/headlines_bloc/headlines_state.dart';
 // import 'package:abudiyab/modules/home/search_screen/data/models/slider_model.dart';
