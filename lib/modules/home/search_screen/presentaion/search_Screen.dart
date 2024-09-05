@@ -16,6 +16,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
+import '../../../widgets/components/countdown_widget.dart';
+import '../../../widgets/components/dateRange.dart';
 import '../../all_branching/bloc/all_branching_cubit.dart';
 import '../../profile/blocs/profile_cubit/profile_cubit.dart';
 import '../blocs/headlines_bloc/headlines_cubit.dart';
@@ -47,6 +49,7 @@ class _SearchState extends State<SearchScreen> {
     BlocProvider.of<ProfileCubit>(context).getProfile();
     getOffers();
     getRegions();
+
     super.initState();
 
   }

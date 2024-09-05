@@ -36,7 +36,7 @@ const String orderStepOnePath = mainApi + "/orders/step1";
 const String invoicePath = mainApi + "/orders/step2";
 const String paymentPath = mainApi + "/orders/step3";
 const String checkSteps = mainApi + "/orders/check";
-////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
 
 const String dateCheckPoint = mainApi + "/available/time";
 const String favourite = mainApi + "/favorite/";

@@ -48,28 +48,28 @@ class MemberShipScrean extends StatelessWidget {
                           InfoMemnerShip(
                             title: locale.rentalDiscount,
                             data: "${member.membership!.rentalDiscount} %",
-                            svgPic: 'assets/images/rentalDiscount.svg',
+                            svgPic: 'assets/icons/rentalDiscount.svg',
                           ),
                           InfoMemnerShip(
                             title: locale.allowedKilos,
                             data: "${member.membership!.allowedKilos} KM",
-                            svgPic: 'assets/images/allowedKilos.svg',
+                            svgPic: 'assets/icons/allowedKilos.svg',
                           ),
                           InfoMemnerShip(
                             title: locale.extraHours,
                             data: member.membership!.extraHours.toString(),
-                            svgPic: 'assets/images/extraHours.svg',
+                            svgPic: 'assets/icons/extraHours.svg',
                           ),
                           InfoMemnerShip(
                             title: locale.regionsDiscount,
                             data:
                                 "${member.membership!.deliveryDiscountRegions} %",
-                            svgPic: 'assets/images/regionsDiscount.svg',
+                            svgPic: 'assets/icons/regionsDiscount.svg',
                           ),
                           InfoMemnerShip(
                             title: locale.ratioPoints,
                             data: member.membership!.ratioPoints.toString(),
-                            svgPic: 'assets/images/ratioPoints.svg',
+                            svgPic: 'assets/icons/ratioPoints.svg',
                           ),
                         ],
                       )

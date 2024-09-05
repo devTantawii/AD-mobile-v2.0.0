@@ -473,7 +473,7 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
           ),
           Expanded(
             child: SvgPicture.asset(
-              'assets/images/Calendares.svg',
+              'assets/icons/Calendares.svg',
             ),
           ),
         ],
