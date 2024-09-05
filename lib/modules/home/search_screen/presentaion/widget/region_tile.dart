@@ -180,7 +180,7 @@ class _RegionTileState extends State<RegionTile> {
                               child: Text(
                                 widget.regions![index].name.toString(),
                                 style: TextStyle(
-                                    fontSize: 14.sp,
+                                    fontSize: 12.sp,
                                     fontWeight: FontWeight.w500,
                                     color: Theme.of(context).brightness ==
                                             Brightness.light

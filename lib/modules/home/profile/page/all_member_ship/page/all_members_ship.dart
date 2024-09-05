@@ -78,33 +78,33 @@ class AllMemberShip extends StatelessWidget {
                                           title: locale.rentalDiscount,
                                           data:
                                               "${state.allMember.data[index].rentalDiscount} %",
-                                          svgPic: 'assets/images/rentalDiscount.svg',
+                                          svgPic: 'assets/icons/rentalDiscount.svg',
                                         ),
                                         InfoMemnerShip(
                                           title: locale.allowedKilos,
                                           data:
                                               "${state.allMember.data[index].allowedKilos} KM",
-                                          svgPic: 'assets/images/allowedKilos.svg',
+                                          svgPic: 'assets/icons/allowedKilos.svg',
                                         ),
                                         InfoMemnerShip(
                                           title: locale.extraHours,
                                           data: state
                                               .allMember.data[index].extraHours
                                               .toString(),
-                                          svgPic: 'assets/images/extraHours.svg',
+                                          svgPic: 'assets/icons/extraHours.svg',
                                         ),
                                         InfoMemnerShip(
                                           title: locale.regionsDiscount,
                                           data:
                                               "${state.allMember.data[index].deliveryDiscountRegions} %",
-                                          svgPic: 'assets/images/regionsDiscount.svg',
+                                          svgPic: 'assets/icons/regionsDiscount.svg',
                                         ),
                                         InfoMemnerShip(
                                           title: locale.ratioPoints,
                                           data: state
                                               .allMember.data[index].ratioPoints
                                               .toString(),
-                                          svgPic: 'assets/images/ratioPoints.svg',
+                                          svgPic: 'assets/icons/ratioPoints.svg',
                                         ),
                                       ],
                                     )

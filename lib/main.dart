@@ -12,6 +12,7 @@ import 'core/init_app.dart';
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await InitializeApp.run();
@@ -21,7 +22,8 @@ Future<void> main() async{
       statusBarIconBrightness: Brightness.dark,
     ),
   );
-  ///----------------StartFirebase Code -------------------
+
+  ///-----------StartFirebase Code -----
   if (Platform.isIOS) {
     await Firebase.initializeApp(
       name: 'abudiyab',
