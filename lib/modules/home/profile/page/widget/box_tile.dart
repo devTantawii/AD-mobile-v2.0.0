@@ -29,8 +29,8 @@ class BoxTileWidget extends StatefulWidget {
 class _BoxTileWidgetState extends State<BoxTileWidget> {
   openWhatsApp() async {
     var whatsapp = "966557492493";
-    Uri whatsappURlAndroid =
-        Uri.parse("whatsapp://send?phone=" + whatsapp + "&text=مرحبا بك في ابو دياب ");
+    Uri whatsappURlAndroid = Uri.parse(
+        "whatsapp://send?phone=" + whatsapp + "&text=مرحبا بك في ابو دياب ");
     Uri whatappURLIos =
         Uri.parse("https://wa.me/$whatsapp?text=${Uri.parse("اطلب المساعده")}");
 
@@ -60,16 +60,15 @@ class _BoxTileWidgetState extends State<BoxTileWidget> {
     var locale = AppLocalizations.of(context)!;
     return Column(
       children: [
-        ContainerTileWidget(
-            widgets:[
-          SpaceWidget(),
+        ContainerTileWidget(widgets: [
+          //SpaceWidget(),
           CardTileWidget(
               title: locale.myBookings!,
               icon: Assets.layout_booking,
               ontap: () {
-                PersistentNavBarNavigator.pushNewScreen(context, screen: AllBookingScreen());
+                PersistentNavBarNavigator.pushNewScreen(context,
+                    screen: AllBookingScreen());
               }),
-          SpaceWidget(),
           CardTileWidget(
               title: locale.memberShip!.toString(),
               icon: Assets.profile_membership,
@@ -79,36 +78,37 @@ class _BoxTileWidgetState extends State<BoxTileWidget> {
                       member: widget.profileModel,
                     ));
               }),
-          SpaceWidget(),
           CardTileWidget(
               title: locale.favorite.toString(),
               icon: Assets.profile_favorites,
               ontap: () {
-                PersistentNavBarNavigator.pushNewScreen(context, screen: Favourites(),withNavBar: false);
+                PersistentNavBarNavigator.pushNewScreen(context,
+                    screen: Favourites(), withNavBar: false);
               }),
           CardTileWidget(
               title: locale.privacyPolicy.toString(),
               icon: Assets.profile_privacy,
               ontap: () {
-                PersistentNavBarNavigator.pushNewScreen(context, screen: PrivacyPolicyScreen());
+                PersistentNavBarNavigator.pushNewScreen(context,
+                    screen: PrivacyPolicyScreen());
               }),
-        ]),
-        // SizedBox(
-        //   height: MediaQuery.of(context).size.height * 0.01,
-        // ),
-        ContainerTileWidget(
-            widgets: [
           CardTileWidget(
               title: locale.changeLanguage.toString(),
               icon: Assets.profile_language,
               ontap: () {
-                PersistentNavBarNavigator.pushNewScreen(context, screen: SelectLanguage());
+                PersistentNavBarNavigator.pushNewScreen(context,
+                    screen: SelectLanguage());
               }),
+          CardTileWidget(
+              title: locale.logout.toString(),
+              ontap: () => context.read<ProfileCubit>().logOut(),
+              icon: Assets.logout,
+              isLogout: true),
           SpaceWidget(),
-          CardTileWidget(title:  locale.logout.toString(), ontap: () => context.read<ProfileCubit>().logOut(),icon: Assets.logout,isLogout: true),
-          SpaceWidget(),
-
         ]),
+        // SizedBox(
+        //   height: MediaQuery.of(context).size.height * 0.01,
+        // ),
       ],
     );
   }

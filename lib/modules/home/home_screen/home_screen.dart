@@ -172,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       resizeToAvoidBottomInset: true,
       extendBody: true,
       body: PersistentTabView(
@@ -184,7 +184,6 @@ class _HomeScreenState extends State<HomeScreen> {
         confineToSafeArea: true,
         backgroundColor: Theme.of(context).brightness==Brightness.light?Colors.white:Color(0xff222249),
         handleAndroidBackButtonPress: true,
-        resizeToAvoidBottomInset: true,
         stateManagement: true,
         //navBarHeight: Platform.isIOS?MediaQuery.of(context).size.height * 0.060:MediaQuery.of(context).size.height * 0.080,
         // hideNavigationBarWhenKeyboardShows: true,

@@ -67,7 +67,8 @@ class _MyProfileState extends State<MyProfile> {
           if (state is ProfileFailed) {
           } else if (state is ProfileLogout) {
             BlocProvider.of<AllBookingCubit>(context).booking = null;
-            PersistentNavBarNavigator.pushNewScreen(context, screen: SignInScreen(), withNavBar: false);
+            PersistentNavBarNavigator.pushNewScreen(context,
+                screen: SignInScreen(), withNavBar: false);
           }
         },
         builder: (context, state) {
@@ -143,41 +144,56 @@ class _MyProfileState extends State<MyProfile> {
                       state.profileModel.name!,
                       style: Theme.of(context).textTheme.labelLarge,
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        PersistentNavBarNavigator.pushNewScreen(context,
-                            screen: EditProfile(
-                              profileModel: state.profileModel,
-                            ));
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SvgPicture.asset(
-                            Assets.icon_edits,
-                            color:
-                                Theme.of(context).brightness == Brightness.light
-                                    ? Theme.of(context).colorScheme.primary
-                                    : Color(0xffF08A61),
-                          ),
-                          SizedBox(
-                            width: size.width * 0.01,
-                          ),
-                          Text(
-                            locale.editProfile.toString(),
-                            style: defaultTextStyle(
-                              14,
-                              FontWeight.w600,
-                              Theme.of(context).brightness == Brightness.light
-                                  ? Theme.of(context).colorScheme.primary
-                                  : Color(0xffF08A61),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    // GestureDetector(
+                    //   onTap: () {
+                    //     PersistentNavBarNavigator.pushNewScreen(context,
+                    //         screen: EditProfile(
+                    //           profileModel: state.profileModel,
+                    //         ));
+                    //   },
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       SvgPicture.asset(
+                    //         Assets.icon_edits,
+                    //         color:
+                    //             Theme.of(context).brightness == Brightness.light
+                    //                 ? Theme.of(context).colorScheme.primary
+                    //                 : Color(0xffF08A61),
+                    //       ),
+                    //       SizedBox(
+                    //         width: size.width * 0.01,
+                    //       ),
+                    //       Text(
+                    //         locale.editProfile.toString(),
+                    //         style: defaultTextStyle(
+                    //           14,
+                    //           FontWeight.w600,
+                    //           Theme.of(context).brightness == Brightness.light
+                    //               ? Theme.of(context).colorScheme.primary
+                    //               : Color(0xffF08A61),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
+
                     Column(
                       children: [
+                        // Edit button for the profile
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: CardTileWidget(
+                              title: locale.editProfile.toString(),
+                              icon: Assets.icon_edits,
+                              ontap: () {
+                                PersistentNavBarNavigator.pushNewScreen(context,
+                                    screen: EditProfile(
+                                      profileModel: state.profileModel,
+                                    ));
+                              }),
+                        ),
+
                         BoxTileWidget(profileModel: state.profileModel),
                         SizedBox(height: safeHeight * 0.02),
                         state.profileModel.deleteStatus == "1"
@@ -293,7 +309,9 @@ class _MyProfileState extends State<MyProfile> {
                                 ),
                               )
                             : Container(),
-                        SizedBox(height: 24,),
+                        SizedBox(
+                          height: 24,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -311,8 +329,7 @@ class _MyProfileState extends State<MyProfile> {
                                     throw 'Could not launch $url';
                                   }
                                 },
-                                child: SvgPicture.asset(
-                                    Assets.icon_facebook,
+                                child: SvgPicture.asset(Assets.icon_facebook,
                                     width: MediaQuery.of(context).size.width *
                                         0.1),
                               ),
@@ -331,8 +348,7 @@ class _MyProfileState extends State<MyProfile> {
                                       throw 'Could not launch $url';
                                     }
                                   },
-                                  child: SvgPicture.asset(
-                                      Assets.icon_linkedIn,
+                                  child: SvgPicture.asset(Assets.icon_linkedIn,
                                       width: MediaQuery.of(context).size.width *
                                           0.1)),
                             ),
@@ -350,8 +366,7 @@ class _MyProfileState extends State<MyProfile> {
                                     throw 'Could not launch $url';
                                   }
                                 },
-                                child: SvgPicture.asset(
-                                    Assets.icon_twitter,
+                                child: SvgPicture.asset(Assets.icon_twitter,
                                     width: MediaQuery.of(context).size.width *
                                         0.1),
                               ),
@@ -366,8 +381,7 @@ class _MyProfileState extends State<MyProfile> {
                                     throw 'Could not launch $url';
                                   }
                                 },
-                                child: SvgPicture.asset(
-                                    Assets.icon_whatsApp,
+                                child: SvgPicture.asset(Assets.icon_whatsApp,
                                     width: MediaQuery.of(context).size.width *
                                         0.1)),
                           ],
@@ -431,8 +445,9 @@ class _MyProfileState extends State<MyProfile> {
                               ),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 3),
-                                child:
-                                    SvgPicture.asset(Assets.icon_login,),
+                                child: SvgPicture.asset(
+                                  Assets.icon_login,
+                                ),
                               ),
                             ),
                             Text(
@@ -465,7 +480,8 @@ class _MyProfileState extends State<MyProfile> {
                               child: Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 3),
                                 child: SvgPicture.asset(
-                                    Assets.icon_addAccount,),
+                                  Assets.icon_addAccount,
+                                ),
                               ),
                             ),
                             Text(
@@ -484,14 +500,16 @@ class _MyProfileState extends State<MyProfile> {
                     title: locale.changeLanguage.toString(),
                     icon: Assets.profile_language,
                     ontap: () {
-                      PersistentNavBarNavigator.pushNewScreen(context, screen: SelectLanguage());
+                      PersistentNavBarNavigator.pushNewScreen(context,
+                          screen: SelectLanguage());
                     }),
                 SpaceWidget(),
                 CardTileWidget(
                     title: locale.privacyPolicy.toString(),
                     icon: Assets.profile_privacy,
                     ontap: () {
-                      PersistentNavBarNavigator.pushNewScreen(context, screen: PrivacyPolicyScreen());
+                      PersistentNavBarNavigator.pushNewScreen(context,
+                          screen: PrivacyPolicyScreen());
                     }),
                 SpaceWidget(),
                 // CardTileWidget(
