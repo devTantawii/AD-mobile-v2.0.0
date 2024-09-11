@@ -9,21 +9,21 @@ import 'bloc_providers.dart';
 import 'core/constants/langCode.dart';
 import 'core/init_app.dart';
 
-
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
 final FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
 
-Future<void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await InitializeApp.run();
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      statusBarColor:  Colors.transparent,
+      statusBarColor: Colors.transparent,
       statusBarIconBrightness: Brightness.dark,
     ),
   );
 
-  ///-----------StartFirebase Code -----
+  /// ----------- StartFirebase Code -----------------
   if (Platform.isIOS) {
     await Firebase.initializeApp(
       name: 'abudiyab',
@@ -35,35 +35,39 @@ Future<void> main() async{
       ),
     );
     firebaseMessaging.requestPermission(
-      alert:true,
-      announcement:false,
-      badge:true,
+      alert: true,
+      announcement: false,
+      badge: true,
       carPlay: false,
       criticalAlert: false,
       provisional: false,
       sound: true,
     );
-  }else{
+  } else {
     await Firebase.initializeApp();
   }
-  await Future.delayed(Duration(seconds:2));
+  await Future.delayed(Duration(seconds: 2));
   //String ? fireToken;
-  if(Platform.isIOS){
+  if (Platform.isIOS) {
     await Future<void>.delayed(
-      const Duration(seconds: 3,),
+      const Duration(
+        seconds: 3,
+      ),
     );
     await FirebaseMessaging.instance.getAPNSToken().then((value) {
       deviceToken = value;
+      print("FCM token1: $value");
     });
-  }else{
+  } else {
     await FirebaseMessaging.instance.getToken().then((value) {
       deviceToken = value;
+      print("FCM token2: $value");
     });
   }
   FirebaseMessaging.onMessage.listen((event) {});
-  FirebaseMessaging.onMessageOpenedApp.listen((event) {}
-  );
-  ///----------------- END Firebase Code -----------------
+  FirebaseMessaging.onMessageOpenedApp.listen((event) {});
+
+  /// ----------------- END Firebase Code -----------------
 }
 
 class App extends StatefulWidget {
@@ -74,7 +78,6 @@ class App extends StatefulWidget {
 class _AppState extends State<App> {
   @override
   void initState() {
-
     super.initState();
   }
 
