@@ -48,11 +48,11 @@ dependencies:
  # store_redirect: ^2.0.2
   flutter_screenutil: ^5.5.3+2
   top_modal_sheet: ^2.0.1
-  firebase_core: ^3.2.0
-  firebase_messaging: ^15.0.3
-  firebase_auth: ^5.1.2
+  firebase_core: ^3.4.1
+  firebase_messaging: ^15.1.1
+  firebase_auth: ^5.2.1
   flutter_local_notifications: ^17.2.2
-  cloud_firestore: ^5.1.0
+  cloud_firestore: ^5.4.1
   video_player: ^2.8.3
   pay: ^1.1.2
   package_info_plus: ^1.4.3
@@ -78,7 +78,6 @@ flutter_icons:
   image_path: "assets/images/adlogo.png"
   android: true
   ios: true
-  remove_alpha_ios: true
 
 dependency_overrides:
   intl: any

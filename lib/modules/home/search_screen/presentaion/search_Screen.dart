@@ -17,6 +17,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../widgets/components/countdown_widget.dart';
+import '../../../widgets/components/dateRange.dart';
 import '../../all_branching/bloc/all_branching_cubit.dart';
 import '../../profile/blocs/profile_cubit/profile_cubit.dart';
 import '../blocs/headlines_bloc/headlines_cubit.dart';
@@ -72,19 +74,19 @@ class _SearchState extends State<SearchScreen> {
       body: BlocConsumer<SearchCubit, SearchState>(
         listener: (context, state) async {
           ///-----------When Offers Day ------------------
-          // if(widget.showAlertOffer==1) {
-          //   DateRangeWidget(
-          //     startDate: DateTime(2023, 9, 10),
-          //     endDate: DateTime(2023, 9, 12),
-          //     child: showOffersDay(
-          //       context,
-          //         CountdownTimerWidget(targetDate: targetDate)
-          //     )
-          //   );
-          //   setState(() {
-          //     widget.showAlertOffer=0;
-          //   });
-          // }
+          if(widget.showAlertOffer == 1 ) {
+            DateRangeWidget(
+              startDate: DateTime(2023, 9, 10),
+              endDate: DateTime(2023, 9, 12),
+              child: showOffersDay(
+                context,
+                  CountdownTimerWidget(targetDate: targetDate)
+              )
+            );
+            setState(() {
+              widget.showAlertOffer=0;
+            });
+          }
           ///-----------When Offers Day ------------------
           if (BlocProvider.of<SearchCubit>(context).message == '1' &&
               isAlertboxOpened == true && isAlertboxOpenedz == false) {

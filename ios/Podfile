@@ -1,5 +1,6 @@
 # Uncomment this line to define a global platform for your project
  platform :ios, '16.0'
+ source 'https://cdn.cocoapods.org/'
  source 'https://github.com/CocoaPods/Specs.git'
 # CocoaPods analytics sends network stats synchronously affecting flutter build latency.
 ENV['COCOAPODS_DISABLE_STATS'] = 'true'
@@ -30,7 +31,8 @@ flutter_ios_podfile_setup
 target 'Runner' do
   use_frameworks!
   use_modular_headers!
-  pod 'FirebaseFirestore', :git => 'https://github.com/invertase/firestore-ios-sdk-frameworks.git', :tag => '10.22.0'
+  pod 'FirebaseCore', '11.0.0'
+  pod 'FirebaseFirestore', '11.0.0'
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 
@@ -40,14 +42,18 @@ post_install do |installer|
   end
 end
 
-
 # --------to solve firebase common problem
-# pod repo remove trunk
+#
+#
+#   pod repo remove trunk
 #   sudo gem install cocoapods-deintegrate cocoapods-clean
 #   pod deintegrate
 #   pod cache clean --all
 #   sudo gem uninstall cocoapods
 #   sudo gem install cocoapods
 #   pod install or pod update
+#
+#
+#
 #///------------when you have CDN: trunk Repo update failed - 12 error(s): problem make the next line
 #add this line /*  source 'https://github.com/CocoaPods/Specs.git' */ after line platform :ios 13
