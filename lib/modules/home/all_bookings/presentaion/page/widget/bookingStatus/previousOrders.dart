@@ -140,153 +140,148 @@ class _PreviousOrdersState extends State<PreviousOrders> {
                           elevation: 4,
                           child: Container(
                             padding: EdgeInsets.all(size.width * 0.01),
-                            height: MediaQuery.of(context).size.height * 0.24,
+                            height: MediaQuery.of(context).size.height * 0.22,
                             decoration: BoxDecoration(
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .primaryContainer,
+                              color: Theme.of(context).colorScheme.primaryContainer,
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
+                                // First Row
                                 Row(
                                   children: [
-                                    AutoSizeText("${bookingData.createdAt}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge),
+                                    Expanded(
+                                      child: AutoSizeText(
+                                        "${bookingData.createdAt}",
+                                        style: Theme.of(context).textTheme.bodyLarge,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
                                     Spacer(),
                                     Container(
-                                        width: 76.w,
-                                        height: 30.h,
-                                        decoration: BoxDecoration(
-                                          color: bookingData.status == 'done'
-                                              ? Color(0XFF1FA88F)
-                                              : bookingData.status ==
-                                                      'rejected'
-                                                  ? Color(0XFFFFC107)
-                                                  : Color(0xffD62E2E),
-                                          borderRadius: BorderRadius.only(
-                                              bottomLeft:
-                                                  Radius.circular(8.0),
-                                              bottomRight:
-                                                  Radius.circular(8.0)),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: size.width * 0.015,
-                                              vertical: 5.h),
-                                          child: Text(
-                                            bookingData.statusText.toString(),
-                                            style: TextStyle(
-                                                color: Color(0XFFFDFDFD),
-                                                // color: bookingData.status =='done'?Color(0XFF1FA88F):bookingData.status =='rejected'?Color(0XFFD62E2E):Color(0xffFFC107),
-                                                fontSize: 12.sp,
-                                                fontWeight: FontWeight.w600),
-                                            textAlign: TextAlign.center,
+                                      width: 76.w,
+                                      height: 30.h,
+                                      decoration: BoxDecoration(
+                                        color: bookingData.status == 'done'
+                                            ? Color(0XFF1FA88F)
+                                            : bookingData.status == 'rejected'
+                                            ? Color(0XFFFFC107)
+                                            : Color(0xffD62E2E),
+                                        borderRadius: BorderRadius.only(
+                                            bottomLeft: Radius.circular(8.0),
+                                            bottomRight: Radius.circular(8.0)),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: size.width * 0.015, vertical: 5.h),
+                                        child: Text(
+                                          bookingData.statusText.toString(),
+                                          style: TextStyle(
+                                            color: Color(0XFFFDFDFD),
+                                            fontSize: 12.sp,
+                                            fontWeight: FontWeight.w600,
                                           ),
-                                        )),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: size.height * 0.01,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                          children: [
-                                            Text("${locale.isDirectionRTL(context)?"رقم الحجز: ":"Book Number: "}",
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                              ),
-                                              textAlign: TextAlign.start,
-                                            ),
-                                            Text(
-                                              "${bookingData.id}",
-                                              style: TextStyle(
-                                                fontSize: 13.sp,
-                                                fontWeight: FontWeight.w700,
-                                                color: Colors.black87,
-                                              ),
-                                            ),
-                                          ],
+                                          textAlign: TextAlign.center,
                                         ),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.015,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                          MainAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              "${locale.carName} : ",
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                              ),
-                                            ),
-                                            Text(
-                                              "${carData.name} ",
-                                              style: TextStyle(
-                                                  fontSize: 13.sp,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Colors.black87),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.015,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              locale.isDirectionRTL(context)
-                                                  ? "تكلفة الحجز: "
-                                                  : "Booking cost: ",
-                                              style: TextStyle(
-                                                fontSize: 12.sp,
-                                              ),
-                                            ),
-                                            Text(
-                                              "${bookingData.price} " +
-                                                  " " +
-                                                  locale.sar.toString(),
-                                              style: TextStyle(
-                                                  fontSize: 13.sp,
-                                                  fontWeight: FontWeight.w700,
-                                                  color: Colors.black87),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    WidgetZoom(
-                                      heroAnimationTag: 'hero-${bookingData.id}',
-                                      zoomWidget: Image.network(
-                                        carData.photo,
-                                        width: 145.w,
                                       ),
                                     ),
                                   ],
                                 ),
                                 SizedBox(
-                                  height: MediaQuery.of(context)
-                                      .size
-                                      .width *
-                                      0.015,
+                                  height: size.height * 0.01,
+                                ),
+                                // Second Row
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${locale.isDirectionRTL(context) ? "رقم الحجز: " : "Book Number: "}",
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                ),
+                                                textAlign: TextAlign.start,
+                                              ),
+                                              Text(
+                                                "${bookingData.id}",
+                                                style: TextStyle(
+                                                  fontSize: 13.sp,
+                                                  fontWeight: FontWeight.w700,
+                                                  color: Colors.black87,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context).size.width * 0.015,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                "${locale.carName} : ",
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                ),
+                                              ),
+                                              Text(
+                                                "${carData.name} ",
+                                                style: TextStyle(
+                                                    fontSize: 13.sp,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Colors.black87),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context).size.width * 0.015,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            children: [
+                                              Text(
+                                                locale.isDirectionRTL(context)
+                                                    ? "تكلفة الحجز: "
+                                                    : "Booking cost: ",
+                                                style: TextStyle(
+                                                  fontSize: 12.sp,
+                                                ),
+                                              ),
+                                              Text(
+                                                "${bookingData.price} " + " " + locale.sar.toString(),
+                                                style: TextStyle(
+                                                    fontSize: 13.sp,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: Colors.black87),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(width: 8),
+                                    WidgetZoom(
+                                      heroAnimationTag: 'hero-${bookingData.id}',
+                                      zoomWidget: Image.network(
+                                        carData.photo,
+                                        width: 100.w,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: MediaQuery.of(context).size.width * 0.015,
                                 ),
                                 GestureDetector(
                                   onTap: () {
@@ -297,23 +292,20 @@ class _PreviousOrdersState extends State<PreviousOrders> {
                                         ));
                                   },
                                   child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: size.width * 0.03),
+                                    padding: EdgeInsets.symmetric(horizontal: size.width * 0.03),
                                     child: Container(
                                       width: 70.w,
                                       height: 24.h,
                                       decoration: BoxDecoration(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondaryContainer,
+                                          color: Theme.of(context).colorScheme.secondaryContainer,
                                           borderRadius: BorderRadius.circular(4)),
                                       child: Text(
                                         locale.bookingDetails
                                             .toString()
                                             .replaceAll('Details', '')
                                             .replaceAll('الحجز', ''),
-                                        style: defaultTextStyle(13, FontWeight.w600,
-                                            Theme.of(context).colorScheme.primary),
+                                        style: defaultTextStyle(
+                                            13, FontWeight.w600, Theme.of(context).colorScheme.primary),
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
