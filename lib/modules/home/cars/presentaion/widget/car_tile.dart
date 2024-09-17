@@ -146,7 +146,8 @@ class _CarTileState extends State<CarTile> {
                               ? Container(
                             decoration: BoxDecoration(
                               image: DecorationImage(
-                                image: NetworkImage(widget.cubit.data[widget.index].photo),
+                                // fit: BoxFit.fitHeight,
+                                image: NetworkImage(widget.cubit.data[widget.index].photo,),
                                 onError: (e, s) {
                                   BlocProvider.of<CarsCubit>(context).emitPhotoError(e);
                                 },
@@ -163,7 +164,7 @@ class _CarTileState extends State<CarTile> {
                       Expanded(
                         child: Container(
                           color: Theme.of(context).brightness == Brightness.light
-                              ? Color(0xFFFEE4D5)
+                              ? Color(0xffd9d7d7)
                               : null,
                           child: Row(
                             children: [
@@ -200,7 +201,7 @@ class _CarTileState extends State<CarTile> {
                                                       .textTheme
                                                       .bodyMedium!
                                                       .copyWith(
-                                                        fontSize: 16.sp,
+                                                        fontSize: 12.sp,
                                                         decoration: TextDecoration
                                                             .lineThrough,
                                                         fontWeight:
@@ -211,7 +212,7 @@ class _CarTileState extends State<CarTile> {
                                                   text: "  ${locale!.sar}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .bodyLarge!
+                                                      .bodyMedium!
                                                       .copyWith(
                                                           color: Theme.of(context)
                                                               .colorScheme
@@ -221,7 +222,7 @@ class _CarTileState extends State<CarTile> {
                                                   text: "/ ${locale.day}",
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .bodyLarge!
+                                                      .bodyMedium!
                                                       .copyWith(
                                                           color:
                                                               Color(0XFFF08A61)),
@@ -256,11 +257,11 @@ class _CarTileState extends State<CarTile> {
                                                   .toUpperCase(),
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .bodyMedium!
+                                                  .bodyLarge!
                                                   .copyWith(
-                                                    fontSize: 14.sp,
-                                                    fontWeight: FontWeight.w500,
-                                                  )),
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .onPrimary)),
                                         ),
                                       ],
                                     ),
@@ -276,14 +277,13 @@ class _CarTileState extends State<CarTile> {
                                             .cubit.data[widget.index].manufactory
                                             .toString(),
                                         overflow: TextOverflow.ellipsis,
-                                        maxLines: 1,
                                         style: Theme.of(context)
                                             .textTheme
-                                            .bodyLarge!
+                                            .bodyMedium!
                                             .copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onPrimary)),
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                        )),
                                     // Text(
                                     //     widget.cubit.data[widget.index].name.toString().toUpperCase(),
                                     //     style: Theme.of(context).textTheme.bodyMedium),

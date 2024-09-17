@@ -80,9 +80,11 @@ class _SelectTimeState extends State<SelectTime> {
                             //     : DateTime.now(),
                             selectionMode: DateRangePickerSelectionMode.single,
                             initialSelectedRange: PickerDateRange(
-                                DateTime.now().add(const Duration(days: 1)),
-                                DateTime.now().add(const Duration(days: 2))),
-                            backgroundColor: Theme.of(context).colorScheme.surface,
+                              DateTime.now().add(const Duration(days: 1)),
+                              DateTime.now().add(const Duration(days: 2)),
+                            ),
+                            backgroundColor:
+                                Theme.of(context).colorScheme.surface,
                             onSubmit: (dynamic value) {
                               widget.isReceive
                                   ? BlocProvider.of<SearchCubit>(context)
@@ -176,79 +178,75 @@ class _SelectTimeState extends State<SelectTime> {
 
                     setState(() {});
                   },
-                  child: Container(
-                    constraints: BoxConstraints(
-                        maxWidth: size.width * 0.5, minWidth: size.width * 0.2),
-                    child: widget.isReceive
-                        ? Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            textDirection: TextDirection.ltr,
-                            children: [
-                              AutoSizeText(
-                                "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.hour.toString()}  ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              AutoSizeText(
-                                " :  ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              AutoSizeText(
-                                "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.minute.toString()} ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              AutoSizeText(
-                                "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.period.name.toString().toUpperCase()} ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          )
-                        : Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            textDirection: TextDirection.ltr,
-                            children: [
-                              AutoSizeText(
-                                " ${BlocProvider.of<SearchCubit>(context).driveTimeValue.hour.toString()}  ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              AutoSizeText(
-                                " :  ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              AutoSizeText(
-                                " ${BlocProvider.of<SearchCubit>(context).driveTimeValue.minute.toString()} ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              AutoSizeText(
-                                "${BlocProvider.of<SearchCubit>(context).driveTimeValue.period.name.toString().toUpperCase()} ",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                  ))),
+                  child: widget.isReceive
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          textDirection: TextDirection.ltr,
+                          children: [
+                            AutoSizeText(
+                              "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.hour.toString()}  ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            AutoSizeText(
+                              " : ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            AutoSizeText(
+                              "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.minute.toString()} ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            AutoSizeText(
+                              "${BlocProvider.of<SearchCubit>(context).receiveTimeValue.period.name.toString().toUpperCase()} ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
+                      : Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          textDirection: TextDirection.ltr,
+                          children: [
+                            AutoSizeText(
+                              " ${BlocProvider.of<SearchCubit>(context).driveTimeValue.hour.toString()}  ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            AutoSizeText(
+                              " : ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            AutoSizeText(
+                              " ${BlocProvider.of<SearchCubit>(context).driveTimeValue.minute.toString()} ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                            AutoSizeText(
+                              "${BlocProvider.of<SearchCubit>(context).driveTimeValue.period.name.toString().toUpperCase()} ",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .copyWith(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ))),
         ),
       ],
     );

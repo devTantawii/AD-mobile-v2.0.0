@@ -47,22 +47,20 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
               onTap: () async {
                 final DateTime? pickedDateTime = await showDatePicker(
                   context: context,
-                  initialDate: selectedDateTime.add(Duration(days: 1)),
-                  firstDate: DateTime(2024),
+                  initialDate: selectedDateTime.add(Duration(days: 0)),
+                  firstDate: DateTime.now(),
                   lastDate: DateTime(2040),
                   builder: (context, child) {
                     return Theme(
                       data: Theme.of(context).copyWith(
                         colorScheme: ColorScheme.light(
                           primary: Colors.blueAccent,
-                          // header background color
                           onPrimary: Colors.white,
-                          // header text color
-                          onSurface: Colors.black, // body text color
+                          onSurface: Colors.black,
                         ),
                         textButtonTheme: TextButtonThemeData(
                           style: TextButton.styleFrom(
-                            foregroundColor: Colors.black, // button text color
+                            foregroundColor: Colors.black,
                           ),
                         ),
                       ),
@@ -79,15 +77,13 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
                         data: Theme.of(context).copyWith(
                           colorScheme: ColorScheme.light(
                             primary: Colors.blueAccent,
-                            // header background color
                             onPrimary: Colors.white,
-                            // header text color
-                            onSurface: Colors.black, // body text color
+                            onSurface: Colors.black,
                           ),
                           textButtonTheme: TextButtonThemeData(
                             style: TextButton.styleFrom(
                               foregroundColor:
-                                  Colors.black, // button text color
+                                  Colors.black,
                             ),
                           ),
                         ),
@@ -112,12 +108,11 @@ class _SelectDayAndTimeWidgetState extends State<SelectDayAndTimeWidget> {
 
                     BlocProvider.of<SearchCubit>(context).changeState();
 
-
                     final timeFormatted = pickedTime.format(context);
                     print('Selected Time1: $timeFormatted');
                     print("Selected Time2: " + selectedDateTime.toString());
 
-                    // Navigator.pop(context);
+                    //Navigator.pop(context);
                   }
                 };
               },

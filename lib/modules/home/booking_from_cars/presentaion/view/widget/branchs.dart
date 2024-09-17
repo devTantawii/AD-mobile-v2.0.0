@@ -53,15 +53,16 @@ class _BranchTileState extends State<BranchTile> {
                   children: [
                     Icon(Icons.location_on_outlined,
                         color: Theme.of(context).colorScheme.primary),
-                    Text(
+                    Flexible(
+                      child: Text(
                         widget.isRecieve
-                            ? BlocProvider.of<SearchCubit>(context)
-                            .selectedReceiveBranch ??
-                            locale!.selectBranch.toString()
-                            : BlocProvider.of<SearchCubit>(context)
-                            .selectedDriveBranch ??
-                            locale!.selectBranch.toString(),
-                        style: Theme.of(context).textTheme.bodyMedium)
+                            ? BlocProvider.of<SearchCubit>(context).selectedReceiveBranch ?? locale!.selectBranch.toString()
+                            : BlocProvider.of<SearchCubit>(context).selectedDriveBranch ?? locale!.selectBranch.toString(),
+                        style: Theme.of(context).textTheme.bodyMedium,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -77,7 +78,7 @@ class _BranchTileState extends State<BranchTile> {
   }
 }
 
-const String _heroTag = 'Hero-Tag';
+const String _heroTag = 'branceTag';
 
 class _PopupCard extends StatefulWidget {
   final List<Datum>? branches;

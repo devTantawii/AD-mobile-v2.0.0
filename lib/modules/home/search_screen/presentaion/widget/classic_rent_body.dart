@@ -55,10 +55,10 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
                     locale!.choseBranch.toString(),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 18.sp,
-                          color: Theme.of(context).brightness ==
-                                  Brightness.light
-                              ? Colors.black
-                              : Colors.white,
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.black
+                                  : Colors.white,
                         ),
                   ),
                   SizedBox(
@@ -78,34 +78,47 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
                           isReceive: true)
                       : SizedBox.shrink(),
                   SizedBox(height: 5.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: BlocProvider.of<SearchCubit>(context)
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1.0,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                          8.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: BlocProvider.of<SearchCubit>(context)
+                                  .branchesData
+                                  .isNotEmpty
+                              ? AutoSizeText(
+                                  locale.deliverAnotherBranch.toString(),
+                                  style: Theme.of(context).textTheme.labelLarge,
+                                )
+                              : Container(),
+                        ),
+                        BlocProvider.of<SearchCubit>(context)
                                 .branchesData
                                 .isNotEmpty
-                            ? AutoSizeText(
-                                locale.deliverAnotherBranch.toString(),
-                                style: Theme.of(context).textTheme.labelLarge)
-                            : Container(),
-                      ),
-                      BlocProvider.of<SearchCubit>(context)
-                              .branchesData
-                              .isNotEmpty
-                          ? SizedBox(
-                              child: FittedBox(
-                                child: Switch.adaptive(
-                                  activeColor: kPickColor,
-                                  value: _switchValue,
-                                  onChanged: (value) => setState(() {
-                                    _switchValue = value;
-                                  }),
+                            ? SizedBox(
+                                child: FittedBox(
+                                  child: Switch.adaptive(
+                                    activeColor: kPickColor,
+                                    inactiveTrackColor: Colors.grey,
+                                    value: _switchValue,
+                                    onChanged: (value) => setState(() {
+                                      _switchValue = value;
+                                    }),
+                                  ),
                                 ),
-                              ),
-                            )
-                          : SizedBox.shrink(),
-                    ],
+                              )
+                            : SizedBox.shrink(),
+                      ],
+                    ),
                   ),
                   _switchValue
                       ? MapListSelectionViewTile(
@@ -120,11 +133,10 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
                     locale.selectDateAndTime.toString(),
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 18.sp,
-                          color: Theme.of(context).brightness ==
-                                  Brightness.light
-                              ? Colors.black
-                              : Colors.white,
-
+                          color:
+                              Theme.of(context).brightness == Brightness.light
+                                  ? Colors.black
+                                  : Colors.white,
                         ),
                   ),
                   SizedBox(
@@ -176,8 +188,11 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
           "GGG");
       print(BlocProvider.of<SearchCubit>(context).driveDateValue.toString() +
           "HHH");
-       print(BlocProvider.of<SearchCubit>(context).selectedRegion.toString()+"GGG");
-       print(BlocProvider.of<SearchCubit>(context).selectedDriveBranch.toString()+"fff");
+      print(BlocProvider.of<SearchCubit>(context).selectedRegion.toString() +
+          "GGG");
+      print(
+          BlocProvider.of<SearchCubit>(context).selectedDriveBranch.toString() +
+              "fff");
       if (BlocProvider.of<ProfileCubit>(context).custClass == '1'.toString()) {
         setState(() {
           searchError = false;
@@ -193,23 +208,37 @@ class _ClassicRentBodyState extends State<ClassicRentBody> {
           searchError = false;
         });
       }
-      final triggeredBranchModel = context.read<SearchCubit>().branchesData.where((element) =>
-              element.name == BlocProvider.of<SearchCubit>(context).selectedReceiveBranch).first;
-      BlocProvider.of<SearchCubit>(context).selectedReceiveModel = triggeredBranchModel;
+      final triggeredBranchModel = context
+          .read<SearchCubit>()
+          .branchesData
+          .where((element) =>
+              element.name ==
+              BlocProvider.of<SearchCubit>(context).selectedReceiveBranch)
+          .first;
+      BlocProvider.of<SearchCubit>(context).selectedReceiveModel =
+          triggeredBranchModel;
       // drive
       if (BlocProvider.of<SearchCubit>(context).selectedDriveBranch != null) {
-        final triggeredDriveBranchModel = context.read<AllBranchCubit>().branchesData.where((element) =>
-        element.name == BlocProvider.of<SearchCubit>(context).selectedDriveBranch).first;
-        BlocProvider.of<SearchCubit>(context).selectedDriveModel = triggeredDriveBranchModel;
+        final triggeredDriveBranchModel = context
+            .read<AllBranchCubit>()
+            .branchesData
+            .where((element) =>
+                element.name ==
+                BlocProvider.of<SearchCubit>(context).selectedDriveBranch)
+            .first;
+        BlocProvider.of<SearchCubit>(context).selectedDriveModel =
+            triggeredDriveBranchModel;
       } else {
-        BlocProvider.of<SearchCubit>(context).selectedDriveModel = triggeredBranchModel;
-        print("rent driv1: ${BlocProvider.of<SearchCubit>(context).selectedDriveBranch}");
+        BlocProvider.of<SearchCubit>(context).selectedDriveModel =
+            triggeredBranchModel;
+        print(
+            "rent driv1: ${BlocProvider.of<SearchCubit>(context).selectedDriveBranch}");
       }
-      print("rent driv2: ${BlocProvider.of<SearchCubit>(context).selectedDriveBranch}");
+      print(
+          "rent driv2: ${BlocProvider.of<SearchCubit>(context).selectedDriveBranch}");
       // Validation
-     await BlocProvider.of<SearchCubit>(context).validate();
+      await BlocProvider.of<SearchCubit>(context).validate();
     } catch (e) {
-
       print("validation Error: ${e.toString()} ");
 
       setState(() {

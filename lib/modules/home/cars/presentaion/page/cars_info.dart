@@ -139,68 +139,68 @@ class _CarsInformationState extends State<CarsInformation> {
                                                 ),
                                                 Row(
                                                   children: [
-                                                    GestureDetector(
-                                                        onTap: () async {
-                                                          await showTopModalSheet(
-                                                              context,
-                                                              Container(
-                                                                color: Theme.of(
-                                                                        context)
-                                                                    .colorScheme
-                                                                    .secondaryContainer,
-                                                                width: MediaQuery.of(
-                                                                            context)
-                                                                        .size
-                                                                        .width *
-                                                                    0.85,
-                                                                child: Padding(
-                                                                  padding: EdgeInsets.symmetric(
-                                                                      vertical: MediaQuery.of(context)
-                                                                              .size
-                                                                              .height *
-                                                                          0.06,
-                                                                      horizontal: MediaQuery.of(context)
-                                                                              .size
-                                                                              .width *
-                                                                          0.05),
-                                                                  child:
-                                                                      Container(
-                                                                    child:
-                                                                        Column(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .spaceEvenly,
-                                                                      crossAxisAlignment:
-                                                                          CrossAxisAlignment
-                                                                              .stretch,
-                                                                      children: <Widget>[
-                                                                        Text(
-                                                                          widget.datum!.name.toString().toUpperCase() +
-                                                                              ' ' +
-                                                                              locale.lookLike1.toString(),
-                                                                          style: Theme.of(context)
-                                                                              .textTheme
-                                                                              .labelLarge!
-                                                                              .copyWith(color: kPrimaryColor),
-                                                                        ),
-                                                                        Text(
-                                                                          locale
-                                                                              .lookLike
-                                                                              .toString(),
-                                                                          style: TextStyle(
-                                                                              fontSize: 15.sp,
-                                                                              fontWeight: FontWeight.w500,
-                                                                              color: Theme.of(context).colorScheme.primary),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ));
-                                                        },
-                                                        child: Icon(
-                                                            Icons.info_outline,
-                                                            size: 16.sp)),
+                                                    // GestureDetector(
+                                                    //     onTap: () async {
+                                                    //       await showTopModalSheet(
+                                                    //           context,
+                                                    //           Container(
+                                                    //             color: Theme.of(
+                                                    //                     context)
+                                                    //                 .colorScheme
+                                                    //                 .secondaryContainer,
+                                                    //             width: MediaQuery.of(
+                                                    //                         context)
+                                                    //                     .size
+                                                    //                     .width *
+                                                    //                 0.85,
+                                                    //             child: Padding(
+                                                    //               padding: EdgeInsets.symmetric(
+                                                    //                   vertical: MediaQuery.of(context)
+                                                    //                           .size
+                                                    //                           .height *
+                                                    //                       0.06,
+                                                    //                   horizontal: MediaQuery.of(context)
+                                                    //                           .size
+                                                    //                           .width *
+                                                    //                       0.05),
+                                                    //               child:
+                                                    //                   Container(
+                                                    //                 child:
+                                                    //                     Column(
+                                                    //                   mainAxisAlignment:
+                                                    //                       MainAxisAlignment
+                                                    //                           .spaceEvenly,
+                                                    //                   crossAxisAlignment:
+                                                    //                       CrossAxisAlignment
+                                                    //                           .stretch,
+                                                    //                   children: <Widget>[
+                                                    //                     Text(
+                                                    //                       widget.datum!.name.toString().toUpperCase() +
+                                                    //                           ' ' +
+                                                    //                           locale.lookLike1.toString(),
+                                                    //                       style: Theme.of(context)
+                                                    //                           .textTheme
+                                                    //                           .labelLarge!
+                                                    //                           .copyWith(color: kPrimaryColor),
+                                                    //                     ),
+                                                    //                     Text(
+                                                    //                       locale
+                                                    //                           .lookLike
+                                                    //                           .toString(),
+                                                    //                       style: TextStyle(
+                                                    //                           fontSize: 15.sp,
+                                                    //                           fontWeight: FontWeight.w500,
+                                                    //                           color: Theme.of(context).colorScheme.primary),
+                                                    //                     ),
+                                                    //                   ],
+                                                    //                 ),
+                                                    //               ),
+                                                    //             ),
+                                                    //           ));
+                                                    //     },
+                                                    //     child: Icon(
+                                                    //         Icons.info_outline,
+                                                    //         size: 16.sp),),
                                                   ],
                                                 ),
                                               ],
