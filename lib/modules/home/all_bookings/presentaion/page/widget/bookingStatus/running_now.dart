@@ -118,7 +118,7 @@ class _RunningNowState extends State<RunningNow> {
                     Container(
                       margin:  EdgeInsets.only(bottom: 13.0.sp),
                       padding:  EdgeInsets.all(size.width *0.02),
-                      height: MediaQuery.of(context).size.height * 0.26,
+                      height: MediaQuery.of(context).size.height * 0.28,
                       decoration: BoxDecoration(
                           color: Theme.of(context).colorScheme.primaryContainer,
                           borderRadius: BorderRadius.circular(8)

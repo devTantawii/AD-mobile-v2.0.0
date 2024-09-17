@@ -17,11 +17,13 @@ import 'package:bounce/bounce.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_device_type/flutter_device_type.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../../service_locator.dart';
 import '../../../../../shared/commponents.dart';
 import '../../../../auth/signin/presentation/pages/signin_screen.dart';
+import '../../../search_screen/presentaion/widget/select_day_and_time.dart';
 
 class BranchWithCarScreen extends StatefulWidget {
   final DataCars carModel;
@@ -120,74 +122,18 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                                 ],
                               ),
                               SizedBox(height: size.height * 0.04),
-                              Stack(
-                                clipBehavior: Clip.none,
+                              Row(
                                 children: [
                                   Container(
-                                    height: MediaQuery.of(context).size.height * 0.05,
-                                    child: Stack(
-                                      children: [
-                                        SelectTime(isReceive: true),
-                                      ],
-                                    ),
+                                    height: Device.get().isTablet ? 220.h : 170.h,
+                                    width: 147.w,
+                                    child: SelectDayAndTimeWidget(isReceive: true),
                                   ),
-                                  Positioned(
-                                    top: -size.height * 0.03,
-                                    left: 20,
-                                    right: size.width*0.07,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5),
-                                      constraints: BoxConstraints(
-                                          maxHeight: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.03),
-                                      color: Theme.of(context).scaffoldBackgroundColor,
-                                      child: AutoSizeText(
-                                        locale.fromTime.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 30.sp),
-                              Stack(
-                                clipBehavior: Clip.none,
-                                children: [
+                                  Spacer(),
                                   Container(
-                                    height: MediaQuery.of(context).size.height *
-                                        0.04,
-                                    child: Stack(
-                                      children: [
-                                        SelectTime(isReceive: false),
-                                      ],
-                                    ),
-                                  ),
-                                  Positioned(
-                                    top: -size.height * 0.035,
-                                    left: 20,
-                                    right: size.width*0.07,
-                                    child: Container(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 5,),
-                                      constraints: BoxConstraints(
-                                          maxHeight: MediaQuery.of(context)
-                                                  .size
-                                                  .height * 0.03,
-                                      ),
-                                      color: Theme.of(context)
-                                          .scaffoldBackgroundColor,
-                                      child: AutoSizeText(
-                                        locale.toTime.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      ),
-                                    ),
+                                    height: Device.get().isTablet ? 220.h : 170.h,
+                                    width: 147.w,
+                                    child: SelectDayAndTimeWidget(isReceive: false),
                                   ),
                                 ],
                               ),
@@ -334,6 +280,7 @@ onTapFirst(BuildContext context)async{
         .state
         .toString()
         .contains("SearchInvalid")) {
+
     } else if (BlocProvider.of<SearchCubit>(context).state.toString().contains("SearchValidate")) {
       BlocProvider.of<AdditionsCubit>(context).getCarFeatures(context, widget.carModel.id.toString());
       Navigator.of(context).push(MaterialPageRoute(

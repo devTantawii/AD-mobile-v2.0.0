@@ -103,27 +103,7 @@ class _CardTopHeadlinesState extends State<CardTopHeadlines> {
                       );
                     },
                   ),
-                  Container(
-                    width: width,
-                    // height: height * 0.32,
-                    decoration: BoxDecoration(
-                        // borderRadius: BorderRadius.circular(20),
-                        // gradient: LinearGradient(
-                        //   colors: [
-                        //     Theme.of(context).scaffoldBackgroundColor,
-                        //     Colors.transparent,
-                        //     Colors.transparent,
-                        //     Colors.transparent,
-                        //     Colors.transparent,
-                        //     Theme.of(context)
-                        //         .scaffoldBackgroundColor
-                        //         .withOpacity(0.7),
-                        //   ],
-                        //   begin: Alignment.bottomCenter,
-                        //   end: Alignment.topCenter,
-                        // ),
-                        ),
-                  ),
+
                   Positioned(
                       top: height * 0.27,
                       child: Container(

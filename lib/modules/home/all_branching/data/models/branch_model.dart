@@ -83,6 +83,7 @@ class BranchModel {
     "phone": phone,
     "location_url": locationUrl == null ? null : locationUrl,
     "work_time": workTime?.toMap(),
+    "book_today": bookToday,
   };
 }
 

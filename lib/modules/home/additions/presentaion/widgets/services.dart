@@ -80,21 +80,27 @@ class _ServicesState extends State<Services> {
                               Text(daily![index] ?? "",
                                   style: TextStyle(
                                     fontSize: 16.sp,
-                                  )),
+                                  ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,),
                               Text(price![index] ?? "",
                                   style: TextStyle(
                                     fontSize: 16.sp,
-                                  )),
+                                  ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
                             ],
                           ),
 
                           Text(
                             title![index] ?? "",
                             style: TextStyle(
-                              fontSize: 16.sp,
+                              fontSize: 15.sp,
                               fontWeight:FontWeight.w400,
-
                             ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
                           ),
 
                         ],
