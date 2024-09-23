@@ -130,7 +130,7 @@ class OrderAdditionsRemoteDatasource {
     } on DioError catch (dioError) {
       throw Failure.fromDioError(dioError);
     } catch (error) {
-      throw '..Oops $error';
+      throw '..Oops  $error';
     }
   }
 }

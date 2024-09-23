@@ -11,15 +11,23 @@ class PaymentRepository {
 
   Future<PaymentStepModel> activePaymentStep(
       {required CreditCardModel? cardModel}) async {
+
+    final userToken = await preferencesHelper.getToken() ?? "";
+
     try {
-      final userToken = await preferencesHelper.getToken() ?? "";
       final response = await paymentRemoteDatasource.activePaymentStep(
           token: userToken, cardModel: cardModel,
       );
 
+      print("pay responce $response");
+      print("pay userToken $userToken");
+      print("pay cardModel $cardModel");
+
       return response;
     } catch (error) {
-      throw '..Oops $error';
+      print("pay1 userToken $userToken");
+      print("pay1 cardModel $cardModel");
+      throw '..@@ Oops $error';
     }
   }
 
@@ -47,4 +55,5 @@ class PaymentRepository {
       throw error;
     }
   }
+
 }

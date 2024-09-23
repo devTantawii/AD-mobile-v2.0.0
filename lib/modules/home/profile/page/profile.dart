@@ -207,7 +207,7 @@ class _MyProfileState extends State<MyProfile> {
                                           shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(20.0))),
-                                          backgroundColor: Colors.white,
+                                          backgroundColor: Colors.blue,
                                           content: Container(
                                             child: Text(
                                               locale.areYouSureDelete
@@ -302,8 +302,10 @@ class _MyProfileState extends State<MyProfile> {
                                     SizedBox(width: 10.0),
                                     Text(
                                       locale.DeleteAccount.toString(),
-                                      style:
-                                          Theme.of(context).textTheme.bodyLarge,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 16.0,
+                                      )
                                     ),
                                   ],
                                 ),
@@ -332,6 +334,25 @@ class _MyProfileState extends State<MyProfile> {
                                 child: SvgPicture.asset(Assets.icon_facebook,
                                     width: MediaQuery.of(context).size.width *
                                         0.1),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal:
+                                      MediaQuery.of(context).size.width * 0.03),
+                              child: GestureDetector(
+                                onTap: () async {
+                                  const url =
+                                      'https://www.instagram.com/abudiyabsa/';
+                                  if (await canLaunch(url)) {
+                                    await launch(url);
+                                  } else {
+                                    throw 'Could not launch $url';
+                                  }
+                                },
+                                child: Image.asset(Assets.icon_instagram,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.14),
                               ),
                             ),
                             Padding(

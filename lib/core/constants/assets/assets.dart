@@ -46,6 +46,7 @@ class Assets {
   static const String icon_linkedIn = 'assets/icons/linkedin.svg';
   static const String icon_twitter = 'assets/icons/twitter.svg';
   static const String icon_whatsApp = 'assets/icons/whatsapp.svg';
+  static const String icon_instagram = 'assets/icons/instagram.png';
 
 
   static const String img_empty = 'assets/images/empty3.png';

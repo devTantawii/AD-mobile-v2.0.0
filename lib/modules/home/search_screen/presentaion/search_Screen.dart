@@ -75,16 +75,16 @@ class _SearchState extends State<SearchScreen> {
       body: BlocConsumer<SearchCubit, SearchState>(
         listener: (context, state) async {
           ///-----------When Offers Day ------------------
-          if (widget.showAlertOffer == 1) {
-            DateRangeWidget(
-                startDate: DateTime(2024, 9, 18),
-                endDate: DateTime(2024, 9, 23),
-                child: showOffersDay(
-                    context, CountdownTimerWidget(targetDate: targetDate)));
-            setState(() {
-              widget.showAlertOffer = 0;
-            });
-          }
+          // if (widget.showAlertOffer == 1) {
+          //   DateRangeWidget(
+          //       startDate: DateTime(2024, 9, 18),
+          //       endDate: DateTime(2024, 9, 23),
+          //       child: showOffersDay(
+          //           context, CountdownTimerWidget(targetDate: targetDate)));
+          //   setState(() {
+          //     widget.showAlertOffer = 0;
+          //   });
+          // }
 
           ///-----------When Offers Day ------------------
           if (BlocProvider.of<SearchCubit>(context).message == '1' &&

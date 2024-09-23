@@ -474,18 +474,12 @@ class _CarsInformationState extends State<CarsInformation> {
                                           builder: (context, state) {
                                             return Bounce(
                                               onTap: () async {
-                                                await BlocProvider.of<
-                                                        AdditionsCubit>(context)
-                                                    .getCarFeatures(
-                                                        context,
-                                                        widget.datum!.id
-                                                            .toString());
-                                                if (widget.filterModel == null &&
-                                                    lookLike == true) {
+                                                await BlocProvider.of<AdditionsCubit>(context)
+                                                    .getCarFeatures(context, widget.datum!.id.toString());
+                                                if (widget.filterModel == null && lookLike == true) {
                                                   PersistentNavBarNavigator.pushNewScreen(context,
                                                       screen: BranchWithCarScreen(
-                                                          carModel:
-                                                              widget.datum!));
+                                                          carModel: widget.datum!));
                                                 } else {
                                                   Navigator.pop(context);
                                                   if (state is AdditionsSuccess ||
