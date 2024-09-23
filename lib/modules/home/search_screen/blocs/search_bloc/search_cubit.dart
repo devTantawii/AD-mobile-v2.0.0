@@ -138,11 +138,13 @@ class SearchCubit extends Cubit<SearchState> {
         return '$formattedDate';
       }
 
-      final response = await dateCheckerRemote.validate(
+      final response = await dateCheckerRemote.validate (
+
         receivingId: selectedReceiveModel!.id.toString(),
         deliveryId: selectedDriveModel?.id.toString() ?? selectedReceiveModel!.id.toString(),
         receivingDate: formatDateTime(receiveDateValue),
         deliveryDate: formatDateTime(driveDateValue),
+
       );
       print("SearchCheckLoading: ${response}");
       if (response == "success") {

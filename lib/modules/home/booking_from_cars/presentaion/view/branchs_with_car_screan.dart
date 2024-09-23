@@ -23,6 +23,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../../../service_locator.dart';
 import '../../../../../shared/commponents.dart';
 import '../../../../auth/signin/presentation/pages/signin_screen.dart';
+import '../../../../widgets/show_error_dailog.dart';
 import '../../../search_screen/presentaion/widget/select_day_and_time.dart';
 
 class BranchWithCarScreen extends StatefulWidget {
@@ -94,32 +95,47 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                                       height: 10,
                                     )
                                   : SizedBox(),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Expanded(
-                                    child: AutoSizeText(
-                                      locale.deliverAnotherBranch.toString(),
-                                      style:
-                                          Theme.of(context).textTheme.bodyMedium,
-                                    ),
+                              Container(
+                                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.grey,
+                                    width: 1.0,
                                   ),
-                                  SizedBox(
-                                    height: 25,
-                                    child: FittedBox(
-                                      child: CupertinoSwitch(
-                                        activeColor: Colors.blue,
-                                        value: _switchValue,
-                                        onChanged: (value) {
-                                          setState(() {
+                                  borderRadius: BorderRadius.circular(
+                                      8.0),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Expanded(
+                                      child: BlocProvider.of<SearchCubit>(context)
+                                          .branchesData
+                                          .isNotEmpty
+                                          ? AutoSizeText(
+                                        locale.deliverAnotherBranch.toString(),
+                                        style: Theme.of(context).textTheme.labelLarge,
+                                      )
+                                          : Container(),
+                                    ),
+                                    BlocProvider.of<SearchCubit>(context)
+                                        .branchesData
+                                        .isNotEmpty
+                                        ? SizedBox(
+                                      child: FittedBox(
+                                        child: Switch.adaptive(
+                                          activeColor: Colors.black54,
+                                          inactiveTrackColor: Colors.grey,
+                                          value: _switchValue,
+                                          onChanged: (value) => setState(() {
                                             _switchValue = value;
-                                          });
-                                        },
+                                          }),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ],
+                                    )
+                                        : SizedBox.shrink(),
+                                  ],
+                                ),
                               ),
                               SizedBox(height: size.height * 0.04),
                               Row(
@@ -142,6 +158,7 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                               BlocConsumer<AdditionsCubit,AdditionsState>(
                                 listener: (context, state) {
                                   if(state is AdditionsFailed){
+
                                     HelperFunctions.showFlashBar(
                                       context: context,
                                       title: locale.error.toString(),
@@ -149,9 +166,9 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                                       icon: Icons.info,  color: Color(0xffF6A9A9),
                                       titlcolor: Colors.red,
                                       iconColor: Colors.red,
-
                                     );
-                                    if( state.error.contains("Error Please LOGIN To Continue")){
+
+                                    if( state.error.contains("Error Please LOGIN To Continue") ) {
                                       navigateAndFinish(context, SignInScreen());
                                     }
                                   }
@@ -167,14 +184,9 @@ class _BranchWithCarScreenState extends State<BranchWithCarScreen> {
                                                 BlocProvider.of<AdditionsCubit>(context).getCarFeatures(context, widget.carModel.id.toString());
                                                   onTap(context);
                                               }else{
-                                                HelperFunctions.showFlashBar(
-                                                    context: context,
-                                                    title: locale.error.toString(),
-                                                    message: locale.isDirectionRTL(context)?"يجب عيك اختيار الفرع":"You Must Select The Branch",
-                                                    icon: Icons.warning_amber,
-                                                    color: Color(0xffF6A9A9),
-                                                    titlcolor: Colors.red,
-                                                    iconColor: Colors.red);
+                                                showErrorAlertDialog(context, locale.isDirectionRTL(context)
+                                                    ? "يجب عليك اختيار الفرع اولا"
+                                                    : "You Must Select The Branch",);
                                               }
                                             },
                                             child: ADGradientButton(locale.bookNow),
