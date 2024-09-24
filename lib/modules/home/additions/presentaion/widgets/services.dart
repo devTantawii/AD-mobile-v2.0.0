@@ -70,7 +70,6 @@ class _ServicesState extends State<Services> {
                                   .removeAddition(context, widget.features![index]);
                         });
                       },
-
                       value: checked[index],
                       title: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,6 +82,7 @@ class _ServicesState extends State<Services> {
                                   ),
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,),
+                              SizedBox(height: 8,),
                               Text(price![index] ?? "",
                                   style: TextStyle(
                                     fontSize: 16.sp,
@@ -92,11 +92,10 @@ class _ServicesState extends State<Services> {
                               ),
                             ],
                           ),
-
                           Text(
                             title![index] ?? "",
                             style: TextStyle(
-                              fontSize: 15.sp,
+                              fontSize: 14.sp,
                               fontWeight:FontWeight.w400,
                             ),
                             overflow: TextOverflow.ellipsis,

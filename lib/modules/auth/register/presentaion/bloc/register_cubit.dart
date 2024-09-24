@@ -33,7 +33,7 @@ class RegisterCubit extends Cubit<RegisterState> {
   }
   
   Future<void> userRegister({
-    String name = "TestName",
+    required String name ,
     required String email,
     required String phone,
     required String password,
