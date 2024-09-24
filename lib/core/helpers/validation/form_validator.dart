@@ -1,6 +1,8 @@
 import 'package:abudiyab/core/helpers/validation/validation.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../../language/locale.dart';
+
 class FormValidator {
   static String? passwordValidate(BuildContext context , String? value) {
     final passwordValidator = Validate.validatePassword(context , value);
@@ -31,8 +33,15 @@ class FormValidator {
   }
 
   static String? phoneValidate(BuildContext context ,String? value) {
+
+    var locale = AppLocalizations.of(context);
     final phoneValidator = Validate.validatePhoneNumber( context ,value);
     if (phoneValidator == null) {
+      final regex = RegExp(r'^(009665|9665|\+9665|05|5)(5|0|3|6|4|9|1|8|7)([0-9]{7})$');
+
+      if (value != null && !regex.hasMatch(value)) {
+        return locale!.isDirectionRTL(context) ? "الرجاء إدخال رقم هاتف صالح" : "Please Enter a valid phone number";
+      }
       return null;
     } else {
       return phoneValidator;

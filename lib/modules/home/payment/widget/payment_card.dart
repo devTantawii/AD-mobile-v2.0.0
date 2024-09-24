@@ -44,7 +44,8 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
       child: GestureDetector(
         onTap: () async {
           BlocProvider.of<BookingCubit>(context).setPaymentMethods(widget.text);
-          await BlocProvider.of<BookingCubit>(context).selectedPaymentMethods == locale!.visa.toString()
+          await BlocProvider.of<BookingCubit>(context).selectedPaymentMethods
+              == locale!.visa.toString()
               ? showModalBottomSheet(
                   isScrollControlled: true,
                   elevation: 0,
@@ -212,9 +213,9 @@ class _PaymentMethodCardState extends State<PaymentMethodCard> {
                   color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(25.0),
                 ),
-                child: Icon(BlocProvider.of<BookingCubit>(context)
-                    .selectedPaymentMethods ==
-                    widget.text ? Icons.check_circle : Icons.radio_button_off,
+                child: Icon(BlocProvider.of<BookingCubit>(context).selectedPaymentMethods == widget.text
+                    ? Icons.check_circle
+                    : Icons.radio_button_off,
                   color: Theme.of(context).brightness==Brightness.light?Colors.black54:Colors.white,
                   size: 25,
                 ),

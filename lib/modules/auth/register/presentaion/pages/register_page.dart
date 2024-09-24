@@ -140,6 +140,20 @@ class _RegisterPageState extends State<RegisterPage> {
                                              context, value),
                                      auth: true,
                                    ),
+
+                                   SizedBox(height: 10),
+                                   ADPrimTextForm(
+                                     controller: userNameController,
+                                     type: TextInputType.text,
+                                     label: locale.isDirectionRTL(context)
+                                         ? "الاسم بالكامل"
+                                          : "Full User Name",
+                                     pIcon: Icons.email_outlined,
+                                     validat: (value) =>
+                                         FormValidator.nameValidate(
+                                             context, value),
+                                     auth: true,
+                                   ),
                                    SizedBox(height: 10),
                                    ADPrimTextForm(
                                      controller: emailController,
@@ -151,6 +165,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                              context, value),
                                      auth: true,
                                    ),
+
+
                                    SizedBox(height: 10),
                                    ADPrimTextForm(
                                      controller: passwordController,
@@ -395,9 +411,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                        cubit.imagePathFace != '') {
                                      cubit
                                        ..userRegister(
-                                           idNumber:
-                                           idNumberController.text,
-                                           name: 'Test_Name',
+                                           idNumber:  idNumberController.text,
+                                           name: userNameController.text,
                                            email: emailController.text,
                                            phone: phoneController.text,
                                            password:
